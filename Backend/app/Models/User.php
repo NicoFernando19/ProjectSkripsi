@@ -20,7 +20,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'name',
+        'username', 
+        'email', 
+        'DoB',
+        'roles',
+        'phoneNumber',
+        'lasLogin',
+        'created_by',
+        'updated_by',
+        'isActive',
+        'password'
     ];
 
     /**
@@ -48,5 +58,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function roles(){
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
+    }
+
+    public function Company(){
+        return $this->belongsTo(Company::class);
     }
 }

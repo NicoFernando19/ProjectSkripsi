@@ -35,6 +35,31 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
+
+    public function Register(Request $request)
+    {
+        $validator = Validator::make($request, [
+            'username' => 'required|string',
+            'name' => 'required|string',
+            'email' => 'required|string|email',
+            'password' => 'required|string|confirmed',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator, 500);
+        }
+
+        $user = User::create([
+            'username' => $request->username,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => app('hash')->make($request->password)
+        ]);
+
+        
+        return response()->json($user, 201);
+    }
+
 	
      /**
      * Get user details.
