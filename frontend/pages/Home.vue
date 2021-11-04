@@ -66,6 +66,7 @@ import CategoryType from '@/components/CategoryType.vue'
 
 export default {
   name: 'Home',
+  middleware: 'auth',
   components:{
     NavbarWeb,
     CategoryType

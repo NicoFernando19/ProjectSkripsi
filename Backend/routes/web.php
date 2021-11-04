@@ -23,10 +23,12 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->post('login', ['uses' => 'AuthController@login']);
     $router->post('register', ['uses' => 'AuthController@Register']);
 
+    //API STATS
+    $router->get('stats', ['uses' => 'AuthController@me']);
+    
     //COMPANY
     $router->post('company/list', ['uses' => 'CompanyController@listCompany']);
 
     //ROLE
     $router->post('role/list', ['uses' => 'RoleController@listRole']);
 });
-$router->get('me', ['uses' => 'AuthController@me']);
