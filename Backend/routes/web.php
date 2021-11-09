@@ -23,6 +23,10 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->post('login', ['uses' => 'AuthController@login']);
     $router->post('register', ['uses' => 'AuthController@Register']);
 
+    //EMPLOYEE AUTHENTICATION
+    $router->post('employee/login', ['uses' => 'Employee\EmployeeAuthController@login']);
+    $router->get('employee/stats', ['uses' => 'Employee\EmployeeAuthController@me']);
+
     //API STATS
     $router->get('stats', ['uses' => 'AuthController@me']);
     
