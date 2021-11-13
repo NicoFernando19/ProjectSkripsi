@@ -15,6 +15,14 @@ class CreateEmployeeDetailsTable extends Migration
     {
         Schema::create('employee_details', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->string("address")->nullable();
+            $table->string("country")->nullable();
+            $table->string("city")->nullable();
+            $table->string("about")->nullable();
+            $table->string("jobTitle")->nullable();
+            $table->string("jobDesc")->nullable();
             $table->timestamps();
         });
     }

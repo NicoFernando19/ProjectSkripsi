@@ -15,7 +15,16 @@ class Employee extends Model implements AuthenticatableContract, AuthorizableCon
     use Authenticatable, Authorizable, HasFactory;
 
     protected $fillable = [
-        'email',
+        'name',
+        'username', 
+        'email', 
+        'DoB',
+        'roles',
+        'phoneNumber',
+        'lasLogin',
+        'created_by',
+        'updated_by',
+        'isActive',
         'password'
     ];
 
@@ -36,6 +45,14 @@ class Employee extends Model implements AuthenticatableContract, AuthorizableCon
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function roles(){
+        return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
+    }
+
+    public function Company(){
+        return $this->belongsTo(Company::class);
     }
 
 }

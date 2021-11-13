@@ -17,6 +17,18 @@ class CreateEmployeesTable extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string("username");
+            $table->string('name');
+            $table->string("roles")->nullable();
+            $table->string("phoneNumber")->nullable();
+            $table->date("lastLogin")->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('updated_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->foreign('company_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
+            $table->boolean("isActive")->default(1);
             $table->timestamps();
         });
     }
