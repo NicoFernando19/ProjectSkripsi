@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Role;
+use App\Models\CompanyType;
 
-class RoleController extends Controller
+class CompanyTypeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -15,10 +15,10 @@ class RoleController extends Controller
         //
     }
 
-    public function listRole()
+    public function listCompanyType()
     {
         $data = [
-            'data' => Role::all()
+            'data' => CompanyType::all()
         ];
 
         return response()->json($data, 200);

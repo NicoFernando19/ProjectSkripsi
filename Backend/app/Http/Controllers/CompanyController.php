@@ -18,7 +18,7 @@ class CompanyController extends Controller
     public function listCompany()
     {
         $data = [
-            data => Company::all()
+            'data' => Company::all()
         ];
 
         return response()->json($data, 200);

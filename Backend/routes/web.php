@@ -33,6 +33,9 @@ $router->group(['prefix' => 'api'], function () use ($router)
     //COMPANY
     $router->post('company/list', ['uses' => 'CompanyController@listCompany']);
 
+    //COMPANY TYPE
+    $router->get('company-type/list', ['uses' => 'CompanyTypeController@listCompanyType']);
+
     //ROLE
     $router->post('role/list', ['uses' => 'RoleController@listRole']);
 });
