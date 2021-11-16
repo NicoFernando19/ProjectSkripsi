@@ -16,14 +16,14 @@ class EmployeeSeeder extends Seeder
     {
         Employee::create(
             [
-                'email' => 'employee@gmail.com',
+                'email' => 'nicofernando39@gmail.com',
                 'password' => app('hash')->make('123123123'),
                 'username' => 'admin1'
             ]
         );
         Employee::create(
             [
-                'email' => 'employee2@gmail.com',
+                'email' => 'nicofernando1907@gmail.com',
                 'password' => app('hash')->make('123123123'),
                 'username' => 'employee1'
             ]

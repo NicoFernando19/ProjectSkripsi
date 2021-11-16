@@ -25,5 +25,13 @@ return [
             'driver' => 'eloquent',
             'model' => \App\Models\Employee::class
         ]
+    ],
+
+    'passwords' => [
+        'users' => [
+            'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
     ]
 ];

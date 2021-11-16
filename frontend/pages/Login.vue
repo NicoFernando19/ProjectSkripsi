@@ -19,10 +19,23 @@
                         placeholder="Email">
                 </div>
                 <div class="form-group pb-3">
-                    <label for="inputPassword4">Password</label>
+                    <div class="d-flex">
+                      <label for="inputPassword4">Password</label>
+                      <span class="ml-2 text-muted">
+                        <p><small>Forgot Password ? <NuxtLink to="/reset-password" class="text-decoration-none">Reset Password!</NuxtLink></small></p>
+                      </span>
+                    </div>
                     <input type="password" class="form-control" v-model="model.password" id="inputPassword4" placeholder="Password">
+                    <div class="d-flex justify-content-end">
+                      <span class="text-muted">
+                        <p><small>Don't have account ? <NuxtLink to="/Registration" class="text-decoration-none">Register Now!</NuxtLink></small></p>
+                      </span>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-register">Login</button>
+                <div class="d-flex justify-content-center">
+                  <NuxtLink to="/" type="button" class="btn btn-danger btn-register mr-3">Back</NuxtLink>
+                  <button type="submit" class="btn btn-primary btn-register">Login</button>
+                </div>
             </form>
         </div>
     </div>
@@ -113,11 +126,6 @@ export default {
 
 .space{
     padding-top: 50px;
-}
-
-.btn-register{
-    display: block;
-    margin: 20px auto 0;
 }
 
 .list-group{

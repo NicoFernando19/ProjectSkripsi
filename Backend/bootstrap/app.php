@@ -60,6 +60,13 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('services');
+$app->configure('mail');
+$app->alias('mailer', Illuminate\Mail\Mailer::class);
+$app->alias('mailer', Illuminate\Contracts\Mail\Mailer::class);
+$app->alias('mailer', Illuminate\Contracts\Mail\MailQueue::class);
+$app->alias('mail.manager', Illuminate\Mail\MailManager::class);
+$app->alias('mail.manager', Illuminate\Contracts\Mail\Factory::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -93,11 +100,16 @@ $app->middleware([
 | totally optional, so you are not required to uncomment this line.
 |
 */
-
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+$app->register(Illuminate\Notifications\NotificationServiceProvider::class);
+$app->register(Illuminate\Auth\Passwords\PasswordResetServiceProvider::class);
+$app->register(Illuminate\Mail\MailServiceProvider::class);
+$app->withFacades(true, [
+"Illuminate\Support\Facades\Notification" => "Notification",
+]);
 
 /*
 |--------------------------------------------------------------------------

@@ -44,7 +44,10 @@
                     <input type="text" class="form-control" id="inputZip">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-register">Register</button>
+                <div class="d-flex justify-content-center">
+                  <NuxtLink to="/" type="button" class="btn btn-danger btn-register mr-3">Back</NuxtLink>
+                  <button type="submit" class="btn btn-primary btn-register">Register</button>
+                </div>
             </form>
         </div>
     </div>
@@ -73,11 +76,6 @@ export default {
 
 .space{
     padding-top: 50px;
-}
-
-.btn-register{
-    display: block;
-    margin: 20px auto 0;
 }
 
 .list-group{

@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder
             [
                 'name' => 'test',
                 'username' => 'test',
-                'email' => 'test@gmail.com',
+                'email' => 'nicofernando39@gmail.com',
                 'password' => app('hash')->make('123123123')
             ]
         );

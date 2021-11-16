@@ -7,7 +7,7 @@
       Category Name
     </h2>
     <div class="container d-flex align-content-between flex-wrap justify-content-between pt-5">
-      <div class="card p-4 mt-auto" style="width: 18rem;">
+      <div class="card p-4 m-3" style="width: 18rem;">
         <img class="card-img-top" src="" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
@@ -15,7 +15,7 @@
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
-      <div class="card p-4 mt-auto mb-auto" style="width: 18rem;">
+      <div class="card p-4 m-3" style="width: 18rem;">
         <img class="card-img-top" src="" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
@@ -23,7 +23,7 @@
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
-      <div class="card p-4 mt-auto mb-auto" style="width: 18rem;">
+      <div class="card p-4 m-3" style="width: 18rem;">
         <img class="card-img-top" src="" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
@@ -31,7 +31,7 @@
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
-      <div class="card p-4 mt-auto mb-auto" style="width: 18rem;">
+      <div class="card p-4 m-3" style="width: 18rem;">
         <img class="card-img-top" src="" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
@@ -39,7 +39,7 @@
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
-      <div class="card p-4 mt-auto mb-auto" style="width: 18rem;">
+      <div class="card p-4 m-3" style="width: 18rem;">
         <img class="card-img-top" src="" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
@@ -47,7 +47,7 @@
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
-      <div class="card p-4 mt-auto mb-auto" style="width: 18rem;">
+      <div class="card p-4 m-3" style="width: 18rem;">
         <img class="card-img-top" src="" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
