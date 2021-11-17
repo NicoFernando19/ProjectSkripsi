@@ -34,6 +34,7 @@
 import NavbarWeb from '@/components/NavbarWeb.vue'
 import CategoryType from '@/components/CategoryType.vue'
 import ResetPasswordService from '../../store/services/resetPassword/resetPassword'
+import Toast from '../../store/features/notificationToast/toast'
 
 export default {
   name: 'Login',
@@ -72,14 +73,13 @@ export default {
       }
     },
     async sendEmail() {
-        var res = await ResetPasswordService.resetPassword(
+        var res = await ResetPasswordService.SentEmailResetLink(
             this.model.email,
         );
         if (res.status == 200) {
-            Toast.showToast("Login Verification","Login Success", "success");
-            this.$router.push({ path: "/Home" });
+            Toast.showToast("Sent Email","Password reset link has been sent to your email", "success");
         } else {
-            Toast.showToast("Login Verification", "Invalid credential", "danger");
+            Toast.showToast("Sent Email", "There is some error in server", "danger");
         }
     }
   }

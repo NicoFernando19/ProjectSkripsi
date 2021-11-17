@@ -66,7 +66,7 @@ class ResetPassword extends Notification
         if (static::$createUrlCallback) {
             $url = call_user_func(static::$createUrlCallback, $notifiable, $this->token);
         } else {
-            $url = 'http://localhost:3000/reset-password?token='.$this->token .'email='.$notifiable->getEmailForPasswordReset();
+            $url = 'http://localhost:3000/reset-password?token='.$this->token .'&email='.$notifiable->getEmailForPasswordReset();
         }
 
         return $this->buildMailMessage($url);

@@ -19,7 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->string("companyEmail");
             $table->string("companyPhone");
             $table->string("TanggalBerdiri");
-            $table->string("Website");
+            $table->string("WebsiteUrl");
             $table->string("BidangUsaha");
             $table->string("Industri");
             $table->string("SubIndustri");
