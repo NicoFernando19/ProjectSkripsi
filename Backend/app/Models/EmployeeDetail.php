@@ -7,12 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class EmployeeDetail extends Model
 {
     protected $fillable = [
-        'user_id', 
+        'employee_id', 
         'address',
+        'address2',
         'country',
         'city',
+        'zip',
         'about',
         'jobTitle',
         'jobDesc'
     ];
+
+    public function Employee(){
+        return $this->belongsTo(Employee::class);
+    }
 }

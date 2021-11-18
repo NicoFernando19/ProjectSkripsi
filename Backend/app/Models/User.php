@@ -31,7 +31,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'DoB',
         'roles',
         'phoneNumber',
-        'lasLogin',
+        'lastLogin',
         'created_by',
         'updated_by',
         'isActive',
@@ -67,6 +67,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function Company(){
         return $this->belongsTo(Company::class);
+    }
+
+    public function UserDetail(){
+        return $this->hasOne(UserDetail::class);
     }
 
     public function sendPasswordResetNotification($token)

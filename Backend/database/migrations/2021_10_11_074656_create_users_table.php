@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->date("DoB")->nullable();
             $table->string("roles")->nullable();
             $table->string("phoneNumber")->nullable();
-            $table->date("lastLogin")->nullable();
+            $table->datetime("lastLogin")->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('updated_by')->nullable();

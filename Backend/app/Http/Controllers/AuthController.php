@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Tymon\JWTAuth\JWTAuth;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -38,15 +40,22 @@ class AuthController extends Controller
 
     public function Register(Request $request)
     {
-        $validator = Validator::make($request, [
+        $validator = Validator::make($request->all(), [
             'username' => 'required|string',
+            'address' => 'required|string',
             'name' => 'required|string',
+            'city' => 'required|string',
+            'zip' => 'required|string',
+            'state' => 'required|string',
             'email' => 'required|string|email',
             'password' => 'required|string|confirmed',
         ]);
 
         if($validator->fails()){
-            return response()->json($validator, 500);
+            $err = [
+                'errors' => $validator->errors()
+            ];
+            return response()->json($err, 400);
         }
 
         $user = User::create([
@@ -55,8 +64,8 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => app('hash')->make($request->password)
         ]);
+        $user->userdetail()->create($request->all());
 
-        
         return response()->json($user, 201);
     }
 

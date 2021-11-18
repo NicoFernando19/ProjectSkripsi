@@ -18,6 +18,7 @@ class CreateEmployeeDetailsTable extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onUpdate('cascade')->onDelete('cascade');
             $table->string("address")->nullable();
+            $table->string("address2")->nullable();
             $table->string("country")->nullable();
             $table->string("city")->nullable();
             $table->string("about")->nullable();

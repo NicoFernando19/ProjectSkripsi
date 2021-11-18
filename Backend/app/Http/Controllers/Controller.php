@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
+use Carbon\Carbon;
 
 class Controller extends BaseController
 {
     public function respondWithToken($token)
     {
+        auth()->user()->lastLogin = Carbon::now();
+        auth()->user()->save();
         return response()->json([
             'user'=>auth()->user(),
             'token' => $token,

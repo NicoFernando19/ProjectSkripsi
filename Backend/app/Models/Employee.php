@@ -55,4 +55,8 @@ class Employee extends Model implements AuthenticatableContract, AuthorizableCon
         return $this->belongsTo(Company::class);
     }
 
+    public function EmployeeDetail(){
+        return $this->hasOne(EmployeeDetail::class);
+    }
+
 }
