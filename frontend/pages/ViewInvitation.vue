@@ -4,7 +4,7 @@
         <h2 class="text-center pt-5 pb-5">
             View Invitation
         </h2>
-        <div class="container-fluid d-flex align-content-between flex-wrap justify-content-center pt-5 pad">
+    <div class="container-fluid d-flex align-content-between flex-wrap justify-content-center pt-5 pad">
       <div class="card p-4 m-3" style="width: 18rem;">
         <img class="card-img-top" src="" alt="Card image cap">
         <div class="card-body">

@@ -22,17 +22,23 @@
                     <li class="list-group-item">Age: 26</li>
                     <li class="list-group-item">Experience: 10+ years</li>
               </ul>
-              <div class="col-lg-12 pt-4 text-justify">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ea expedita minima cupiditate sapiente doloribus est quia quo, cumque officia perferendis sit modi voluptas labore fugiat nesciunt! Quia, mollitia excepturi.
-              </div>
-              <div class="col-lg-12 pt-4">
-                <button type="button" class="btn btn-primary">Back</button>
-                <button type="button" class="btn btn-success">Order Now</button>
-              </div>
           </div>
       </div>
     </div>
   </div>  
+  <div class="spacing"></div>
+  <h2 class="text-center pt-5 pb-5">
+      Previous Works
+  </h2>
+  <div class="container-xl pb-5 prev-work">
+    <ul class="list-group pb-2">
+        <li class="list-group-item">(Feb 2020 - Apr 2021) proyek website LMS PT ABC </li>
+        <li class="list-group-item">(Feb 2020 - Apr 2021) proyek website LMS PT ABC </li>
+        <li class="list-group-item">(Feb 2020 - Apr 2021) proyek website LMS PT ABC </li>
+        <li class="list-group-item">(Feb 2020 - Apr 2021) proyek website LMS PT ABC </li>
+        <li class="list-group-item">(Feb 2020 - Apr 2021) proyek website LMS PT ABC </li>
+    </ul>
+  </div>
 </div>
 </template>
 
@@ -41,7 +47,7 @@ import NavbarWeb from '@/components/NavbarWeb.vue'
 import CategoryType from '@/components/CategoryType.vue'
 
 export default {
-  name: 'Home',
+  name: 'Detail',
   components:{
     NavbarWeb,
     CategoryType
@@ -61,4 +67,12 @@ export default {
 .list-group{
     width: 100%;
 }
+
+.spacing{
+  height: 70px;
+}
+
+/* .prev-work{
+  max-width: fit-content;
+} */
 </style>
