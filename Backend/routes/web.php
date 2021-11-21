@@ -54,4 +54,8 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->get('role/getData/{id}', ['uses' => 'RoleController@showById']);
     $router->put('role/update/{id}', ['uses' => 'RoleController@update']);
     $router->delete('role/delete/{id}', ['uses' => 'RoleController@destroy']);
+
+
+    //NOTIFICATION
+    $router->get('notification/list', ['uses', 'Notifications\NotificationsController@listNotif']);
 });

@@ -16,7 +16,8 @@ class CreateNotificationsTable extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->morphs('notifiable');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->text('data');
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
