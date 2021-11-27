@@ -78,7 +78,14 @@ class AuthController extends Controller
      */	 	
     public function me()
     {
-        return response()->json(auth()->user());
+        $user = auth()->user();
+        $role_user = array();
+        foreach ($user->Roles as $role){
+            array_push($role_user, $role->role_name);
+        }
+        $user['userRoles'] = implode(", ",$role_user);
+        $role_user = array();
+        return response()->json($user);
     }
 }
 ?>

@@ -14,6 +14,10 @@ return [
             'driver' => 'jwt',
             'provider' => 'employees',
         ],
+        'company' => [
+            'driver' => 'jwt',
+            'provider' => 'companies',
+        ],
     ],
 
     'providers' => [
@@ -24,6 +28,10 @@ return [
         'employees' => [
             'driver' => 'eloquent',
             'model' => \App\Models\Employee::class
+        ],
+        'companies' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\Company::class
         ]
     ],
 
@@ -33,5 +41,15 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
+        'employees' => [
+            'provider' => 'employees',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'companies' => [
+            'provider' => 'companies',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ]
     ]
 ];

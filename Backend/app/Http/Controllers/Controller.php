@@ -28,4 +28,14 @@ class Controller extends BaseController
             'expires_in' => time() + 60 * 60 * 60 * 24
         ], 200);
     }
+
+    public function respondWithTokenForCompany($token)
+    {
+        return response()->json([
+            'user'=>auth('company')->user(),
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => time() + 60 * 60 * 60 * 24
+        ], 200);
+    }
 }
