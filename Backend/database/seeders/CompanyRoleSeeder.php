@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\UserRole;
+use App\Models\CompanyRole;
 
-class UserRoleSeeder extends Seeder
+class CompanyRoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +14,8 @@ class UserRoleSeeder extends Seeder
      */
     public function run()
     {
-        UserRole::create([
-            'user_id' => 1,
+        CompanyRole::create([
+            'company_id' => 1,
             'role_id' => 1
         ]);
     }

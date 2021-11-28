@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Company;
 use Tymon\JWTAuth\JWTAuth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -31,8 +31,10 @@ class AuthController extends Controller
         ]);
 
         $credentials = $request->only(['email', 'password']);
-        if (! $token = Auth::attempt($credentials,true)) {			
-            return response()->json(['message' => 'Unauthorized'], 401);
+        if (! $token = Auth::attempt($credentials,true)) {		
+            return response()->json([
+                'message' => 'Incorrect Password or Email'
+            ], 400);
         }
         return $this->respondWithToken($token);
     }
@@ -48,7 +50,10 @@ class AuthController extends Controller
             'zip' => 'required|string',
             'state' => 'required|string',
             'email' => 'required|string|email',
+            'BidangUsaha' => 'required|string',
+            'Industri' => 'required|string',
             'password' => 'required|string|confirmed',
+            'company_type_id' => 'required'
         ]);
 
         if($validator->fails()){
@@ -58,15 +63,13 @@ class AuthController extends Controller
             return response()->json($err, 400);
         }
 
-        $user = User::create([
-            'username' => $request->username,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => app('hash')->make($request->password)
-        ]);
-        $user->userdetail()->create($request->all());
+        $request->password = app('hash')->make($request->password);
+        $user = Company::create($request->all());
 
-        return response()->json($user, 201);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Create user success'
+        ], 201);
     }
 
 	
@@ -83,7 +86,7 @@ class AuthController extends Controller
         foreach ($user->Roles as $role){
             array_push($role_user, $role->role_name);
         }
-        $user['userRoles'] = implode(", ",$role_user);
+        $user['companyRoles'] = implode(", ",$role_user);
         $role_user = array();
         return response()->json($user);
     }

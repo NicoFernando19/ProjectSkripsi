@@ -140,7 +140,7 @@ trait ResetPasswords
      */
     protected function resetPassword($user, $password)
     {
-        $user->password = bcrypt($password);
+        $user->password = app('hash')->make($password);
 
         $user->save();
 

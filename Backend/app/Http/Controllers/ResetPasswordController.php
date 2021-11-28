@@ -10,6 +10,6 @@ class ResetPasswordController extends Controller
 
     public function __construct()
     {
-        $this->broker = 'users';
+        $this->broker = 'companies';
     }
 }

@@ -4,5 +4,5 @@ export default  {
     Register: "/api/register",
     ApiStats: "/api/stats",
     SentEmailResetPasswordLink: "/api/password/email",
-    ResetPassword: "/api/password/reset/"
+    ResetPassword: "/api/password/reset"
 }

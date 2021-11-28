@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Company;
+use Illuminate\Support\Facades\Validator;
 
 class CompanyController extends Controller
 {
@@ -27,8 +28,17 @@ class CompanyController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'companyName' => 'required|string',
-            'address' => 'required|string'
+            'username' => 'required|string',
+            'address' => 'required|string',
+            'name' => 'required|string',
+            'city' => 'required|string',
+            'zip' => 'required|string',
+            'state' => 'required|string',
+            'email' => 'required|string|email',
+            'BidangUsaha' => 'required|string',
+            'Industri' => 'required|string',
+            'password' => 'required|string|confirmed',
+            'company_type_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -39,6 +49,12 @@ class CompanyController extends Controller
         }
 
         try{
+            $request->password = app('hash')->make($request->password);
+            if($request->hasFile('file')) {
+                $file = $request->file('file');
+                $fileName = app('App\Http\Controllers\DocumentUpload\FileController')->upload($file);
+                $request['imgName'] = $fileName;
+            }
             $data = Company::create($request->all());
             return response()->json($data, 201);
         }catch (Exception $error) {
@@ -59,8 +75,17 @@ class CompanyController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'companyName' => 'required|string',
-            'address' => 'required|string'
+            'username' => 'required|string',
+            'address' => 'required|string',
+            'name' => 'required|string',
+            'city' => 'required|string',
+            'zip' => 'required|string',
+            'state' => 'required|string',
+            'email' => 'required|string|email',
+            'BidangUsaha' => 'required|string',
+            'Industri' => 'required|string',
+            'password' => 'required|string|confirmed',
+            'company_type_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -72,6 +97,12 @@ class CompanyController extends Controller
 
         try{
             $data = Company::find($id);
+            $request->password = app('hash')->make($request->password);
+            if($request->hasFile('file')) {
+                $file = $request->file('file');
+                $fileName = app('App\Http\Controllers\DocumentUpload\FileController')->upload($file);
+                $request['imgName'] = $fileName;
+            }
             $data->update($request->all());
             return response()->json($data, 200);
         }catch (Exception $error) {

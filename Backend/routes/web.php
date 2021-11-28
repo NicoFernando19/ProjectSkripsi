@@ -25,15 +25,11 @@ $router->group(['prefix' => 'api'], function () use ($router)
 
     //RESET PASSWORD
     $router->post('/password/email', 'ResetPasswordController@postEmail');
-    $router->post('/password/reset/{token}', 'ResetPasswordController@postReset');
+    $router->post('/password/reset', 'ResetPasswordController@postReset');
 
     //EMPLOYEE AUTHENTICATION
     $router->post('employee/login', ['uses' => 'Employee\EmployeeAuthController@login']);
     $router->get('employee/stats', ['uses' => 'Employee\EmployeeAuthController@me']);
-
-    //COMPANY AUTHENTICATION
-    $router->post('company/login', ['uses' => 'Company\CompanyAuthController@login']);
-    $router->get('company/stats', ['uses' => 'Company\CompanyAuthController@me']);
 
     //API STATS
     $router->get('stats', ['uses' => 'AuthController@me']);
@@ -61,5 +57,8 @@ $router->group(['prefix' => 'api'], function () use ($router)
 
 
     //NOTIFICATION
-    $router->get('notification/list', ['uses', 'Notifications\NotificationsController@listNotif']);
+    $router->get('notification/list/{id}', ['uses' => 'Notifications\NotificationsController@listNotif']);
+
+    //UPLOAD FILE
+    $router->post('upload/file', ['uses' => 'DocumentUpload\DocumentController@uploadFile']);
 });

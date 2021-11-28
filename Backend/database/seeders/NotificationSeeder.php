@@ -16,7 +16,7 @@ class NotificationSeeder extends Seeder
     {
         Notification::create([
             'type' => 'Notification',
-            'user_id' => 1,
+            'company_id' => 1,
             'data' => 'Your application has been accepted'
         ]);
     }

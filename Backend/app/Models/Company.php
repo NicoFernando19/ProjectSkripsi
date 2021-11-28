@@ -9,29 +9,58 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPassword as ResetPasswordNotification;
 
-class Company extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
+class Company extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject, CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, HasFactory;
+    use Authenticatable, Authorizable, HasFactory, CanResetPassword;
+    use Notifiable;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'companyName',
-        'email',
-        'companyPhone',
+        'name',
+        'username', 
+        'email', 
+        'DoB',
+        'roles',
+        'phoneNumber',
         'TanggalBerdiri',
         'WebsiteUrl',
         'BidangUsaha',
         'Industri',
         'SubIndustri', 
-        'companyDetails', 
+        'about',
         'address',
-        'company_type_id'
+        'company_type_id',
+        'address2',
+        'country',
+        'city',
+        'state',
+        'zip',
+        'imgName',
+        'lastLogin',
+        'created_by',
+        'updated_by',
+        'isActive',
+        'password'
     ];
 
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
     protected $hidden = [
         'password',
     ];
-
+    
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -47,16 +76,17 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
         return [];
     }
 
-    public function User()
+    public function Roles(){
+        return $this->belongsToMany(Role::class, 'company_roles', 'company_id', 'role_id');
+    }
+
+    public function CompanyType()
     {
-        return $this->hasOne(User::class);
-    }
-
-    public function Employee(){
-        return $this->hasMany(Employee::class);
-    }
-
-    public function CompanyType() {
         return $this->belongsTo(CompanyType::class);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeesTable extends Migration
+class CreateCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,29 +13,36 @@ class CreateEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->string('password');
             $table->string("username");
-            $table->string('name')->nullable();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->date("DoB")->nullable();
             $table->string("roles")->nullable();
             $table->string("phoneNumber")->nullable();
-            $table->date("lastLogin")->nullable();
+            $table->date("TanggalBerdiri")->nullable();
+            $table->string("WebsiteUrl")->nullable();
+            $table->string("BidangUsaha")->nullable();
+            $table->string("Industri")->nullable();
+            $table->string("SubIndustri")->nullable();
             $table->string("address")->nullable();
             $table->string("address2")->nullable();
             $table->string("country")->nullable();
             $table->string("city")->nullable();
+            $table->string("state")->nullable();
+            $table->string("zip")->nullable();
             $table->string("about")->nullable();
-            $table->string("jobTitle")->nullable();
-            $table->string("jobDesc")->nullable();
+            $table->string("imgName")->nullable();
+            $table->unsignedBigInteger('company_type_id');
+            $table->foreign('company_type_id')->references('id')->on('company_types')->onUpdate('cascade')->onDelete('cascade');
+            $table->datetime("lastLogin")->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('updated_by')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('company_id')->nullable();
-            $table->foreign('company_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
             $table->boolean("isActive")->default(1);
+            $table->string('password');
             $table->timestamps();
         });
     }
@@ -47,6 +54,6 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('companies');
     }
 }

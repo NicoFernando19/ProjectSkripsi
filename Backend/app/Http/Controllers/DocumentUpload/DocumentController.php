@@ -4,8 +4,12 @@ namespace App\Http\Controllers\DocumentUpload;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Lumen\Routing\Controller;   
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Document;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\File;
 
-class ExampleController extends Controller
+class DocumentController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,7 +21,7 @@ class ExampleController extends Controller
         //
     }
 
-    public function upload(Request $request){
+    public function uploadFile(Request $request){
         $validator = Validator::make($request->all(), [
             'file' => 'required',
         ]);
@@ -29,18 +33,24 @@ class ExampleController extends Controller
             return response()->json($return,400);
         }
 
+        $filePath = public_path('storage/uploads/images');
+        if ( !File::isDirectory($filePath)) {
+            File::makeDirectory($filePath, 0777, true, true);
+        }
+
         if($request->hasFile('file')){
             $file=$request->file('file');
             $mime = $file->getMimeType();
             $oldname = $file->getClientOriginalName();
 
             $name = str_replace(" ","_",microtime()).'.'.$file->getClientOriginalExtension();
-            $file->move('upload', $name);
+            $file->move($filePath, $name);
 
             $uploadFile= new Document();
             $uploadFile->documentName = $name;
             $uploadFile->pathUrl = URL::to('/').'/upload/'.$name;
             $uploadFile->mime=$mime;
+            $uploadFile->documentType=$mime;
             $uploadFile->created_by=Auth::id();
             $uploadFile->save();
             $tempArray = $uploadFile->toArray();

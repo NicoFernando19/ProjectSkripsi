@@ -11,8 +11,15 @@ class Controller extends BaseController
     {
         auth()->user()->lastLogin = Carbon::now();
         auth()->user()->save();
+        $user = auth()->user();
+        $role_user = array();
+        foreach ($user->Roles as $role){
+            array_push($role_user, $role->role_name);
+        }
+        $user['companyRoles'] = implode(", ",$role_user);
+        $role_user = array();
         return response()->json([
-            'user'=>auth()->user(),
+            'user'=> $user,
             'token' => $token,
             'token_type' => 'bearer',
             'expires_in' => time() + 60 * 60 * 60 * 24
@@ -23,16 +30,6 @@ class Controller extends BaseController
     {
         return response()->json([
             'user'=>auth('employee')->user(),
-            'token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => time() + 60 * 60 * 60 * 24
-        ], 200);
-    }
-
-    public function respondWithTokenForCompany($token)
-    {
-        return response()->json([
-            'user'=>auth('company')->user(),
             'token' => $token,
             'token_type' => 'bearer',
             'expires_in' => time() + 60 * 60 * 60 * 24

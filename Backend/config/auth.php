@@ -2,13 +2,13 @@
 return [
     'defaults' => [
         'guard' => 'api',
-        'passwords' => 'users',
+        'passwords' => 'companies',
     ],
 
     'guards' => [
         'api' => [
             'driver' => 'jwt',
-            'provider' => 'users',
+            'provider' => 'companies',
         ],
         'employee' => [
             'driver' => 'jwt',
@@ -21,10 +21,6 @@ return [
     ],
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => \App\Models\User::class
-        ],
         'employees' => [
             'driver' => 'eloquent',
             'model' => \App\Models\Employee::class
@@ -36,11 +32,6 @@ return [
     ],
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
-        ],
         'employees' => [
             'provider' => 'employees',
             'table' => 'password_resets',

@@ -21,6 +21,14 @@ class Employee extends Model implements AuthenticatableContract, AuthorizableCon
         'DoB',
         'roles',
         'phoneNumber',
+        'address',
+        'address2',
+        'country',
+        'city',
+        'zip',
+        'about',
+        'jobTitle',
+        'jobDesc',
         'lasLogin',
         'created_by',
         'updated_by',
@@ -45,18 +53,6 @@ class Employee extends Model implements AuthenticatableContract, AuthorizableCon
     public function getJWTCustomClaims()
     {
         return [];
-    }
-
-    public function roles(){
-        return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
-    }
-
-    public function Company(){
-        return $this->belongsTo(Company::class);
-    }
-
-    public function EmployeeDetail(){
-        return $this->hasOne(EmployeeDetail::class);
     }
 
 }

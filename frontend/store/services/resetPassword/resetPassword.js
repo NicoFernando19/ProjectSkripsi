@@ -19,8 +19,8 @@ export default {
 
     async resetPassword(email, password, password_confirmation, token) {
       let res = {};
-      const ResetPasswordDTO = { email, password, password_confirmation };
-      await axios.post(`${config.API}${config.ResetPassword}${token}`, ResetPasswordDTO, {
+      const ResetPasswordDTO = { email, password, password_confirmation, token };
+      await axios.post(`${config.API}${config.ResetPassword}`, ResetPasswordDTO, {
           headers:{
             "Content-Type": "application/json"
           }

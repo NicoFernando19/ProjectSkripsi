@@ -20,7 +20,7 @@ class CreateDocumentsTable extends Migration
             $table->string("pathUrl");
             $table->string("mime");
             $table->unsignedBigInteger('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
