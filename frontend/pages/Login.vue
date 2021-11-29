@@ -2,6 +2,7 @@
 <div class="home">
   <navbar-web />
   <div class = "space"></div>
+  <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />
   <div class = "pt-5">
     <div class="container regist pt-3 pb-5 pl-5 pr-5">
         <h1 class="text-center pt-4 pb-5">
@@ -11,12 +12,15 @@
             <form @submit.stop.prevent="login()">
                 <div class="form-group">
                     <label for="inputEmail4">Email</label>
-                    <input type="email" class="form-control" 
+                    <input type="email" :class="{ 'form-control': true , 'is-invalid': invalid , 'is-valid': valid}"
                         v-model="model.email" 
                         v-on:keyup="onKeyEnter"
                         :rules="emailRules" 
                         id="inputEmail4" 
                         placeholder="Email">
+                    <div class="invalid-feedback" v-for="error in emailRules" :key="error">
+                      {{ error }}
+                    </div>
                 </div>
                 <div class="form-group pb-3">
                     <div class="d-flex">
@@ -49,14 +53,19 @@ import CategoryType from '@/components/CategoryType.vue'
 import Cookie from 'js-cookie'
 import LoginService from '../store/services/login/login'
 import Toast from '../store/features/notificationToast/toast'
+import VueElementLoading from "vue-element-loading"
 
 export default {
   name: 'Login',
   components:{
     NavbarWeb,
-    CategoryType
+    CategoryType,
+    VueElementLoading
   },
   data: () => ({
+    blockLoader: false,
+    valid: false,
+    invalid: false,
     model: {
         email: "",
         password: ""
@@ -72,27 +81,37 @@ export default {
   }),
   watch: {
     "model.email": function(mail) {
-      // e_Mail is the exact name used in v-model
       if (mail !== "") {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (pattern.test(mail) == false) {
           this.valid = false;
+          this.invalid = true;
           this.emailRules = ["Invalid e-mail."];
         } else {
           this.emailRules = [];
           this.valid = true;
+          this.invalid = false;
         }
       } else if (mail === "") {
         this.emailRules = ["E-mail is required"];
         this.valid = false;
+        this.invalid = true;
       }
-      //alert(this.emailRules.state);
     }
   },
   methods: {
     onKeyEnter: function(e) {
       if (e.keyCode === 13) {
         this.login();
+      }
+    },
+    showLoader(val) {
+      if (!val) {
+        setTimeout(() => {
+          this.blockLoader = false;
+        }, 500);
+      } else {
+        this.blockLoader = val;
       }
     },
     async login() {

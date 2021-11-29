@@ -63,7 +63,6 @@ import CategoryType from '@/components/CategoryType.vue'
 
 export default {
   name: 'ViewInvitation',
-  middleware: 'auth',
   components:{
     NavbarWeb,
     CategoryType

@@ -1,6 +1,7 @@
 <template>
 <div class="home">
   <div class = "space"></div>
+  <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />
   <div class = "pt-5">
     <div class="container regist pb-5 pl-5 pr-5">
         <h1 class="text-center pt-4 pb-5">
@@ -11,10 +12,13 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="inputEmail4">Email</label>
-                        <input type="email" class="form-control"
+                        <input type="email" :class="{ 'form-control': true , 'is-invalid': invalid , 'is-valid': valid}"
                             v-model="model.email"
                             :rules="emailRules"
                             id="inputEmail4" placeholder="Email">
+                        <div class="invalid-feedback" v-for="error in emailRules" :key="error">
+                          {{ error }}
+                        </div>
                     </div>
                     <div class="form-group col-md-12">
                         <label for="Username">Username</label>
@@ -76,14 +80,19 @@ import NavbarWeb from '@/components/NavbarWeb.vue'
 import CategoryType from '@/components/CategoryType.vue'
 import RegisService from '../store/services/register/register'
 import Toast from '../store/features/notificationToast/toast'
+import VueElementLoading from "vue-element-loading";
 
 export default {
   name: 'Home',
   components:{
     NavbarWeb,
-    CategoryType
+    CategoryType,
+    VueElementLoading
   },
   data: () => ({
+    blockLoader: false,
+    valid: false,
+    invalid: false,
     model: {
         email: '',
         password: '',
@@ -104,14 +113,17 @@ export default {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (pattern.test(mail) == false) {
           this.valid = false;
+          this.invalid = true;
           this.emailRules = ["Invalid e-mail."];
         } else {
           this.emailRules = [];
           this.valid = true;
+          this.invalid = false;
         }
       } else if (mail === "") {
         this.emailRules = ["E-mail is required"];
         this.valid = false;
+        this.invalid = true;
       }
     }
   },
@@ -119,6 +131,15 @@ export default {
     onKeyEnter: function(e) {
       if (e.keyCode === 13) {
         this.login();
+      }
+    },
+    showLoader(val) {
+      if (!val) {
+        setTimeout(() => {
+          this.blockLoader = false;
+        }, 500);
+      } else {
+        this.blockLoader = val;
       }
     },
     async register() {
@@ -134,7 +155,7 @@ export default {
             this.model.password_confirmation
         );
         if (res.status == 201) {
-            Toast.showToast("Registration", "Registration Success!", "danger");
+            Toast.showToast("Registration", "Registration Success!", "success");
             this.$router.push({ path: "/Login" });
         } else {
             Toast.showToast("Registration", "Invalid Data!", "danger");

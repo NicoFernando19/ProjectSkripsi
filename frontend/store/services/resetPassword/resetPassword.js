@@ -12,7 +12,7 @@ export default {
       }).then(response => {
           res = response;
       }).catch(err => {
-          console.log(err)
+          res = err.response;
       })
       return res;
     },
@@ -27,7 +27,7 @@ export default {
       }).then(response => {
           res = response;
       }).catch(err => {
-          console.log(err)
+          res = err.response;
       })
       return res;
     }
