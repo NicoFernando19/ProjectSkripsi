@@ -1,9 +1,8 @@
 <template>
 <div class="createVacancy">
   <navbar-web />
-  <div class = "space"></div>
-  <div class = "pt-5">
-    <div class="container regist pb-5 pl-5 pr-5">
+  <div class = "pt-4">
+    <div class="container pb-5 pl-5 pr-5">
         <h1 class="text-center pt-4 pb-5">
         Create Vacancy
         </h1>
@@ -125,11 +124,6 @@ export default {
 </script>
 
 <style scoped>
-.regist{
-    border: solid 1px #000;
-    border-radius: 10px;
-}
-
 .space{
     height: 30px;
 }
