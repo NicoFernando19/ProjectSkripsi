@@ -12,4 +12,8 @@ class Notification extends Model
         'data',
         'read_at'
     ];
+
+    public function Company() {
+        return $this->belongsTo(Company::class);
+    }
 }

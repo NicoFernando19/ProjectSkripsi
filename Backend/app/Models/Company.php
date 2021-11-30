@@ -46,8 +46,6 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
         'zip',
         'imgName',
         'lastLogin',
-        'created_by',
-        'updated_by',
         'isActive',
         'password'
     ];
@@ -78,6 +76,22 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
 
     public function Roles(){
         return $this->belongsToMany(Role::class, 'company_roles', 'company_id', 'role_id');
+    }
+
+    public function Notification() {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function Document() {
+        return $this->hasMany(Document::class);
+    }
+
+    public function Vacancy() {
+        return $this->hasMany(Vacancy::class);
+    }
+
+    public function VacancyInterest () {
+        return $this->belongsToMany(Vacancy::class, 'transactions', 'company_id', 'vacancy_id');
     }
 
     public function CompanyType()

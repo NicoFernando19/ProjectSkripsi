@@ -37,10 +37,6 @@ class CreateCompaniesTable extends Migration
             $table->unsignedBigInteger('company_type_id');
             $table->foreign('company_type_id')->references('id')->on('company_types')->onUpdate('cascade')->onDelete('cascade');
             $table->datetime("lastLogin")->nullable();
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->foreign('updated_by')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
             $table->boolean("isActive")->default(1);
             $table->string('password');
             $table->timestamps();

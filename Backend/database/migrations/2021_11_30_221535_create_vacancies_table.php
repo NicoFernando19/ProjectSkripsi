@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
-class CreateDocumentsTable extends Migration
+class CreateVacanciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +14,19 @@ class CreateDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('documents', function (Blueprint $table) {
+        Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
-            $table->string("documentType");
-            $table->string("documentName");
-            $table->string("pathUrl");
-            $table->string("mime");
+            $table->string("Title");
+            $table->string("jobType");
+            $table->string("jobDesc");
+            $table->integer("NumWorkforce")->nullable();
+            $table->string("Budget")->nullable();
+            $table->text("Requirement");
+            $table->boolean("isActive")->default(1);
+            $table->datetime("PostDate")->default(Carbon::now());
+            $table->datetime("Deadline")->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +38,6 @@ class CreateDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('vacancies');
     }
 }

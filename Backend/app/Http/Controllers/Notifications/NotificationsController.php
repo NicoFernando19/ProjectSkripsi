@@ -15,13 +15,13 @@ class NotificationsController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
-    public function listNotif($id)
+    public function listNotif()
     {
         $data = [
-            'data' => Notification::where('company_id', $id)->get()
+            'data' => Notification::where('company_id', Auth::id())->get()
         ];
 
         return response()->json($data, 200);

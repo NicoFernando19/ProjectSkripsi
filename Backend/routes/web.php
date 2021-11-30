@@ -35,7 +35,7 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->get('stats', ['uses' => 'AuthController@me']);
     
     //COMPANY
-    $router->post('company/list', ['uses' => 'CompanyController@listCompany']);
+    $router->get('company/list', ['uses' => 'CompanyController@listCompany']);
     $router->post('company/create', ['uses' => 'CompanyController@create']);
     $router->get('company/getData/{id}', ['uses' => 'CompanyController@showById']);
     $router->put('company/update/{id}', ['uses' => 'CompanyController@update']);
@@ -48,8 +48,22 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->put('company-type/update/{id}', ['uses' => 'CompanyTypeController@update']);
     $router->delete('company-type/delete/{id}', ['uses' => 'CompanyTypeController@destroy']);
 
+    //VACANVY
+    $router->get('vacancy/list', ['uses' => 'VacancyController@listVacancy']);
+    $router->post('vacancy/create', ['uses' => 'VacancyController@create']);
+    $router->get('vacancy/getData/{id}', ['uses' => 'VacancyController@showById']);
+    $router->put('vacancy/update/{id}', ['uses' => 'VacancyController@update']);
+    $router->delete('vacancy/delete/{id}', ['uses' => 'VacancyController@destroy']);
+
+    //TRANSACTION
+    $router->get('transaction/list', ['uses' => 'TransactionController@listTransaction']);
+    $router->post('transaction/create', ['uses' => 'TransactionController@create']);
+    $router->get('transaction/getData/{id}', ['uses' => 'TransactionController@showById']);
+    $router->put('transaction/update/{id}', ['uses' => 'TransactionController@update']);
+    $router->delete('transaction/delete/{id}', ['uses' => 'TransactionController@destroy']);
+
     //ROLE
-    $router->post('role/list', ['uses' => 'RoleController@listRole']);
+    $router->get('role/list', ['uses' => 'RoleController@listRole']);
     $router->post('role/create', ['uses' => 'RoleController@create']);
     $router->get('role/getData/{id}', ['uses' => 'RoleController@showById']);
     $router->put('role/update/{id}', ['uses' => 'RoleController@update']);
@@ -57,7 +71,7 @@ $router->group(['prefix' => 'api'], function () use ($router)
 
 
     //NOTIFICATION
-    $router->get('notification/list/{id}', ['uses' => 'Notifications\NotificationsController@listNotif']);
+    $router->get('notification/list', ['uses' => 'Notifications\NotificationsController@listNotif']);
 
     //UPLOAD FILE
     $router->post('upload/file', ['uses' => 'DocumentUpload\DocumentController@uploadFile']);

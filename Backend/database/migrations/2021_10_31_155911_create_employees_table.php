@@ -29,10 +29,6 @@ class CreateEmployeesTable extends Migration
             $table->string("about")->nullable();
             $table->string("jobTitle")->nullable();
             $table->string("jobDesc")->nullable();
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->foreign('updated_by')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
             $table->boolean("isActive")->default(1);

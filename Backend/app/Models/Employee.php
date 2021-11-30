@@ -30,8 +30,6 @@ class Employee extends Model implements AuthenticatableContract, AuthorizableCon
         'jobTitle',
         'jobDesc',
         'lasLogin',
-        'created_by',
-        'updated_by',
         'isActive',
         'password'
     ];
