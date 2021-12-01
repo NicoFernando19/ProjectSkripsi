@@ -5,8 +5,8 @@
     <h2 class="text-center pt-5 pb-4">
         <b>VACANCY STATUS</b>
     </h2>
-    <div class="container justify-content-between detail-content">
-      <div class="detail-right container">
+    <div class="container justify-content-between">
+      <div class="container">
           <div class="row justify-content-center">
               <ul class="list-group pb-2">
                     <li class="list-group-item">Title: Software Engineering Project</li>
