@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
@@ -84,7 +85,7 @@ class CompanyController extends Controller
             'email' => 'required|string|email',
             'BidangUsaha' => 'required|string',
             'Industri' => 'required|string',
-            'password' => 'required|string|confirmed',
+            'password' => 'string|confirmed',
             'company_type_id' => 'required'
         ]);
 
@@ -97,13 +98,17 @@ class CompanyController extends Controller
 
         try{
             $data = Company::find($id);
-            $request->password = app('hash')->make($request->password);
             if($request->hasFile('file')) {
                 $file = $request->file('file');
                 $fileName = app('App\Http\Controllers\DocumentUpload\FileController')->upload($file);
                 $request['imgName'] = $fileName;
             }
             $data->update($request->all());
+            if(!is_null($request->password)){
+                $request->password = app('hash')->make($request->password);
+                $data->password = $request->password;
+                $data->save();
+            }
             return response()->json($data, 200);
         }catch (Exception $error) {
             return response()->json($error, 500);

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Lumen\Routing\Controller;   
 use Illuminate\Http\Request;
 use App\Models\Notification;
+use Illuminate\Support\Facades\Validator;
 
 class NotificationsController extends Controller
 {

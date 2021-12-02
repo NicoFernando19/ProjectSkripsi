@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\CompanyType;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CompanyTypeController extends Controller
 {
