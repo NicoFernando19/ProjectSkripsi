@@ -1,0 +1,811 @@
+{
+	"info": {
+		"_postman_id": "f44d3142-3828-4b3c-ba92-89ea500fb670",
+		"name": "ThesisCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Thesis_API",
+			"item": [
+				{
+					"name": "Authentication",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"nicofernando39@gmail.com\",\r\n    \"password\": \"123123123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Registration",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"Nico\",\r\n    \"address\" : \"Di rumah\",\r\n    \"name\" : \"Nico\",\r\n    \"city\" : \"Tangerang\",\r\n    \"zip\" : \"15117\",\r\n    \"state\" : \"Banten\",\r\n    \"BidangUsaha\" : \"Teknologi\",\r\n    \"Industri\" : \"Idustry\",\r\n    \"email\" : \"nicofernando1907@gmail.com\",\r\n    \"company_type_id\": 1,\r\n    \"password\" : \"qweqweqwe\",\r\n    \"password_confirmation\": \"qweqweqwe\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/register",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Auth Status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/stats",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"stats"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Request Reset Password (Send Email)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"nicofernando39@gmail.com\",\r\n    \"password\": \"qweqweqwe\",\r\n    \"password_confirmation\": \"qweqweqwe\",\r\n    \"token\": \"648267026b0831a4f308b1d7be8bf93456509de4b8ab2fc4107e023f63e048b6\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/password/email",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"password",
+										"email"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Upload File",
+					"item": [
+						{
+							"name": "Upload Document",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/upload/file",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"upload",
+										"file"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Notification",
+					"item": [
+						{
+							"name": "List Notification",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ token }}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/notification/list",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"notification",
+										"list"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Employee",
+					"item": [
+						{
+							"name": "Employee Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"nicofernando1907@gmail.com\",\r\n    \"password\" : \"123123123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/employee/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Employee Auth Status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/employee/stats",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"stats"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Vacancy",
+					"item": [
+						{
+							"name": "List Vacancy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/vacancy/list",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancy",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Vacancy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Title\": \"Judul\",\r\n    \"jobType\": \"Type\",\r\n    \"jobDesc\": \"Desc\",\r\n    \"Requirement\": \"Requirement\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/vacancy/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancy",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detail Vacancy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/vacancy/getData/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancy",
+										"getData",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Vacancy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Title\": \"Judul\",\r\n    \"jobType\": \"Type\",\r\n    \"jobDesc\": \"Desc\",\r\n    \"Requirement\": \"Requirement\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/vacancy/update/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancy",
+										"update",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Vacancy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/vacancy/delete/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancy",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Transaction",
+					"item": [
+						{
+							"name": "List Transaction",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/transaction/list",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"transaction",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Transaction",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"company_id\": 1,\r\n    \"vacancy_id\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/transaction/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"transaction",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detail Transaction",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/transaction/getData/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"transaction",
+										"getData",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Transaction",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"company_id\": 1,\r\n    \"vacancy_id\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/transaction/update/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"transaction",
+										"update",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Transaction",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/delete/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Company",
+					"item": [
+						{
+							"name": "List Company",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/company/list",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"company",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Company",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"Nico\",\r\n    \"address\" : \"Di rumah\",\r\n    \"name\" : \"Nico\",\r\n    \"city\" : \"Tangerang\",\r\n    \"zip\" : \"15117\",\r\n    \"state\" : \"Banten\",\r\n    \"BidangUsaha\" : \"Teknologi\",\r\n    \"Industri\" : \"Idustry\",\r\n    \"email\" : \"nicofernando1907@gmail.com\",\r\n    \"company_type_id\": 1,\r\n    \"password\" : \"qweqweqwe\",\r\n    \"password_confirmation\": \"qweqweqwe\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/company/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"company",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detail Company",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/company/getData/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"company",
+										"getData",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Company",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"Nico\",\r\n    \"address\" : \"Di rumah\",\r\n    \"name\" : \"Nico\",\r\n    \"city\" : \"Tangerang\",\r\n    \"zip\" : \"15117\",\r\n    \"state\" : \"Banten\",\r\n    \"BidangUsaha\" : \"Teknologi\",\r\n    \"Industri\" : \"Idustry\",\r\n    \"email\" : \"nicofernando1907@gmail.com\",\r\n    \"company_type_id\": 1,\r\n    \"password\" : \"123123123\",\r\n    \"password_confirmation\": \"123123123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/company/update/2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"company",
+										"update",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Company",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/company/delete/1",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"company",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
