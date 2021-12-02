@@ -48,7 +48,7 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->put('company-type/update/{id}', ['uses' => 'CompanyTypeController@update']);
     $router->delete('company-type/delete/{id}', ['uses' => 'CompanyTypeController@destroy']);
 
-    //VACANVY
+    //VACANCY
     $router->get('vacancy/list', ['uses' => 'VacancyController@listVacancy']);
     $router->post('vacancy/create', ['uses' => 'VacancyController@create']);
     $router->get('vacancy/getData/{id}', ['uses' => 'VacancyController@showById']);
@@ -69,6 +69,12 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->put('role/update/{id}', ['uses' => 'RoleController@update']);
     $router->delete('role/delete/{id}', ['uses' => 'RoleController@destroy']);
 
+    //CONTRACT
+    $router->post('contract/create', ['uses' => 'ContractController@create']);
+    $router->get('contract/index', ['uses' => 'ContractController@index']);
+    $router->get('contract/index/{id}', ['uses' => 'ContractController@showById']);
+    $router->put('contract/update/{id}', ['uses' => 'ContractController@update']);
+    $router->delete('contract/delete/{id}', ['uses' => 'ContractController@destroy']);
 
     //NOTIFICATION
     $router->get('notification/list', ['uses' => 'Notifications\NotificationsController@listNotif']);
