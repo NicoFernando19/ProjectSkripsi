@@ -53,7 +53,7 @@ export default {
     async UpdateTransaction (data) {
         let token = Cookies.get('authToken')
         let result = {}
-        await axios.get(`${config.API}${config.UpdateTransaction}/${data.id}`, data, {
+        await axios.put(`${config.API}${config.UpdateTransaction}/${data.id}`, data, {
             headers:{
               "Content-Type": "application/json",
               Authorization: "Bearer " + token
@@ -69,7 +69,7 @@ export default {
     async DeleteTransaction (id) {
         let token = Cookies.get('authToken')
         let result = {}
-        await axios.get(`${config.API}${config.DeleteTransaction}/${id}`, {
+        await axios.delete(`${config.API}${config.DeleteTransaction}/${id}`, {
             headers:{
               "Content-Type": "application/json",
               Authorization: "Bearer " + token
