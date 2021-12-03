@@ -72,7 +72,7 @@ $router->group(['prefix' => 'api'], function () use ($router)
     //CONTRACT
     $router->post('contract/create', ['uses' => 'ContractController@create']);
     $router->get('contract/index', ['uses' => 'ContractController@index']);
-    $router->get('contract/index/{id}', ['uses' => 'ContractController@showById']);
+    $router->get('contract/detail/{id}', ['uses' => 'ContractController@showById']);
     $router->put('contract/update/{id}', ['uses' => 'ContractController@update']);
     $router->delete('contract/delete/{id}', ['uses' => 'ContractController@destroy']);
 

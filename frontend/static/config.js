@@ -41,6 +41,13 @@ export default  {
     UpdateRole: "/api/role/update",
     DeleteRole: "/api/role/delete",
 
+    // CONTRACT
+    ListContract: "/api/contract/index",
+    CreateContract: "/api/contract/create",
+    DetailContract: "/api/contract/detail",
+    UpdateContract: "/api/contract/update",
+    DeleteContract: "/api/contract/delete",
+
     // NOTIFICATION
     ListNotification: "/api/notification/list",
 
