@@ -71,7 +71,6 @@ import NavbarWeb from '@/components/NavbarWeb.vue'
 import CategoryType from '@/components/CategoryType.vue'
 import axios from 'axios';
 
-
 export default {
   name: 'Home',
   middleware: 'auth',
