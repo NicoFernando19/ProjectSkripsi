@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Vacancy extends Model
 {
     protected $fillable = [
-        'company_id',
         'Title',
         'jobType',
         'jobDesc',

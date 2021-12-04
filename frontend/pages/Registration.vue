@@ -154,7 +154,7 @@ export default {
             this.model.state,
             this.model.password_confirmation
         );
-        if (res.status == 201) {
+        if (res.status == 200) {
             Toast.showToast("Registration", "Registration Success!", "success");
             this.$router.push({ path: "/Login" });
         } else {
