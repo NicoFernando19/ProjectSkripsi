@@ -19,12 +19,14 @@ export default {
         return result
     },
 
-    async CreateVacancy(PostDate, Deadline, Title, jobType, jobDesc, NumWorkfore, Budget, Requirement, isActive) {
+    async CreateVacancy(PostDate, Deadline, Title, jobType, jobDesc, NumWorkforce, Budget, Requirement, isActive) {
+        let token = Cookies.get('authToken')
         let res = {};
-        const vacancyDto = { PostDate, Deadline, Title, jobType, jobDesc, NumWorkfore, Budget, Requirement, isActive };
+        const vacancyDto = { PostDate, Deadline, Title, jobType, jobDesc, NumWorkforce, Budget, Requirement, isActive };
         await axios.post(`${config.API}${config.CreateVacancy}`, vacancyDto, {
             headers:{
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token
             }
         }).then(response => {
             res = response;

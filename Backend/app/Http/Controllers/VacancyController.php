@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class VacancyController extends Controller
 {
@@ -14,7 +15,7 @@ class VacancyController extends Controller
      */
     public function __construct()
     {
-        //
+        $this->middleware('auth:api');
     }
 
     public function listVacancy()
@@ -44,6 +45,8 @@ class VacancyController extends Controller
 
         try{
             $data = Vacancy::create($request->all());
+            $data->company_id = Auth::id();
+            $data->save();
             return response()->json($data, 201);
         }catch (Exception $error) {
             return response()->json($error, 500);

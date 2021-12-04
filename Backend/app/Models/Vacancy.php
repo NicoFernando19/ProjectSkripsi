@@ -10,7 +10,7 @@ class Vacancy extends Model
         'Title',
         'jobType',
         'jobDesc',
-        'NumWorkfore',
+        'NumWorkforce',
         'Budget',
         'Requirement',
         'isActive',

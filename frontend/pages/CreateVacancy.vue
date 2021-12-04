@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group">
                     <label for="NumWorkfore">Number of Workforce Needed</label>
-                    <input type="number" v-model="model.NumWorkfore" class="form-control" id="NumWorkfore" placeholder="Apartment, studio, or floor">
+                    <input type="number" v-model="model.NumWorkforce" class="form-control" id="NumWorkfore" placeholder="Apartment, studio, or floor">
                 </div>
                 <div class="form-group">
                     <label for="Budget">Budget</label>
@@ -63,6 +63,7 @@ import Toast from '../store/features/notificationToast/toast'
 
 export default {
   name: 'CreateVacancy',
+  middleware: 'auth',
   components:{
     NavbarWeb
   },
@@ -73,7 +74,7 @@ export default {
         Title: '',
         jobType: '',
         jobDesc: '',
-        NumWorkfore: '',
+        NumWorkforce: '',
         Budget: '',
         Requirement: '',
         isActive:''
@@ -87,11 +88,12 @@ export default {
             this.model.Title,
             this.model.jobType,
             this.model.jobDesc,
-            this.model.NumWorkfore,
+            this.model.NumWorkforce,
             this.model.Budget,
             this.model.Requirement,
             this.model.isActive
         );
+        console.log(res)
         if (res.status == 201) {
             Toast.showToast("Add Vacancy", "Add Vacancy Success!", "success");
             this.$router.push({ path: "/Home" });
