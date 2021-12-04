@@ -84,7 +84,7 @@ export default {
     };
   },
   mounted(){
-    axios.get("localhost:8000/api/company/list")
+    axios.get("http://localhost:8000/api/company/list")
     .then(res=>(this.companies = res.data))
     .catch(err => console.log(err))
   }
