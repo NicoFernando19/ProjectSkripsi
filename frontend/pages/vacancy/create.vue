@@ -96,7 +96,7 @@ export default {
         console.log(res)
         if (res.status == 201) {
             Toast.showToast("Add Vacancy", "Add Vacancy Success!", "success");
-            this.$router.push({ path: "/Home" });
+            this.$router.push({ path: "/company/Home" });
         } else {
             Toast.showToast("Add Vacancy", "Invalid Data!", "danger");
         }

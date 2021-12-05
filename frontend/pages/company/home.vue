@@ -2,65 +2,15 @@
 <div class="home">
   <navbar-web />
   <category-type />
+  <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />  
   <div>
     <h2 class="text-center pt-5 pb-5">
       Category Name
     </h2>
     <div class="container-fluid d-flex align-content-between flex-wrap justify-content-center pt-5 pad">
-      <div class="card p-4 m-3" style="width: 18rem;" v-for="itemCompanies in companies" v-bind:key="itemCompanies.id">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{ itemCompanies.name }}</h5>
-          <p class="card-text">{{ itemCompanies.BidangUsaha }}</p>
-          <p class="card-text">{{ itemCompanies.address }}</p>
-          <p class="card-text">{{ itemCompanies.phoneNumber }}</p>
-          <a href="#" class="btn btn-primary center-btn">Go somewhere</a>
-        </div>
-      </div>
-
-
-      <!-- <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Go somewhere</a>
-        </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Go somewhere</a>
-        </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Go somewhere</a>
-        </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Go somewhere</a>
-        </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Go somewhere</a>
-        </div>
-      </div> -->
-
-
+      <CompanyCard  v-for="company in companies" 
+                    v-bind:key="company.id" 
+                    :company="company" />
     </div>
   </div>  
 </div>
@@ -69,24 +19,52 @@
 <script>
 import NavbarWeb from '@/components/NavbarWeb.vue'
 import CategoryType from '@/components/CategoryType.vue'
-import axios from 'axios';
+import CompanyCard from '@/components/Card/CompanyCard.vue'
+import Toast from '../../store/features/notificationToast/toast'
+import CompanyServices from '../../store/services/companyServices/company'
+import VueElementLoading from "vue-element-loading"
 
 export default {
   name: 'home',
   middleware: 'auth',
   components:{
     NavbarWeb,
-    CategoryType
+    CategoryType,
+    CompanyCard,
+    VueElementLoading
   },
   data(){
     return{
+      blockLoader: false,
       companies: []
     };
   },
-  mounted(){
-    axios.get("http://localhost:8000/api/company/list")
-    .then(res=>(this.companies = res.data))
-    .catch(err => console.log(err))
+  async mounted() {
+    await this.getCompanies();
+  },
+  methods: {
+    showLoader(val) {
+      if (!val) {
+        setTimeout(() => {
+          this.blockLoader = false;
+        }, 500);
+      } else {
+        this.blockLoader = val;
+      }
+    },
+    async getCompanies() {
+      this.showLoader(true);
+      let res = await CompanyServices.listCompany();
+      if (res.status == 200){
+        Toast.showToast("Load Data","Load Data Successfully", "success");
+        this.companies = res.data.data
+      }
+      else 
+      {
+        Toast.showToast("Load Data","Failed on server", "danger");
+      }
+      this.showLoader(false);
+    } 
   }
 }
 </script>

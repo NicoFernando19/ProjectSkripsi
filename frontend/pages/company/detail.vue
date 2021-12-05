@@ -1,6 +1,7 @@
 <template>
 <div class="home">
   <navbar-web />
+  <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />  
   <div>
     <h2 class="text-center pt-5 pb-5">
       Company Detail
@@ -9,19 +10,19 @@
       <div class="detail-left container">
           <div class="row">
               <div class="col-lg-12">
-                  <img class="detail-img" src="" />
+                  <img class="detail-img" :src="imgUrl" />
               </div>
           </div>
       </div>
       <div class="detail-right container">
           <div class="row">
               <ul class="list-group pb-2">
-                    <li class="list-group-item">Company Name: PT XYZ</li>
+                    <li class="list-group-item">Company Name: {{ CompanyName }}</li>
                     <li class="list-group-item">Function: IT</li>
                     <li class="list-group-item">Workforce: 285</li>
                     <li class="list-group-item">Budget: >Rp 200.000.000</li>
-                    <li class="list-group-item">Phone: 021-88822233</li>
-                    <li class="list-group-item">Email: xyz@example.com</li>
+                    <li class="list-group-item">Phone: {{ model.phoneNumber }}</li>
+                    <li class="list-group-item">Email: {{ model.email }}</li>
               </ul>
           </div>
       </div>
@@ -101,12 +102,100 @@
 <script>
 import NavbarWeb from '@/components/NavbarWeb.vue'
 import CategoryType from '@/components/CategoryType.vue'
+import CompanyServices from '../../store/services/companyServices/company'
+import Toast from '../../store/features/notificationToast/toast'
+import VueElementLoading from "vue-element-loading"
+import config from '../../static/config';
 
 export default {
   name: 'detail',
   components:{
     NavbarWeb,
-    CategoryType
+    CategoryType,
+    VueElementLoading
+  },
+  data() {
+    return {
+      blockLoader: false,
+      StorageUrl: config.StorageUrl,
+      imgUrl: '',
+      CompanyName: '',
+      model: {
+        id: '',
+        name: '',
+        username: '', 
+        email: '', 
+        DoB: '',
+        roles: '',
+        phoneNumber: '',
+        TanggalBerdiri: '',
+        WebsiteUrl: '',
+        BidangUsaha: '',
+        Industri: '',
+        SubIndustri: '', 
+        about: '',
+        address: '',
+        company_type_id: '',
+        address2: '',
+        country: '',
+        city: '',
+        state: '',
+        zip: '',
+        imgName: ''
+      }
+    }
+  },
+  async mounted() {
+      await this.getData();
+  },
+  methods: {
+    showLoader(val) {
+      if (!val) {
+        setTimeout(() => {
+          this.blockLoader = false;
+        }, 500);
+      } else {
+        this.blockLoader = val;
+      }
+    },
+    async getData() {
+      this.showLoader(true)
+      this.model.id = this.$route.query['id'];
+      let result = await CompanyServices.GetCompanyById(this.model)
+
+      this.loadData(result);
+      this.imgUrl = `${this.StorageUrl}/${this.model.imgName}`;
+      this.CompanyName = result.data.companyName
+
+      if (result.status == 200) {
+        Toast.showToast("Load Data","Load Data Successfully", "success");
+      }else{
+        Toast.showToast("Load Data","Failed to load data from server", "danger");
+      }
+      this.showLoader(false)
+    },
+    loadData(result) {
+      this.model.name = result.data.name;
+      this.model.username = result.data.username;
+      this.model.email = result.data.email;
+      this.model.DoB = result.data.DoB;
+      this.model.roles = result.data.roles;
+      this.model.phoneNumber = result.data.phoneNumber;
+      this.model.TanggalBerdiri = result.data.TanggalBerdiri;
+      this.model.WebsiteUrl = result.data.WebsiteUrl;
+      this.model.BidangUsaha = result.data.BidangUsaha;
+      this.model.Industri = result.data.Industri;
+      this.model.SubIndustri = result.data.SubIndustri;
+      this.model.about = result.data.about;
+      this.model.address = result.data.address;
+      this.model.company_type_id = result.data.company_type_id;
+      this.model.address2 = result.data.address2;
+      this.model.country = result.data.country;
+      this.model.city = result.data.city;
+      this.model.state = result.data.state;
+      this.model.zip = result.data.zip;
+      this.model.imgName = result.data.imgName;
+    }
   }
 }
 </script>

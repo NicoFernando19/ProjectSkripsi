@@ -38,7 +38,7 @@ export default {
     async GetCompanyById (data) {
         let token = Cookies.get('authToken')
         let result = {}
-        await axios.get(`${config.API}${config.DetailCompany}/${data.id}`, data, {
+        await axios.get(`${config.API}${config.DetailCompany}/${data.id}`, {
             headers:{
               "Content-Type": "application/json",
               Authorization: "Bearer " + token

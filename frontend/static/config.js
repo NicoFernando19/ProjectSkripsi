@@ -6,6 +6,9 @@ export default  {
     SentEmailResetPasswordLink: "/api/password/email",
     ResetPassword: "/api/password/reset",
 
+    // STORAGE
+    StorageUrl: "http://localhost:8000/storage/uploads",
+
     // COMPANY
     ListCompany: "/api/company/list",
     CreateCompany: "/api/company/create",

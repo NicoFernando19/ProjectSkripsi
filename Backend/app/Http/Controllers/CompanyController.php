@@ -66,7 +66,8 @@ class CompanyController extends Controller
     public function showById($id)
     {
         try {
-            $data = Company::find($id);
+            $data = Company::with(['CompanyType', 'Roles'])->find($id);
+            $data['companyName'] = $data->CompanyType->type_name.' '.$data->name;
             return response()->json($data, 200);
         } catch (Exception $err) {
             return response()->json($err, 500);
