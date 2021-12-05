@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
-class VacancyController extends Controller
+class WorkHistoryController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,7 +18,7 @@ class VacancyController extends Controller
         // $this->middleware('auth:api');
     }
 
-    public function listVacancy()
+    public function listWorks()
     {
         $data = [
             'data' => WorkHistory::all()

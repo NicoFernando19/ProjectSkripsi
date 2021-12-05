@@ -11,4 +11,8 @@ class WorkHistory extends Model
         'Title',
         'isActive'
     ];
+
+    public function Company() {
+        return $this->belongsTo(Company::class);
+    }
 }

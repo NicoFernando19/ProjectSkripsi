@@ -76,6 +76,13 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->put('contract/update/{id}', ['uses' => 'ContractController@update']);
     $router->delete('contract/delete/{id}', ['uses' => 'ContractController@destroy']);
 
+    // WORK HISTORY
+    $router->get('work-history/list', ['uses' => 'WorkHistoryController@listWorks']);
+    $router->post('work-history/create', ['uses' => 'WorkHistoryController@create']);
+    $router->get('work-history/getData/{id}', ['uses' => 'WorkHistoryController@showById']);
+    $router->put('work-history/update/{id}', ['uses' => 'WorkHistoryController@update']);
+    $router->delete('work-history/delete/{id}', ['uses' => 'WorkHistoryController@destroy']);
+
     //NOTIFICATION
     $router->get('notification/list', ['uses' => 'Notifications\NotificationsController@listNotif']);
 

@@ -48,5 +48,22 @@ class CompanySeeder extends Seeder
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123')
         ]);
+
+        Company::create([
+            'name' => 'testing3',
+            'username' => 'testing3',
+            'email' => 'nicofernando@gmail.com',
+            'phoneNumber' => '0812232312',
+            'TanggalBerdiri' => Carbon::now(),
+            'WebsiteUrl' => 'https://website.com',
+            'BidangUsaha' => 'Teknologi dan komunikasi',
+            'Industri' => 'this',
+            'SubIndustri' => 'Sub Industri',
+            'about' => 'This is company details',
+            'address' => 'This is company address',
+            'imgName' => 'company.png',
+            'company_type_id' => 3,
+            'password' => app('hash')->make('123123123')
+        ]);
     }
 }

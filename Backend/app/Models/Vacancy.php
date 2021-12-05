@@ -23,6 +23,6 @@ class Vacancy extends Model
     }
 
     public function CompanyTransaction () {
-        return $this->belongsToMany(Company::class, 'transactions', 'company_id', 'vacancy_id');
+        return $this->belongsToMany(Company::class, 'transactions', 'vacancy_id', 'company_id');
     }
 }

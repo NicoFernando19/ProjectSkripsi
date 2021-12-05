@@ -55,7 +55,7 @@ export default {
     async GetVacancyById (data) {
         let token = Cookies.get('authToken')
         let result = {}
-        await axios.get(`${config.API}${config.DetailVacancy}/${data.id}`, data, {
+        await axios.get(`${config.API}${config.DetailVacancy}/${data.id}`, {
             headers:{
               "Content-Type": "application/json",
               Authorization: "Bearer " + token

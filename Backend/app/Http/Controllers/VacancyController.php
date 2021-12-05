@@ -15,7 +15,7 @@ class VacancyController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api');
+        // $this->middleware('auth:api');
     }
 
     public function listVacancy()
@@ -56,7 +56,7 @@ class VacancyController extends Controller
     public function showById($id)
     {
         try {
-            $data = Vacancy::find($id);
+            $data = Vacancy::with(['CompanyTransaction', 'Company'])->find($id);
             return response()->json($data, 200);
         } catch (Exception $err) {
             return response()->json($err, 500);

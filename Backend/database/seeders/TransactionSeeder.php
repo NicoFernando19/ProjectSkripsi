@@ -15,8 +15,13 @@ class TransactionSeeder extends Seeder
     public function run()
     {
         Transaction::create([
-            'company_id' => 1,
-            'vacancy_id' => 1
+            'vacancy_id' => 1,
+            'company_id' => 2
+        ]);
+
+        Transaction::create([
+            'vacancy_id' => 1,
+            'company_id' => 3
         ]);
     }
 }
