@@ -72,7 +72,7 @@ import CategoryType from '@/components/CategoryType.vue'
 import axios from 'axios';
 
 export default {
-  name: 'Home',
+  name: 'home',
   middleware: 'auth',
   components:{
     NavbarWeb,

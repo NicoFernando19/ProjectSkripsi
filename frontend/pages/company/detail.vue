@@ -103,7 +103,7 @@ import NavbarWeb from '@/components/NavbarWeb.vue'
 import CategoryType from '@/components/CategoryType.vue'
 
 export default {
-  name: 'CompanyDetail',
+  name: 'detail',
   components:{
     NavbarWeb,
     CategoryType

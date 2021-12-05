@@ -80,7 +80,7 @@
 import NavbarWeb from '@/components/NavbarWeb.vue'
 
 export default {
-  name: 'VendorApproval',
+  name: 'approval',
   components: {
       NavbarWeb
   }

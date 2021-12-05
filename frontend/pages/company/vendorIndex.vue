@@ -19,7 +19,7 @@ import CategoryType from '@/components/CategoryType.vue'
 import axios from 'axios';
 
 export default {
-  name: 'homeVendor',
+  name: 'vendorIndex',
   middleware: 'auth',
   components:{
     NavbarWeb,

@@ -69,7 +69,7 @@
 import NavbarWeb from '@/components/NavbarWeb.vue'
 
 export default {
-  name: 'CreateContract',
+  name: 'create',
   components: {
       NavbarWeb
   }

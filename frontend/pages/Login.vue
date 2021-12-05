@@ -128,7 +128,7 @@ export default {
             Cookie.set("authName", this.state.name);
             Cookie.set("authUserName", res.data.user.username);
             Toast.showToast("Login Verification","Login Success", "success");
-            this.$router.push({ path: "/Home" });
+            this.$router.push({ path: "company/Home" });
         } else {
             Toast.showToast("Login Verification", "Invalid credential", "danger");
         }

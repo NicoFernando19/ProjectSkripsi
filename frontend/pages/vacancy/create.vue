@@ -58,11 +58,11 @@
 
 <script>
 import NavbarWeb from '@/components/NavbarWeb.vue'
-import VacancyService from '../store/services/vacancyServices/vacancy'
-import Toast from '../store/features/notificationToast/toast'
+import VacancyService from '../../store/services/vacancyServices/vacancy'
+import Toast from '../../store/features/notificationToast/toast'
 
 export default {
-  name: 'CreateVacancy',
+  name: 'create',
   middleware: 'auth',
   components:{
     NavbarWeb

@@ -75,7 +75,7 @@
 import NavbarWeb from '@/components/NavbarWeb.vue'
 
 export default {
-  name: 'JoinVacancy',
+  name: 'join',
   components:{
     NavbarWeb
   }

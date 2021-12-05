@@ -1,12 +1,12 @@
 <template>
-<div class="home">
+<div class="vendorVacancyStatus">
   <navbar-web />
   <div>
     <h2 class="text-center pt-5 pb-4">
         <b>VACANCY STATUS</b>
     </h2>
-    <div class="container justify-content-between detail-content">
-      <div class="detail-right container">
+    <div class="container justify-content-between">
+      <div class="container">
           <div class="row justify-content-center">
               <ul class="list-group pb-2">
                     <li class="list-group-item">Title: Software Engineering Project</li>
@@ -55,7 +55,7 @@
       </div>
 </div>
 <div class="spacing"></div>
-<button type="submit" class="btn btn-danger center-btn">Close Vacancy</button>
+<button type="submit" class="btn btn-primary center-btn">Join Vacancy</button>
 </div>
 </template>
 
@@ -64,7 +64,7 @@ import NavbarWeb from '@/components/NavbarWeb.vue'
 import CategoryType from '@/components/CategoryType.vue'
 
 export default {
-  name: 'VacancyStatus',
+  name: 'vendorDetail',
   components:{
     NavbarWeb,
     CategoryType
