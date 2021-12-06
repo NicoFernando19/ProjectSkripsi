@@ -20,7 +20,7 @@ class CreateContractsTable extends Migration
             $table->integer('workforce');
             $table->string('jobFunction');
             $table->longText('requirement')->nullable();
-            $table->string('document');
+            $table->string('document')->nullable();
             $table->timestamps();
         });
     }
