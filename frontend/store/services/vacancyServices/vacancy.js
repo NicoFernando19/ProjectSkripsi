@@ -3,7 +3,7 @@ import config from '~/static/config';
 import Cookies from 'js-cookie';
 
 export default {
-    async listVacancy () {
+    async listVacancy() {
         let token = Cookies.get('authToken')
         let result = {}
         await axios.get(`${config.API}${config.ListVacancy}`, {

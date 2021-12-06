@@ -45,7 +45,19 @@ class ContractController extends Controller
         }
 
         try{
+            if($request->hasFile('file')) {
+                $file = $request->file('file');
+                $fileName = app('App\Http\Controllers\DocumentUpload\FileController')->upload($file);
+            }
             $data = Contract::create($request->all());
+            $data->document = $fileName;
+            $data->save();
+            // if(!is_null($request->password)){
+            //     $request->password = app('hash')->make($request->password);
+                // $data->document = $fileName;
+                // $data->save();
+            // }
+
             return response()->json($data, 201);
         }catch (Exception $error) {
             return response()->json($error, 500);

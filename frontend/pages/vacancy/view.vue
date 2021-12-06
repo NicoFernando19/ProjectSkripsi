@@ -5,54 +5,18 @@
             View Invitation
         </h2>
     <div class="container-fluid d-flex align-content-between flex-wrap justify-content-center pt-5 pad">
-      <div class="card p-4 m-3" style="width: 18rem;">
+      <VacancyCard v-for="vacancy in vacancies" 
+                    v-bind:key="vacancy.id" 
+                    :vacancy="vacancy"/>
+      
+      <!-- <div class="card p-4 m-3" style="width: 18rem;">
         <img class="card-img-top" src="" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           <a href="#" class="btn btn-primary center-btn">Join Invitation</a>
         </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Join Invitation</a>
-        </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Join Invitation</a>
-        </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Join Invitation</a>
-        </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Join Invitation</a>
-        </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Join Invitation</a>
-        </div>
-      </div>
+      </div> -->
     </div>
     </div>
 </template>
@@ -60,12 +24,49 @@
 <script>
 import NavbarWeb from '@/components/NavbarWeb.vue'
 import CategoryType from '@/components/CategoryType.vue'
+import VacancyCard from '../../components/Card/VacancyCard.vue'
+import VacancyServices from '../../store/services/vacancyServices/vacancy'
+import Toast from '../../store/features/notificationToast/toast'
 
 export default {
   name: 'view',
   components:{
     NavbarWeb,
-    CategoryType
+    CategoryType,
+    VacancyCard
+  },
+  data(){
+    return{
+      blockLoader: false,
+      vacancies: []
+    };
+  },
+  async mounted() {
+    await this.getVacancy();
+  },
+  methods: {
+    showLoader(val) {
+      if (!val) {
+        setTimeout(() => {
+          this.blockLoader = false;
+        }, 500);
+      } else {
+        this.blockLoader = val;
+      }
+    },
+    async getVacancy() {
+      this.showLoader(true);
+      let res = await VacancyServices.listVacancy();
+      if (res.status == 200){
+        Toast.showToast("Load Data","Load Data Successfully", "success");
+        this.vacancies = res.data.data
+      }
+      else 
+      {
+        Toast.showToast("Load Data","Failed on server", "danger");
+      }
+      this.showLoader(false);
+    } 
   }
 }
 </script>
