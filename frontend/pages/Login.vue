@@ -115,10 +115,12 @@ export default {
       }
     },
     async login() {
+        this.showLoader(true);
         var res = await LoginService.Login(
             this.model.email,
             this.model.password
         );
+        console.log(res);
         if (res.status == 200) {
             this.state.userId = res.data.user.id;
             this.state.token = res.data.token;
@@ -126,12 +128,19 @@ export default {
             Cookie.set("authToken", this.state.token);
             Cookie.set("authUserId", this.state.userId);
             Cookie.set("authName", this.state.name);
+            Cookie.set("authCompanyName", res.data.user.companyName);
             Cookie.set("authUserName", res.data.user.username);
+            Cookie.set("authRole", res.data.user.companyRoles);
             Toast.showToast("Login Verification","Login Success", "success");
-            this.$router.push({ path: "company/Home" });
+            if (res.data.user.companyRoles == "Business Owner") {
+              this.$router.push({ path: "company/Home" });
+            }else{
+              this.$router.push({ path: "company/vendorIndex" });
+            }
         } else {
             Toast.showToast("Login Verification", "Invalid credential", "danger");
         }
+        this.showLoader(false);
     }
   }
 }

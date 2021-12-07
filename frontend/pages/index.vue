@@ -10,6 +10,7 @@ import NavbarWeb from '@/components/NavbarWeb.vue'
 
 export default {
   name: 'Index',
+  middleware: 'auth',
   components:{
     NavbarWeb
   },  

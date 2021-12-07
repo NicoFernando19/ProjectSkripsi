@@ -1,11 +1,12 @@
 import axios from 'axios'
 import config from '~/static/config';
+import Cookie from 'js-cookie'
 
 export default {
     async listNotification () {
-        let token = Cookies.get('authToken')
+        let token = Cookie.get('authToken')
         let result = {}
-        await axios.post(`${config.API}${config.ListNotification}`, {
+        await axios.get(`${config.API}${config.ListNotification}`, {
             headers:{
               "Content-Type": "application/json",
               Authorization: "Bearer " + token

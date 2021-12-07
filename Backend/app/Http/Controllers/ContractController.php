@@ -52,11 +52,6 @@ class ContractController extends Controller
             $data = Contract::create($request->all());
             $data->document = $fileName;
             $data->save();
-            // if(!is_null($request->password)){
-            //     $request->password = app('hash')->make($request->password);
-                // $data->document = $fileName;
-                // $data->save();
-            // }
 
             return response()->json($data, 201);
         }catch (Exception $error) {
@@ -93,6 +88,7 @@ class ContractController extends Controller
     {
         try{
             $data = Contract::find($id);
+            app('App\Http\Controllers\DocumentUpload\FileController')->deleteFile($data->document);
             $data->delete();
             return response()->json(['success' => 'data has been deleted'], 200);
         }catch (Exception $error) {

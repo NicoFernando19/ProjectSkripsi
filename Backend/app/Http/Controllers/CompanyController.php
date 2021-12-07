@@ -54,9 +54,14 @@ class CompanyController extends Controller
             if($request->hasFile('file')) {
                 $file = $request->file('file');
                 $fileName = app('App\Http\Controllers\DocumentUpload\FileController')->upload($file);
-                $request['imgName'] = $fileName;
             }
             $data = Company::create($request->all());
+            if(!is_null($request->password)){
+                $request->password = app('hash')->make($request->password);
+                $data->password = $request->password;
+                $data->imgName = $fileName;
+                $data->save();
+            }
             return response()->json($data, 201);
         }catch (Exception $error) {
             return response()->json($error, 500);
@@ -66,7 +71,7 @@ class CompanyController extends Controller
     public function showById($id)
     {
         try {
-            $data = Company::with(['CompanyType', 'Roles'])->find($id);
+            $data = Company::with(['CompanyType', 'Roles', 'WorkHistory'])->find($id);
             $data['companyName'] = $data->CompanyType->type_name.' '.$data->name;
             return response()->json($data, 200);
         } catch (Exception $err) {
@@ -102,12 +107,12 @@ class CompanyController extends Controller
             if($request->hasFile('file')) {
                 $file = $request->file('file');
                 $fileName = app('App\Http\Controllers\DocumentUpload\FileController')->upload($file);
-                $request['imgName'] = $fileName;
             }
             $data->update($request->all());
             if(!is_null($request->password)){
                 $request->password = app('hash')->make($request->password);
                 $data->password = $request->password;
+                $data->imgName = $fileName;
                 $data->save();
             }
             return response()->json($data, 200);
@@ -120,6 +125,7 @@ class CompanyController extends Controller
     {
         try{
             $data = Company::find($id);
+            app('App\Http\Controllers\DocumentUpload\FileController')->deleteFile($data->imgName);
             $data->delete();
             return response()->json(['success' => 'data has been deleted'], 200);
         }catch (Exception $error) {

@@ -16,8 +16,8 @@ class CompanySeeder extends Seeder
     public function run()
     {
         Company::create([
-            'name' => 'test',
-            'username' => 'test',
+            'name' => 'Maju Jaya',
+            'username' => 'Maju Jaya',
             'email' => 'nicofernando39@gmail.com',
             'phoneNumber' => '0812232312',
             'TanggalBerdiri' => Carbon::now(),
@@ -33,8 +33,8 @@ class CompanySeeder extends Seeder
         ]);
 
         Company::create([
-            'name' => 'testing',
-            'username' => 'testing',
+            'name' => 'Tigaraksa',
+            'username' => 'Tigaraksa',
             'email' => 'nicofernando1907@gmail.com',
             'phoneNumber' => '0812232312',
             'TanggalBerdiri' => Carbon::now(),
@@ -50,8 +50,8 @@ class CompanySeeder extends Seeder
         ]);
 
         Company::create([
-            'name' => 'testing3',
-            'username' => 'testing3',
+            'name' => 'Kaleng',
+            'username' => 'Kaleng',
             'email' => 'nicofernando@gmail.com',
             'phoneNumber' => '0812232312',
             'TanggalBerdiri' => Carbon::now(),

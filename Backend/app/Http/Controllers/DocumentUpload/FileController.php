@@ -39,4 +39,13 @@ class FileController extends Controller
         }
         
     }
+
+    public function deleteFile($fileName)
+    {
+        $filePath = public_path('storage/uploads/'.$fileName);
+        if(File::exists($filePath))
+        {
+            File::delete($filePath);
+        }
+    }
 }

@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(NotificationSeeder::class);
         $this->call(VacancySeeder::class);
         $this->call(TransactionSeeder::class);
+        $this->call(WorkHistorySeeder::class);
     }
 }

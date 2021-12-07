@@ -26,7 +26,7 @@ import VueElementLoading from "vue-element-loading"
 
 export default {
   name: 'home',
-  middleware: 'auth',
+  middleware: ['auth', 'businessowner'],
   components:{
     NavbarWeb,
     CategoryType,

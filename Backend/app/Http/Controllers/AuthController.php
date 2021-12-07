@@ -87,6 +87,7 @@ class AuthController extends Controller
             array_push($role_user, $role->role_name);
         }
         $user['companyRoles'] = implode(", ",$role_user);
+        $user['companyName'] = $user->CompanyType->type_name.' '.$user->name;
         $role_user = array();
         return response()->json($user);
     }

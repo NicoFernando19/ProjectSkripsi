@@ -9,6 +9,8 @@ class WorkHistory extends Model
     protected $fillable = [
         'company_id',
         'Title',
+        'startDate',
+        'endDate',
         'isActive'
     ];
 

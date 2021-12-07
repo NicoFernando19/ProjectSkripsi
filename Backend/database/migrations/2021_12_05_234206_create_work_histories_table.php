@@ -18,6 +18,8 @@ class CreateWorkHistoriesTable extends Migration
             $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
             $table->string('Title')->nullable();
+            $table->date("startDate")->nullable();
+            $table->date("endDate")->nullable();
             $table->boolean('isActive')->default(1);
             $table->timestamps();
         });

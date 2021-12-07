@@ -4,10 +4,10 @@
   <div class="container">
       <div class="center">
         <h2 class="text-center">
-            WELCOME PT XYZ
+            WELCOME {{ companyName }}
         </h2>
         <div class="space"></div>
-        <a href="#" class="btn btn-success center-btn">View Vacancy</a> 
+        <a href="/vacancy/view" class="btn btn-success center-btn">View Vacancy</a> 
       </div>
   </div> 
 </div>
@@ -16,14 +16,29 @@
 <script>
 import NavbarWeb from '@/components/NavbarWeb.vue'
 import CategoryType from '@/components/CategoryType.vue'
-import axios from 'axios';
+import Cookie from 'js-cookie'
 
 export default {
   name: 'vendorIndex',
-  middleware: 'auth',
+  middleware: ['auth', 'vendor'],
   components:{
     NavbarWeb,
     CategoryType
+  },
+  data() {
+    return {
+      companyName: ''
+    }
+  },
+  async created() {
+    await this.getAuth();
+  },
+  methods: {
+    async getAuth() {
+      if (Cookie.get("authToken") != null) {
+        this.companyName = Cookie.get("authCompanyName");
+      }
+    },
   }
 }
 </script>

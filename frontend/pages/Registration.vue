@@ -143,6 +143,7 @@ export default {
       }
     },
     async register() {
+      this.showLoader(true);
         let res = await RegisService.Register(
             this.model.email,
             this.model.password,
@@ -160,6 +161,7 @@ export default {
         } else {
             Toast.showToast("Registration", "Invalid Data!", "danger");
         }
+      this.showLoader(false)
     }
   }
 }
