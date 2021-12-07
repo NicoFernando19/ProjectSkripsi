@@ -44,9 +44,22 @@ export default {
             this.showLoader(false);
         },
         DetailVacancy(id) {
-            this.$router.push({
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${'authRole'}=`);
+            if (parts.length === 2){
+                var role = parts.pop().split(';').shift()
+            }
+            console.log(role)
+            if(role == 'Vendor'){
+                this.$router.push({
+                    path: `/vacancy/vendorDetail?id=${id}`
+            })
+            } else{
+                this.$router.push({
                 path: `/vacancy/detail?id=${id}`
             })
+            }
+            
         }
     }
 }
