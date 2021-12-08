@@ -2,7 +2,7 @@
     <div class="viewInvitation">
         <navbar-web />
         <h2 class="text-center pt-5 pb-5">
-            View Invitation
+            View Vacancy
         </h2>
     <div class="container-fluid d-flex align-content-between flex-wrap justify-content-center pt-5 pad">
       <VacancyCard v-for="vacancy in vacancies" 

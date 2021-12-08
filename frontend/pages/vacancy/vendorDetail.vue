@@ -22,7 +22,7 @@
   </div>  
 <div class="spacing"></div>
 <div class="spacing"></div>
-<button type="submit" class="btn btn-primary center-btn">Join Vacancy</button>
+<button type="submit" class="btn btn-primary center-btn" @click="toProposal()">Join Vacancy</button>
 </div>
 </template>
 
@@ -94,6 +94,9 @@ export default {
       this.model.Requirement = data.Requirement;
       this.model.isActive = data.isActive;
       this.model.company_transaction = data.company_transaction;
+    },
+    toProposal(){
+      this.$router.push({ path: `/vacancy/join` })
     }
   }
 }

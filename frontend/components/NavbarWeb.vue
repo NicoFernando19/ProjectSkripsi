@@ -6,9 +6,16 @@
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav class="mr-auto">
+      <b-navbar-nav class="mr-auto" v-if="roleCompany() == 'Vendor'">
+        <b-nav-item href="/company/vendorIndex">Vendor</b-nav-item>
+        <b-nav-item href="/vacancy/view">Vacancy</b-nav-item>
+        <b-nav-item href="/contract/approval">Contract</b-nav-item>
+      </b-navbar-nav>
+
+      <b-navbar-nav class="mr-auto" v-else>
         <b-nav-item href="/company/Home">Home</b-nav-item>
-        <b-nav-item href="#">Link</b-nav-item>
+        <b-nav-item href="/vacancy/view">Vacancy</b-nav-item>
+        <b-nav-item href="/contract/create">Contract</b-nav-item>
       </b-navbar-nav>
 
       <!-- center aligned nav items -->
@@ -97,7 +104,15 @@ export default {
             data: 'There are some error in the server'
           }]
       }
-    }
+    }, roleCompany() {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${'authRole'}=`);
+            if (parts.length === 2){
+                var role = parts.pop().split(';').shift()
+            }
+            console.log(role)
+            return role
+        }
   }
 }
 </script>
