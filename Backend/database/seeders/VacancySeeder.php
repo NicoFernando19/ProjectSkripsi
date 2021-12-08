@@ -23,5 +23,15 @@ class VacancySeeder extends Seeder
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
         ]);
+
+        Vacancy::create([
+            'company_id' => 1,
+            'Title' => 'Vacancy 2',
+            'jobType' => 'IT',
+            'jobDesc' => 'Taking care of Computer',
+            'NumWorkforce' => 2,
+            'Budget' => 'Rp. 500.000',
+            'Requirement' => 'Must be Qualified'
+        ]);
     }
 }

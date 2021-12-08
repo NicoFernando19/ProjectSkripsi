@@ -27,12 +27,12 @@
 <h3>Joined Companies</h3>
 </div>
 <div class="container-fluid d-flex align-content-between flex-wrap justify-content-center pt-2 pad">
-  <CompanyCard  v-for="company in model.company_transaction" 
+  <VacancyCompanyCard  v-for="company in model.company_interest" 
                     v-bind:key="company.id" 
-                    :company="company" />
+                    :company="company.company" :vacancyid="model.id" />
 </div>
 <div class="spacing"></div>
-<button type="submit" class="btn btn-danger center-btn">Close Vacancy</button>
+<button type="button" :class="[{ 'btn':true, 'center-btn':true}, model.isActive ? 'btn-danger' : 'btn-success']" @click.stop.prevent="UpdateStatus()">{{ model.isActive ? 'Close Vacancy' : 'Open Vacancy'}}</button>
 </div>
 </template>
 
@@ -42,7 +42,7 @@ import CategoryType from '@/components/CategoryType.vue'
 import VacancyServices from '../../store/services/vacancyServices/vacancy'
 import Toast from '../../store/features/notificationToast/toast'
 import VueElementLoading from "vue-element-loading"
-import CompanyCard from '@/components/Card/CompanyCard.vue'
+import VacancyCompanyCard from '@/components/Card/VacancyCompanyCard.vue'
 
 export default {
   name: 'detail',
@@ -50,11 +50,15 @@ export default {
     NavbarWeb,
     CategoryType,
     VueElementLoading,
-    CompanyCard
+    VacancyCompanyCard
   },
   data() {
     return {
       blockLoader: false,
+      updateStatus: {
+        id: '',
+        isActive: ''
+      },
       model: {
         id: '',
         PostDate: '',
@@ -66,7 +70,7 @@ export default {
         Budget: '',
         Requirement: '',
         isActive:'',
-        company_transaction: []
+        company_interest: []
       }
     }
   },
@@ -107,7 +111,27 @@ export default {
       this.model.Budget = data.Budget;
       this.model.Requirement = data.Requirement;
       this.model.isActive = data.isActive;
-      this.model.company_transaction = data.company_transaction;
+      this.model.company_interest = data.company_interest;
+    },
+    async UpdateStatus() {
+      this.showLoader(true)
+      this.updateStatus.id = this.$route.query['id'];
+      if (this.model.isActive) {
+        this.updateStatus.isActive = 0;
+      }else {
+        this.updateStatus.isActive = 1;
+      }
+
+      let res = await VacancyServices.UpdateStatusVacancy(this.updateStatus);
+
+      if(res.status == 200){
+        Toast.showToast("Update Status","Update Status Successfully", "success");
+        await this.getData();
+      }else{
+        Toast.showToast("Update Status","There is some error in the server", "danger");
+      }
+
+      this.showLoader(false)
     }
   }
 }

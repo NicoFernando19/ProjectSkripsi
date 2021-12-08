@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDocumentsTable extends Migration
+class CreateCompanyInterestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreateDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('documents', function (Blueprint $table) {
+        Schema::create('company_interests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
-            $table->string("documentType");
-            $table->string("documentName");
-            $table->string("pathUrl");
-            $table->string("mime");
+            $table->string("companyName")->nullable();
+            $table->string("companyType")->nullable();
+            $table->string("jobDesc")->nullable();
+            $table->integer("NumOfWorkforce")->nullable();
+            $table->string("price")->nullable();
+            $table->text("specification")->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ class CreateDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('company_interests');
     }
 }

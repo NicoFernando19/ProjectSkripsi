@@ -53,14 +53,15 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->post('vacancy/create', ['uses' => 'VacancyController@create']);
     $router->get('vacancy/getData/{id}', ['uses' => 'VacancyController@showById']);
     $router->put('vacancy/update/{id}', ['uses' => 'VacancyController@update']);
+    $router->put('vacancy/update-status/{id}', ['uses' => 'VacancyController@updateVacancyStatus']);
     $router->delete('vacancy/delete/{id}', ['uses' => 'VacancyController@destroy']);
 
     //TRANSACTION
-    $router->get('transaction/list', ['uses' => 'TransactionController@listTransaction']);
-    $router->post('transaction/create', ['uses' => 'TransactionController@create']);
-    $router->get('transaction/getData/{id}', ['uses' => 'TransactionController@showById']);
-    $router->put('transaction/update/{id}', ['uses' => 'TransactionController@update']);
-    $router->delete('transaction/delete/{id}', ['uses' => 'TransactionController@destroy']);
+    $router->get('transaction/list', ['uses' => 'JoinedCompanyController@listlistJoinedCompany']);
+    $router->post('transaction/create', ['uses' => 'JoinedCompanyController@create']);
+    $router->get('transaction/getData/{id}', ['uses' => 'JoinedCompanyController@showById']);
+    $router->put('transaction/update/{id}', ['uses' => 'JoinedCompanyController@update']);
+    $router->delete('transaction/delete/{id}', ['uses' => 'JoinedCompanyController@destroy']);
 
     //ROLE
     $router->get('role/list', ['uses' => 'RoleController@listRole']);
@@ -86,6 +87,10 @@ $router->group(['prefix' => 'api'], function () use ($router)
     //NOTIFICATION
     $router->get('notification/list', ['uses' => 'Notifications\NotificationsController@listNotif']);
 
+
+    // JOIN VACANCY
+    $router->post('join/vacancy/{vacancyid}', ['uses' => 'ApplyVacancyController@joined']);
+
     //UPLOAD FILE
-    $router->post('upload/file', ['uses' => 'DocumentUpload\DocumentController@uploadFile']);
+    $router->post('upload/company-interest/file/{id}', ['uses' => 'DocumentUpload\DocumentController@uploadFile']);
 });

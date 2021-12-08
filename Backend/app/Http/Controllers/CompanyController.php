@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Auth;
 
 class CompanyController extends Controller
 {
@@ -20,7 +21,7 @@ class CompanyController extends Controller
     public function listCompany()
     {
         $data = [
-            'data' => Company::all()
+            'data' => Company::where('id', '!=', Auth::id())->get()
         ];
 
         return response()->json($data, 200);

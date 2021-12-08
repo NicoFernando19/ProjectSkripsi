@@ -5,7 +5,7 @@ export default {
         bootStrapToaster.$bvToast.toast(message, {
           title: title,
           variant: variant,
-          autoHideDelay: 5000,
+          autoHideDelay: 1500,
           appendToast: false
         });
     },

@@ -82,16 +82,12 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
         return $this->hasMany(Notification::class);
     }
 
-    public function Document() {
-        return $this->hasMany(Document::class);
-    }
-
     public function Vacancy() {
         return $this->hasMany(Vacancy::class);
     }
 
-    public function VacancyInterest () {
-        return $this->belongsToMany(Vacancy::class, 'transactions', 'vacancy_id', 'company_id');
+    public function CompanyInterest() {
+        return $this->hasMany(CompanyInterest::class);
     }
 
     public function CompanyType()

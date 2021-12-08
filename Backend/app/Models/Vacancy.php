@@ -22,7 +22,7 @@ class Vacancy extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function CompanyTransaction () {
-        return $this->belongsToMany(Company::class, 'transactions', 'vacancy_id', 'company_id');
+    public function CompanyInterest() {
+        return $this->belongsToMany(CompanyInterest::class, 'joined_companies', 'vacancy_id', 'company_interest_id');
     }
 }

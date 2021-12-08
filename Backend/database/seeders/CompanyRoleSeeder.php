@@ -16,12 +16,12 @@ class CompanyRoleSeeder extends Seeder
     {
         CompanyRole::create([
             'company_id' => 1,
-            'role_id' => 2
+            'role_id' => 3
         ]);
 
         CompanyRole::create([
             'company_id' => 2,
-            'role_id' => 3
+            'role_id' => 2
         ]);
     }
 }

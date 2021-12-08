@@ -82,7 +82,23 @@ export default {
             result = err.response;
         })
         return result
-    }, 
+    },
+    
+    async UpdateStatusVacancy (data) {
+        let token = Cookies.get('authToken')
+        let result = {}
+        await axios.put(`${config.API}${config.UpdateStatusVacancy}/${data.id}`, data, {
+            headers:{
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token
+            }
+        }).then(response => {
+            result = response;
+        }).catch(err => {
+            result = err.response;
+        })
+        return result
+    },
 
     async DeleteVacancy (id) {
         let token = Cookies.get('authToken')

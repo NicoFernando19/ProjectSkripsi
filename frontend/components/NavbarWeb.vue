@@ -104,15 +104,15 @@ export default {
             data: 'There are some error in the server'
           }]
       }
-    }, roleCompany() {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${'authRole'}=`);
-            if (parts.length === 2){
-                var role = parts.pop().split(';').shift()
-            }
-            console.log(role)
-            return role
+    }, 
+    roleCompany() {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${'authRole'}=`);
+        if (parts.length === 2){
+            var role = parts.pop().split(';').shift()
         }
+        return role
+    }
   }
 }
 </script>

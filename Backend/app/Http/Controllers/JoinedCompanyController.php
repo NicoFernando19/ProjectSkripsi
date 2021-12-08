@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Transaction;
+use App\Models\JoinedCompany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class TransactionController extends Controller
+class JoinedCompanyController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,10 +17,10 @@ class TransactionController extends Controller
         //
     }
 
-    public function listTransaction()
+    public function listJoinedCompany()
     {
         $data = [
-            'data' => Transaction::all()
+            'data' => JoinedCompany::all()
         ];
 
         return response()->json($data, 200);
@@ -41,7 +41,7 @@ class TransactionController extends Controller
         }
 
         try{
-            $data = Transaction::create($request->all());
+            $data = JoinedCompany::create($request->all());
             return response()->json($data, 201);
         }catch (Exception $error) {
             return response()->json($error, 500);
@@ -51,7 +51,7 @@ class TransactionController extends Controller
     public function showById($id)
     {
         try {
-            $data = Transaction::find($id);
+            $data = JoinedCompany::find($id);
             return response()->json($data, 200);
         } catch (Exception $err) {
             return response()->json($err, 500);
@@ -73,7 +73,7 @@ class TransactionController extends Controller
         }
 
         try{
-            $data = Transaction::find($id);
+            $data = JoinedCompany::find($id);
             $data->update($request->all());
             return response()->json($data, 200);
         }catch (Exception $error) {
@@ -84,7 +84,7 @@ class TransactionController extends Controller
     public function destroy($id)
     {
         try{
-            $data = Transaction::find($id);
+            $data = JoinedCompany::find($id);
             $data->delete();
             return response()->json(['success' => 'data has been deleted'], 200);
         }catch (Exception $error) {

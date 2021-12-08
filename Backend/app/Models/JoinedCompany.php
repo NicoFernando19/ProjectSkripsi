@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class JoinedCompany extends Model
 {
     protected $fillable = [
-        'company_id',
+        'company_interest_id',
         'vacancy_id',
     ];
 }

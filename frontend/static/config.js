@@ -28,6 +28,7 @@ export default  {
     CreateVacancy: "/api/vacancy/create",
     DetailVacancy: "/api/vacancy/getData",
     UpdateVacancy: "/api/vacancy/update",
+    UpdateStatusVacancy: "/api/vacancy/update-status",
     DeleteVacancy: "/api/vacancy/delete",
 
     // TRANSACTION
@@ -55,5 +56,5 @@ export default  {
     ListNotification: "/api/notification/list",
 
     // UPLOAD FILE
-    UploadFile: "/api/upload/file"
+    UploadFile: "upload/company-interest/file"
 }

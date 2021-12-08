@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Document extends Model
 {
     protected $fillable = [
-        'company_id',
+        'company_interest_id',
         'documentType',
         'documentName',
         'pathUrl',
@@ -16,5 +16,9 @@ class Document extends Model
 
     public function Company() {
         return $this->belongsTo(Company::class);
+    }
+
+    public function DocCompanyInterest() {
+        return $this->belongsTo(CompanyInterest::class);
     }
 }

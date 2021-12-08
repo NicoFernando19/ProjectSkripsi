@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CompanyRoleSeeder::class);
         $this->call(NotificationSeeder::class);
         $this->call(VacancySeeder::class);
-        $this->call(TransactionSeeder::class);
+        $this->call(CompanyInterestSeeder::class);
+        $this->call(JoinedCompanySeeder::class);
         $this->call(WorkHistorySeeder::class);
     }
 }

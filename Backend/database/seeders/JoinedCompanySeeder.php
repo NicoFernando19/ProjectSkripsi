@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Transaction;
+use App\Models\JoinedCompany;
 
-class TransactionSeeder extends Seeder
+class JoinedCompanySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,14 +14,14 @@ class TransactionSeeder extends Seeder
      */
     public function run()
     {
-        Transaction::create([
+        JoinedCompany::create([
             'vacancy_id' => 1,
-            'company_id' => 2
+            'company_interest_id' => 1
         ]);
 
-        Transaction::create([
+        JoinedCompany::create([
             'vacancy_id' => 1,
-            'company_id' => 3
+            'company_interest_id' => 2
         ]);
     }
 }
