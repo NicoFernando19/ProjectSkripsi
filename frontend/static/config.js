@@ -56,5 +56,8 @@ export default  {
     ListNotification: "/api/notification/list",
 
     // UPLOAD FILE
-    UploadFile: "upload/company-interest/file"
+    UploadFile: "upload/company-interest/file",
+
+    // JOIN VACANCY
+    JoinVacancy: "/api/join/vacancy"
 }

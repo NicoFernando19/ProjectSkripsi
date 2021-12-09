@@ -114,5 +114,21 @@ export default {
             result = err.response;
         })
         return result
+    },
+
+    async joinVacancy (data, id) {
+        let token = Cookies.get('authToken')
+        let result = {}
+        await axios.post(`${config.API}${config.JoinVacancy}/${id}`, data, {
+            headers:{
+              "Content-Type": "multipart/form-data",
+              Authorization: "Bearer " + token
+            }
+        }).then(response => {
+            result = response;
+        }).catch(err => {
+            result = err.response;
+        })
+        return result
     }
 }

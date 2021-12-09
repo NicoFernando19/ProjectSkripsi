@@ -9,34 +9,34 @@
         <div class="col-lg-12">
             <form>
                 <div class="form-group">
-                    <label for="inputAddress">Company Name</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="">
+                    <label for="companyName">Company Name</label>
+                    <input type="text" v-model="model.companyName" class="form-control" id="companyName" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label for="inputAddress">Company Type</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="">
+                    <label for="companyType">Company Type</label>
+                    <input type="text" v-model="model.companyType" class="form-control" id="companyType" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label for="inputAddress2">Job Description</label>
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="">
+                    <label for="jobDesc">Job Description</label>
+                    <input type="text" v-model="model.jobDesc" class="form-control" id="jobDesc" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label for="inputAddress2">Number of Available Workforces</label>
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="">
+                    <label for="NumOfWorkforce">Number of Available Workforces</label>
+                    <input type="number" v-model="model.NumOfWorkforce" class="form-control" id="NumOfWorkforce" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label for="inputAddress2">Estimated Service Price</label>
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="">
+                    <label for="price">Estimated Service Price</label>
+                    <input type="text" v-model="model.price" class="form-control" id="price" placeholder="Rp. ?">
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Specifications / Requirements</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+                    <label for="specification">Specifications / Requirements</label>
+                    <textarea class="form-control" v-model="model.specification" id="specification" rows="6"></textarea>
                 </div>
             </form>
             
             <div class="space"></div>
             <div class="space"></div>
-            <div class="d-flex" style="max-width: fit-content;">
+            <!-- <div class="d-flex" style="max-width: fit-content;">
                 <h3>Documents</h3>
                 <span class="ml-4"><a href="#" class="btn btn-primary">Upload</a></span>
             </div>
@@ -60,10 +60,10 @@
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
             
             <div class="space"></div>
-            <a href="#" class="btn btn-success center-btn">Join</a>
+            <a @click="next()" class="btn btn-success center-btn">Next</a>
 
         </div>
     </div>
@@ -73,11 +73,35 @@
 
 <script>
 import NavbarWeb from '@/components/NavbarWeb.vue'
+import VacancyService from '../../store/services/vacancyServices/vacancy'
+import Toast from '../../store/features/notificationToast/toast'
 
 export default {
   name: 'join',
   components:{
     NavbarWeb
+  },
+  data: () => ({
+    model: {
+        companyName: '',
+        companyType: '',
+        jobDesc: '',
+        NumOfWorkforce: '',
+        price: '',
+        specification: ''
+    }
+  }),
+  methods: {
+    async next() {
+        var idx = this.$route.query['id'];
+        let res = await VacancyService.joinVacancy(this.model, idx);
+        if (res.status == 201) {
+            Toast.showToast("Join Vacancy", "Form Completed!", "success");
+            this.$router.push({ path: "/company/Home" });
+        } else {
+            Toast.showToast("Join Vacancy", "Invalid Data!", "danger");
+        }
+    }
   }
 }
 </script>
