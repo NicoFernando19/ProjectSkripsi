@@ -96,7 +96,7 @@ export default {
       this.model.company_transaction = data.company_transaction;
     },
     toProposal(){
-      this.$router.push({ path: `/vacancy/join?id=${this.model.id}` })
+      this.$router.push({ path: `/join/vacancy?id=${this.model.id}` })
     }
   }
 }

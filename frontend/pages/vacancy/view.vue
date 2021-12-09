@@ -18,6 +18,12 @@
         </div>
       </div> -->
     </div>
+    <div class="div" v-if="roleCompany() == 'Business Owner'">
+    </div>
+    <div class="div" v-else>
+        <div class="space"></div>
+        <button type="submit" @click="toCreateVacancy()" class="btn btn-primary center-btn">Create Vacancy</button>
+    </div>
     </div>
 </template>
 
@@ -66,7 +72,19 @@ export default {
         Toast.showToast("Load Data","Failed on server", "danger");
       }
       this.showLoader(false);
-    } 
+    },
+    toCreateVacancy(){
+      this.$router.push({ path: "/vacancy/create" });
+    },
+    roleCompany() {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${'authRole'}=`);
+            if (parts.length === 2){
+                var role = parts.pop().split(';').shift()
+            }
+            console.log(role)
+            return role
+        } 
   }
 }
 </script>
@@ -81,5 +99,9 @@ export default {
 
 .pad{
     padding: 20px 120px 0px 120px;
+}
+
+.space{
+  height: 50px;
 }
 </style>

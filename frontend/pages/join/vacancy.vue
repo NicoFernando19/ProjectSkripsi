@@ -1,5 +1,5 @@
 <template>
-<div class="createVacancy">
+<div class="joinVacancy">
   <navbar-web />
   <div class = "pt-4">
     <div class="container pb-5 pl-5 pr-5">
@@ -7,7 +7,7 @@
         Join Vacancy
         </h1>
         <div class="col-lg-12">
-            <form>
+            <form @submit.stop.prevent="next()">
                 <div class="form-group">
                     <label for="companyName">Company Name</label>
                     <input type="text" v-model="model.companyName" class="form-control" id="companyName" placeholder="">
@@ -32,38 +32,11 @@
                     <label for="specification">Specifications / Requirements</label>
                     <textarea class="form-control" v-model="model.specification" id="specification" rows="6"></textarea>
                 </div>
+                <button type="submit" class="btn btn-primary center-btn">Next</button>
             </form>
             
-            <div class="space"></div>
-            <div class="space"></div>
-            <!-- <div class="d-flex" style="max-width: fit-content;">
-                <h3>Documents</h3>
-                <span class="ml-4"><a href="#" class="btn btn-primary">Upload</a></span>
-            </div>
-
-            <div class="container-fluid d-flex align-content-between flex-wrap justify-content-center pt-2 mb-2">
-                <div class="card p-4 m-3" style="width: 18rem;">
-                    <div class="card-body">
-                    <h5 class="card-title">Document 1</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-                <div class="card p-4 m-3" style="width: 18rem;">
-                    <div class="card-body">
-                    <h5 class="card-title">Proposal</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-                <div class="card p-4 m-3" style="width: 18rem;">
-                    <div class="card-body">
-                    <h5 class="card-title">Document 2</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
-                </div>
-            </div> -->
-            
-            <div class="space"></div>
-            <a @click="next()" class="btn btn-success center-btn">Next</a>
+            <!-- <div class="space"></div>
+            <a @click="next()" class="btn btn-success center-btn">Next</a> -->
 
         </div>
     </div>
@@ -77,7 +50,7 @@ import VacancyService from '../../store/services/vacancyServices/vacancy'
 import Toast from '../../store/features/notificationToast/toast'
 
 export default {
-  name: 'join',
+  name: 'vacancy',
   components:{
     NavbarWeb
   },
@@ -97,7 +70,7 @@ export default {
         let res = await VacancyService.joinVacancy(this.model, idx);
         if (res.status == 201) {
             Toast.showToast("Join Vacancy", "Form Completed!", "success");
-            this.$router.push({ path: "/company/Home" });
+            this.$router.push({ path: res.data.redirect });
         } else {
             Toast.showToast("Join Vacancy", "Invalid Data!", "danger");
         }

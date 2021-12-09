@@ -121,7 +121,7 @@ export default {
         let result = {}
         await axios.post(`${config.API}${config.JoinVacancy}/${id}`, data, {
             headers:{
-              "Content-Type": "multipart/form-data",
+              "Content-Type": "application/json",
               Authorization: "Bearer " + token
             }
         }).then(response => {
