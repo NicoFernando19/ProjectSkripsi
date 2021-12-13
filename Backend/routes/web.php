@@ -92,5 +92,5 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->post('join/vacancy/{vacancyid}', ['uses' => 'ApplyVacancyController@joined']);
 
     //UPLOAD FILE
-    $router->post('upload/company-interest/file/{id}', ['uses' => 'DocumentUpload\DocumentController@uploadFile']);
+    $router->post('upload/company-interest/file', ['uses' => 'DocumentUpload\DocumentController@uploadFile']);
 });

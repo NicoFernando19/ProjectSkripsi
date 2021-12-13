@@ -21,7 +21,7 @@ class DocumentController extends Controller
         //
     }
 
-    public function uploadFile(Request $request, $id){
+    public function uploadFile(Request $request){
         $validator = Validator::make($request->all(), [
             'file' => 'required',
         ]);
@@ -47,16 +47,16 @@ class DocumentController extends Controller
             $file->move($filePath, $name);
 
             $uploadFile= new Document();
-            $uploadFile->company_interest_id = $id;
+            $uploadFile->company_interest_id = $request->id;
             $uploadFile->documentName = $name;
             $uploadFile->pathUrl = URL::to('/').'/storage/uploads/'.$name;
             $uploadFile->mime=$mime;
-            $uploadFile->documentType=$mime;
+            $uploadFile->documentType=$request->documentType;
             $uploadFile->save();
             $tempArray = $uploadFile->toArray();
             $tempArray['file_name'] = $oldname;
             $uploadFile = $tempArray;
-            return response()->json($uploadFile);
+            return response()->json($uploadFile, 201);
 
         }
         

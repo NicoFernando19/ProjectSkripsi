@@ -5,13 +5,19 @@ import Cookies from 'js-cookie';
 export default {
     async UploadFile(data) {
         let token = Cookies.get('authToken')
+        let form = new FormData()
+        if(data.file != null)
+            form.append('file', data.file)
+        form.append('id', data.id);
+        form.append('documentType', data.documentType);
         let result = {}
-        await axios.post(`${config.API}${config.UploadFile}/${data.id}`, data, {
+        await axios.post(`${config.API}/${config.UploadFile}`, form, {
             headers:{
-              "Content-Type": "multipart/form-data",
+              "Content-Type": "undefined",
               Authorization: "Bearer " + token
             }
         }).then(response => {
+            console.log(response)
             result = response;
         }).catch(err => {
             result = err.response;

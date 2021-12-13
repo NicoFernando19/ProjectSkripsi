@@ -38,17 +38,19 @@ export default {
   },
   data: () => ({
     model: {
-        documentName: '',
+        id: '',
+        file: '',
         documentType: ''
     }
   }),
   methods: {
     onChange(e){
-        this.model.documentName = e.target.files[0];
+        this.model.file = e.target.files[0];
     },
     async proposal() {
+        this.model.id = this.$route.query['id'];
+        console.log(this.model.file);
         let res = await DocumentService.UploadFile(this.model);
-        console.log(res)
         if (res.status == 201) {
             Toast.showToast("Create Contract", "Create Contract Success!", "success");
             this.$router.push({ path: "/company/Home" });
