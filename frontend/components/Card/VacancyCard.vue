@@ -2,6 +2,9 @@
     <div>
         <div class="card p-4 m-3" style="width: 18rem;" @show="Loader">
             <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />
+            <img class="card-img-top" :src="`${Url}/${vacancy.company.imgName}`" :alt="vacancy.company.imgName">
+            <!-- Tes -->
+            <h4>Posted by: {{ vacancy.company.name }}</h4>
             <div class="card-body">
                 <h5 class="card-title">{{ vacancy.Title }}</h5>
                 <p class="card-text">{{ vacancy.jobType }}</p>
@@ -15,6 +18,7 @@
 </template>
 
 <script>
+import config from '../../static/config';
 import VueElementLoading from "vue-element-loading"
 
 export default {
@@ -23,7 +27,8 @@ export default {
     },
     data(){
         return{
-            blockLoader: false
+            blockLoader: false,
+            Url: config.StorageUrl
         };
     },
     props: {

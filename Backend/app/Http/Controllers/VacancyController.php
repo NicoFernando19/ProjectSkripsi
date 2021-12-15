@@ -19,9 +19,9 @@ class VacancyController extends Controller
     }
 
     public function listVacancy()
-    {
+    {//tes
         $data = [
-            'data' => Vacancy::all()
+            'data' => Vacancy::with('company')->get()
         ];
 
         return response()->json($data, 200);
