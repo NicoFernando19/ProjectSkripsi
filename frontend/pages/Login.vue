@@ -1,22 +1,19 @@
 <template>
 <div class="home">
-  <navbar-web />
   <div class = "space"></div>
   <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />
   <div class = "pt-5">
-    <div class="container regist pt-3 pb-5 pl-5 pr-5">
-        <h1 class="text-center pt-4 pb-5">
-        Login
-        </h1>
+    <div class="container">
+        <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
         <div class="col-lg-12">
             <form @submit.stop.prevent="login()">
                 <div class="form-group">
-                    <label for="inputEmail4">Email</label>
+                    <label for="inputEmail4"></label>
                     <input type="email" :class="{ 'form-control': true , 'is-invalid': invalid , 'is-valid': valid}"
-                        v-model="model.email" 
+                        v-model="model.email"
                         v-on:keyup="onKeyEnter"
-                        :rules="emailRules" 
-                        id="inputEmail4" 
+                        :rules="emailRules"
+                        id="inputEmail4"
                         placeholder="Email">
                     <div class="invalid-feedback" v-for="error in emailRules" :key="error">
                       {{ error }}
@@ -24,26 +21,21 @@
                 </div>
                 <div class="form-group pb-3">
                     <div class="d-flex">
-                      <label for="inputPassword4">Password</label>
-                      <span class="ml-2 text-muted">
-                        <p><small>Forgot Password ? <NuxtLink to="/reset-password" class="text-decoration-none">Reset Password!</NuxtLink></small></p>
-                      </span>
+                      <label for="inputPassword4"></label>
                     </div>
                     <input type="password" class="form-control" v-model="model.password" id="inputPassword4" placeholder="Password">
-                    <div class="d-flex justify-content-end">
-                      <span class="text-muted">
-                        <p><small>Don't have account ? <NuxtLink to="/Registration" class="text-decoration-none">Register Now!</NuxtLink></small></p>
-                      </span>
-                    </div>
+                    <span class="ml-2 text-muted">
+                        <p><small>Forgot Password? <NuxtLink to="/reset-password" class="text-decoration-none">Reset Password!</NuxtLink></small></p>
+                    </span>
                 </div>
-                <div class="d-flex justify-content-center">
-                  <NuxtLink to="/" type="button" class="btn btn-danger btn-register mr-3">Back</NuxtLink>
-                  <button type="submit" class="btn btn-primary btn-register">Login</button>
-                </div>
+                <div class="input-group">
+				          <button type="submit" class="btn">Login</button>
+			          </div>
+                <p class="login-register-text">Don't have an account? <NuxtLink to="/Registration">Register Here</NuxtLink></p>
             </form>
         </div>
     </div>
-  </div>  
+  </div>
 </div>
 </template>
 
@@ -147,6 +139,51 @@ export default {
 </script>
 
 <style scoped>
+.container {
+    width: 400px;
+    min-height: 400px;
+    background: #FFF;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(244,231,228, 0.8);
+    padding: 40px 30px;
+}
+
+.container .login-text {
+    color: #253354;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 20px;
+    display: block;
+    text-transform: capitalize;
+}
+
+.input-group .btn {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    padding: 5px 20px;
+    text-align: center;
+    border: none;
+    background: #253354;
+    outline: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.login-register-text {
+    margin-top: 20px;
+    color: #253354;
+    font-weight: 600;
+}
+
+.login-register-text a {
+    text-decoration: none;
+    color: #C4C4C4;
+}
+
 .regist{
     border: solid 1px #000;
     border-radius: 10px;

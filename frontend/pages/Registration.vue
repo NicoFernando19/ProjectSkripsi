@@ -3,10 +3,8 @@
   <div class = "space"></div>
   <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />
   <div class = "pt-5">
-    <div class="container regist pb-5 pl-5 pr-5">
-        <h1 class="text-center pt-4 pb-5">
-        Registration
-        </h1>
+    <div class="container">
+        <p class="reg-text" style="font-size: 2rem; font-weight: 800;">Registration</p>
         <div class="col-lg-12">
             <form @submit.stop.prevent="register()">
                 <div class="form-row">
@@ -64,14 +62,14 @@
                     <input type="text" class="form-control" v-model="model.zip" id="inputZip">
                     </div>
                 </div>
-                <div class="d-flex justify-content-center">
-                  <NuxtLink to="/" type="button" class="btn btn-danger btn-register mr-3">Back</NuxtLink>
-                  <button type="submit" class="btn btn-primary btn-register">Register</button>
-                </div>
+                <div class="input-group">
+				          <button type="submit" class="btn">Register</button>
+			          </div>
+                <p class="login-register-text">Already have an account? <NuxtLink to="/Login">Login Here</NuxtLink></p>
             </form>
         </div>
     </div>
-  </div>  
+  </div>
 </div>
 </template>
 
@@ -168,6 +166,51 @@ export default {
 </script>
 
 <style scoped>
+.container {
+    width: 400px;
+    min-height: 400px;
+    background: #FFF;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(244,231,228, 0.8);
+    padding: 0px 0px;
+}
+
+.container .reg-text {
+    color: #253354;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 20px;
+    display: block;
+    text-transform: capitalize;
+}
+
+.input-group .btn {
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    padding: 5px 20px;
+    text-align: center;
+    border: none;
+    background: #253354;
+    outline: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.login-register-text {
+    margin-top: 20px;
+    color: #253354;
+    font-weight: 600;
+}
+
+.login-register-text a {
+    text-decoration: none;
+    color: #C4C4C4;
+}
+
 .regist{
     border: solid 1px #000;
     border-radius: 10px;

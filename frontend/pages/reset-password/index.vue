@@ -3,19 +3,17 @@
     <div class = "space"></div>
         <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />
         <div class = "pt-5">
-            <div class="container regist pt-3 pb-5 pl-5 pr-5">
-                <h1 class="text-center pt-4 pb-5">
-                Reset Password
-                </h1>
+            <div class="container">
+                <p class="reg-text" style="font-size: 2rem; font-weight: 800;">Reset Password</p>
                 <div class="col-lg-12">
                     <form @submit.stop.prevent="panelPassword ? reset() : sendEmail()" >
                         <div class="form-group">
                             <label for="inputEmail4">Email</label>
-                            <input type="email" :class="{ 'form-control': true , 'is-invalid': invalid , 'is-valid': valid}" 
-                                v-model="model.email" 
+                            <input type="email" :class="{ 'form-control': true , 'is-invalid': invalid , 'is-valid': valid}"
+                                v-model="model.email"
                                 v-on:keyup="onKeyEnter"
-                                id="inputEmail4" 
-                                placeholder="Email" 
+                                id="inputEmail4"
+                                placeholder="Email"
                                 :readonly="panelPassword">
                             <div class="invalid-feedback" v-for="error in emailRules" :key="error">
                               {{ error }}
@@ -24,30 +22,28 @@
                         <div v-if="panelPassword">
                           <div class="form-group">
                               <label for="inputPassword4">Password</label>
-                              <input type="password" 
-                                      class="form-control" 
-                                      v-model="model.password" 
-                                      id="inputPassword4" 
+                              <input type="password"
+                                      class="form-control"
+                                      v-model="model.password"
+                                      id="inputPassword4"
                                       placeholder="Password">
                           </div>
                           <div class="form-group">
                               <label for="inputPassword">Password Confirmation</label>
-                              <input type="password" 
-                                      class="form-control" 
-                                      v-model="model.password_confirmation" 
-                                      id="inputPassword" 
+                              <input type="password"
+                                      class="form-control"
+                                      v-model="model.password_confirmation"
+                                      id="inputPassword"
                                       placeholder="Password">
                           </div>
                         </div>
-                        
-                        <div class="d-flex justify-content-center">
-                            <NuxtLink to="/Login" type="button" class="btn btn-danger btn-register mr-3">Back</NuxtLink>
-                            <button type="submit" class="btn btn-primary btn-register">{{ panelPassword ? "Reset Password" : "Send Link" }}</button>
-                        </div>
+                        <div class="input-group">
+				                  <button type="submit" class="btn">{{ panelPassword ? "Send Link" : "Send Link" }}</button></button>
+			                  </div>
                     </form>
                 </div>
             </div>
-        </div>  
+        </div>
     </div>
 </template>
 
@@ -153,6 +149,51 @@ export default {
 </script>
 
 <style scoped>
+.container {
+    width: 400px;
+    min-height: 400px;
+    background: #FFF;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(244,231,228, 0.8);
+    padding: 0px 0px;
+}
+
+.container .reg-text {
+    color: #253354;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 20px;
+    display: block;
+    text-transform: capitalize;
+}
+
+.input-group .btn {
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    padding: 5px 20px;
+    text-align: center;
+    border: none;
+    background: #253354;
+    outline: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.login-register-text {
+    margin-top: 20px;
+    color: #253354;
+    font-weight: 600;
+}
+
+.login-register-text a {
+    text-decoration: none;
+    color: #C4C4C4;
+}
+
 .regist{
     border: solid 1px #000;
     border-radius: 10px;
