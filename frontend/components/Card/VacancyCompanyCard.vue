@@ -6,8 +6,6 @@
             <div class="card-body">
                 <h5 class="card-title">{{ company.name }}</h5>
                 <p class="card-text">{{ company.BidangUsaha }}</p>
-                <p class="card-text">{{ company.address }}</p>
-                <p class="card-text">{{ company.phoneNumber }}</p>
                 <button class="btn btn-primary center-btn" @click="DetailCompany(company.id, vacancyid)">Detail Company</button>
                 <button class="mt-2 btn btn-success center-btn" @click="CreateContract(vacancyid)">Create Contract</button>
             </div>

@@ -3,14 +3,14 @@ import config from '~/static/config';
 import Cookies from 'js-cookie';
 
 export default {
-    async listCompany () {
+    async listCompany (data) {
         let token = Cookies.get('authToken')
         let result = {}
-        await axios.get(`${config.API}${config.ListCompany}`, {
+        await axios.post(`${config.API}${config.ListCompany}`, data, {
             headers:{
               "Content-Type": "application/json",
               Authorization: "Bearer " + token
-            }
+            },
         }).then(response => {
             result = response;
         }).catch(err => {

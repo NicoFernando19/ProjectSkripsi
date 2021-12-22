@@ -7,6 +7,17 @@
     <h2 class="text-center pt-5 pb-5">
       Category Name
     </h2>
+    <b-collapse id="collapse-2">
+      <div class="container d-flex">
+        <div class="form-group">
+          <label for="filter">Filter by Name:</label>
+          <input type="text" id="filter" v-model="data.name" class="form-control">
+        </div>
+      </div>
+    </b-collapse>
+    <div class="container d-flex justify-content-end">
+      <b-button v-b-toggle.collapse-2 class="m-1" variant="primary">Filter</b-button>
+    </div>
     <div class="container-fluid d-flex align-content-between flex-wrap justify-content-center pt-5 pad">
       <CompanyCard  v-for="company in companies" 
                     v-bind:key="company.id" 
@@ -33,9 +44,19 @@ export default {
     CompanyCard,
     VueElementLoading
   },
+  watch: {
+    "data.name": function (val) {
+      if (val != null || val != "" || val != undefined) {
+        this.getCompanies();
+      }
+    }
+  },
   data(){
     return{
       blockLoader: false,
+      data: {
+        name: ""
+      },
       companies: []
     };
   },
@@ -54,7 +75,7 @@ export default {
     },
     async getCompanies() {
       this.showLoader(true);
-      let res = await CompanyServices.listCompany();
+      let res = await CompanyServices.listCompany(this.data);
       if (res.status == 200){
         Toast.showToast("Load Data","Load Data Successfully", "success");
         this.companies = res.data.data

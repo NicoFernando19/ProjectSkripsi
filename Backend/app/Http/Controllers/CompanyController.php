@@ -15,13 +15,21 @@ class CompanyController extends Controller
      */
     public function __construct()
     {
-        //
+        $this->middleware('auth:api');
     }
 
-    public function listCompany()
+    public function listCompany(Request $request)
     {
+        if (!empty($request->name)) {
+            $value = $request->get("name");
+            $datas = Company::where('id', '!=', Auth::id())
+                        ->where("name", "LIKE", "%$value%")
+                        ->get();
+        }else {
+            $datas = Company::where('id', '!=', Auth::id())->get();
+        }
         $data = [
-            'data' => Company::where('id', '!=', Auth::id())->get()
+            'data' => $datas
         ];
 
         return response()->json($data, 200);

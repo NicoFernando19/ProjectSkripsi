@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Vacancy;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -15,13 +16,24 @@ class VacancyController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth:api');
+        $this->middleware('auth:api');
     }
 
-    public function listVacancy()
-    {//tes
+    public function listVacancy(Request $request)
+    {
+        if (!empty($request->title) || !empty($request->company)) {
+            $title = $request->get("title");
+            $company = $request->get("company");
+            $datas = Vacancy::with('company')->get();
+            $data = $datas->filter( function ($value, $key) use($title, $company){  
+                return (str_contains(strtolower($value->Title), strtolower($title)) && str_contains(strtolower($value->company->name) , strtolower($company)));
+            });
+            $datas = $data->all();
+        } else {
+            $datas = Vacancy::with('company')->get();
+        }
         $data = [
-            'data' => Vacancy::with('company')->get()
+            'data' => $datas
         ];
 
         return response()->json($data, 200);

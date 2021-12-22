@@ -16,7 +16,7 @@ class VacancySeeder extends Seeder
     {
         Vacancy::create([
             'company_id' => 1,
-            'Title' => 'Vacancy 1',
+            'Title' => 'Job',
             'jobType' => 'CS',
             'jobDesc' => 'Taking care of customer',
             'NumWorkforce' => 1,
@@ -26,6 +26,26 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'company_id' => 1,
+            'Title' => 'Vacancy',
+            'jobType' => 'IT',
+            'jobDesc' => 'Taking care of Computer',
+            'NumWorkforce' => 2,
+            'Budget' => 'Rp. 500.000',
+            'Requirement' => 'Must be Qualified'
+        ]);
+
+        Vacancy::create([
+            'company_id' => 3,
+            'Title' => 'Job 2',
+            'jobType' => 'CS',
+            'jobDesc' => 'Taking care of customer',
+            'NumWorkforce' => 1,
+            'Budget' => 'Rp. 500.000',
+            'Requirement' => 'Must be Qualified'
+        ]);
+
+        Vacancy::create([
+            'company_id' => 3,
             'Title' => 'Vacancy 2',
             'jobType' => 'IT',
             'jobDesc' => 'Taking care of Computer',

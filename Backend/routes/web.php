@@ -35,7 +35,7 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->get('stats', ['uses' => 'AuthController@me']);
     
     //COMPANY
-    $router->get('company/list', ['uses' => 'CompanyController@listCompany']);
+    $router->post('company/list', ['uses' => 'CompanyController@listCompany']);
     $router->post('company/create', ['uses' => 'CompanyController@create']);
     $router->get('company/getData/{id}', ['uses' => 'CompanyController@showById']);
     $router->put('company/update/{id}', ['uses' => 'CompanyController@update']);
@@ -49,7 +49,7 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->delete('company-type/delete/{id}', ['uses' => 'CompanyTypeController@destroy']);
 
     //VACANCY
-    $router->get('vacancy/list', ['uses' => 'VacancyController@listVacancy']);
+    $router->post('vacancy/list', ['uses' => 'VacancyController@listVacancy']);
     $router->post('vacancy/create', ['uses' => 'VacancyController@create']);
     $router->get('vacancy/getData/{id}', ['uses' => 'VacancyController@showById']);
     $router->put('vacancy/update/{id}', ['uses' => 'VacancyController@update']);

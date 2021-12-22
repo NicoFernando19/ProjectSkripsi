@@ -4,6 +4,24 @@
         <h2 class="text-center pt-5 pb-5">
             View Vacancy
         </h2>
+        <b-collapse id="collapse-2">
+          <div class="container d-flex justify-content-between">
+            <div class="form-group">
+              <label for="filter">Filter by Title:</label>
+              <input type="text" id="filter" v-model="data.title" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="filter2">Filter by Company Name:</label>
+              <input type="text" id="filter2" v-model="data.company" class="form-control">
+            </div>
+            <div class="form-group d-flex align-items-center m-0">
+              <button type="button" class="btn btn-warning" @click="clearFilter()">Clear Filter</button>
+            </div>
+          </div>
+        </b-collapse>
+        <div class="container d-flex justify-content-end">
+          <b-button v-b-toggle.collapse-2 class="m-1" variant="primary">Filter</b-button>
+        </div>
     <div class="container-fluid d-flex align-content-between flex-wrap justify-content-center pt-5 pad">
       <VacancyCard v-for="vacancy in vacancies" 
                     v-bind:key="vacancy.id" 
@@ -41,9 +59,21 @@ export default {
     CategoryType,
     VacancyCard
   },
+  watch: {
+    "data.title": function (val) {
+      this.getVacancyByFilter();
+    },
+    "data.company": function (val) {
+      this.getVacancyByFilter();
+    }
+  },
   data(){
     return{
       blockLoader: false,
+      data: {
+        title: "",
+        company: ""
+      },
       vacancies: []
     };
   },
@@ -60,9 +90,25 @@ export default {
         this.blockLoader = val;
       }
     },
+    clearFilter(){
+      this.data.title = ""
+      this.data.company = ""
+    },
+    async getVacancyByFilter() {
+      this.showLoader(true);
+      let res = await VacancyServices.listVacancy(this.data);
+      if (res.status == 200){
+        this.vacancies = res.data.data
+      }
+      else 
+      {
+        Toast.showToast("Load Data","Failed on server", "danger");
+      }
+      this.showLoader(false);
+    },
     async getVacancy() {
       this.showLoader(true);
-      let res = await VacancyServices.listVacancy();
+      let res = await VacancyServices.listVacancy(this.data);
       if (res.status == 200){
         Toast.showToast("Load Data","Load Data Successfully", "success");
         this.vacancies = res.data.data
