@@ -3,71 +3,82 @@
   <div class = "space"></div>
   <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />
   <div class = "pt-5">
-    <div class="container">
+    <div class="container-fluid">
+      <div class="container">
         <p class="reg-text" style="font-size: 2rem; font-weight: 800;">Registration</p>
         <div class="col-lg-12">
             <form @submit.stop.prevent="register()">
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="inputEmail4">Email</label>
-                        <input type="email" :class="{ 'form-control': true , 'is-invalid': invalid , 'is-valid': valid}"
-                            v-model="model.email"
-                            :rules="emailRules"
-                            id="inputEmail4" placeholder="Email">
-                        <div class="invalid-feedback" v-for="error in emailRules" :key="error">
-                          {{ error }}
-                        </div>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="Username">Username</label>
-                        <input type="text" class="form-control" v-model="model.username" id="Username" placeholder="Username">
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label for="name">Full name</label>
-                        <input type="text" class="form-control" v-model="model.name" id="name" placeholder="Full Name">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputPassword4">Password</label>
-                        <input type="password" class="form-control" v-model="model.password" id="inputPassword4" placeholder="Password">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputPassword">Password Confirmation</label>
-                        <input type="password" class="form-control" v-model="model.password_confirmation" id="inputPassword" placeholder="Password">
-                    </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-row">
+                      <div class="form-group col-md-12">
+                          <label for="inputEmail4">Email</label>
+                          <input type="email" :class="{ 'form-control': true , 'is-invalid': invalid , 'is-valid': valid}"
+                              v-model="model.email"
+                              :rules="emailRules"
+                              id="inputEmail4" placeholder="Email">
+                          <div class="invalid-feedback" v-for="error in emailRules" :key="error">
+                            {{ error }}
+                          </div>
+                      </div>
+                      <div class="form-group col-md-12">
+                          <label for="Username">Username</label>
+                          <input type="text" class="form-control" v-model="model.username" id="Username" placeholder="Username">
+                      </div>
+                      <div class="form-group col-md-12">
+                          <label for="name">Full name</label>
+                          <input type="text" class="form-control" v-model="model.name" id="name" placeholder="Full Name">
+                      </div>
+                      <div class="form-group col-md-12">
+                          <label for="inputPassword4">Password</label>
+                          <input type="password" class="form-control" v-model="model.password" id="inputPassword4" placeholder="Password">
+                      </div>
+                  </div>
+
                 </div>
-                <div class="form-group">
-                    <label for="inputAddress">Address</label>
-                    <input type="text" class="form-control" v-model="model.address" id="inputAddress" placeholder="1234 Main St">
+                <div class="col-6">
+                  <div class="form-group">
+                      <label for="inputPassword">Password Confirmation</label>
+                      <input type="password" class="form-control" v-model="model.password_confirmation" id="inputPassword" placeholder="Password">
+                  </div>
+                  <div class="form-group">
+                      <label for="inputAddress">Address</label>
+                      <input type="text" class="form-control" v-model="model.address" id="inputAddress" placeholder="1234 Main St">
+                  </div>
+                  <div class="form-group">
+                      <label for="inputAddress2">Address 2</label>
+                      <input type="text" class="form-control" id="inputAddress2" v-model="model.address2" placeholder="Apartment, studio, or floor">
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-md-6">
+                      <label for="inputCity">City</label>
+                      <input type="text" class="form-control" v-model="model.city" id="inputCity">
+                      </div>
+                      <div class="form-group col-md-4">
+                      <label for="inputState">State</label>
+                      <select v-model="model.state" id="inputState" class="form-control">
+                          <option selected>Choose...</option>
+                          <option>...</option>
+                          <option>Bali</option>
+                          <option>Banten</option>
+                      </select>
+                      </div>
+                      <div class="form-group col-md-2">
+                      <label for="inputZip">Zip</label>
+                      <input type="text" class="form-control" v-model="model.zip" id="inputZip">
+                      </div>
+                  </div>
+
                 </div>
-                <div class="form-group">
-                    <label for="inputAddress2">Address 2</label>
-                    <input type="text" class="form-control" id="inputAddress2" v-model="model.address2" placeholder="Apartment, studio, or floor">
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                    <label for="inputCity">City</label>
-                    <input type="text" class="form-control" v-model="model.city" id="inputCity">
-                    </div>
-                    <div class="form-group col-md-4">
-                    <label for="inputState">State</label>
-                    <select v-model="model.state" id="inputState" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                        <option>Bali</option>
-                        <option>Banten</option>
-                    </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                    <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" v-model="model.zip" id="inputZip">
-                    </div>
-                </div>
+              </div>
                 <div class="input-group">
 				          <button type="submit" class="btn">Register</button>
 			          </div>
-                <p class="login-register-text">Already have an account? <NuxtLink to="/Login">Login Here</NuxtLink></p>
+                <p class="login-register-text d-flex justify-content-center">Already have an account? <NuxtLink to="/Login" class="pl-1">Login Here</NuxtLink></p>
             </form>
         </div>
+
+      </div>
     </div>
   </div>
 </div>
@@ -167,7 +178,6 @@ export default {
 
 <style scoped>
 .container {
-    width: 400px;
     min-height: 400px;
     background: #FFF;
     border-radius: 5px;
