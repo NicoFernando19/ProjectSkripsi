@@ -23,5 +23,10 @@ class CompanyRoleSeeder extends Seeder
             'company_id' => 2,
             'role_id' => 2
         ]);
+
+        CompanyRole::create([
+            'company_id' => 3,
+            'role_id' => 3
+        ]);
     }
 }

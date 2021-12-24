@@ -48,14 +48,19 @@
 import NavbarWeb from '@/components/NavbarWeb.vue'
 import VacancyService from '../../store/services/vacancyServices/vacancy'
 import Toast from '../../store/features/notificationToast/toast'
+import CompanyServices from '../../store/services/companyServices/company'
 
 export default {
   name: 'vacancy',
   components:{
     NavbarWeb
   },
+  async mounted() {
+    await this.getCompany();
+  },
   data: () => ({
     model: {
+        id: '',
         companyName: '',
         companyType: '',
         jobDesc: '',
@@ -65,8 +70,18 @@ export default {
     }
   }),
   methods: {
+    async getCompany() {
+        this.model.id = this.$route.query['companyId'];
+        let result = await CompanyServices.GetCompanyById(this.model)
+
+        this.loadData(result);
+        
+    },
+    loadData(result) {
+        this.model.companyName = result.data.companyName;
+    },
     async next() {
-        var idx = this.$route.query['id'];
+        var idx = this.$route.query['vacancyId'];
         let res = await VacancyService.joinVacancy(this.model, idx);
         if (res.status == 201) {
             Toast.showToast("Join Vacancy", "Form Completed!", "success");

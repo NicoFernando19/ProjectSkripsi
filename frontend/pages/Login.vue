@@ -112,7 +112,7 @@ export default {
             this.model.email,
             this.model.password
         );
-        console.log(res);
+
         if (res.status == 200) {
             this.state.userId = res.data.user.id;
             this.state.token = res.data.token;

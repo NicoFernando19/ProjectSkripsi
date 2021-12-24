@@ -36,9 +36,7 @@
         </div>
       </div> -->
     </div>
-    <div class="div" v-if="roleCompany() == 'Business Owner'">
-    </div>
-    <div class="div" v-else>
+    <div class="div" v-if="roleCompany() === Business">
         <div class="space"></div>
         <button type="submit" @click="toCreateVacancy()" class="btn btn-primary center-btn">Create Vacancy</button>
     </div>
@@ -70,6 +68,7 @@ export default {
   data(){
     return{
       blockLoader: false,
+      Business: "Business Owner",
       data: {
         title: "",
         company: ""
@@ -128,7 +127,7 @@ export default {
             if (parts.length === 2){
                 var role = parts.pop().split(';').shift()
             }
-            // console.log(role)
+            role = role.replace("%20", " ");
             return role
         } 
   }

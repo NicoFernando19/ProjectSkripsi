@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Vacancy;
 use App\Models\CompanyInterest;
 use App\Models\JoinedCompany;
+use App\Models\Notification;
 
 class ApplyVacancyController extends Controller
 {
@@ -43,6 +44,14 @@ class ApplyVacancyController extends Controller
             $joinedCompany = JoinedCompany::create([
                 'vacancy_id' => $vacancyid,
                 'company_interest_id' => $companyInterest->id
+            ]);
+
+            $vacancy = Vacancy::find($vacancyid);
+
+            $notification = Notification::create([
+                'type' => 'Applied',
+                'company_id' => $vacancy->company->id,
+                'data' => 'One company has been applied to your job vacancy'
             ]);
 
             $result = [
