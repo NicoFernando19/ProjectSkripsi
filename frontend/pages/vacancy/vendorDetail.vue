@@ -13,6 +13,7 @@
                     <li class="list-group-item">Job Function: {{model.jobType}}</li>
                     <li class="list-group-item">Workforce Needed: {{model.NumWorkforce}}</li>
                     <li class="list-group-item">Budget: {{model.Budget}}</li>
+                    <li class="list-group-item">Specification: {{model.Requirement}}</li>
                     <li class="list-group-item" v-if="model.isActive" >Status: <b style="color: green">Open</b></li>
                     <li class="list-group-item" v-else>Status: <b style="color: red">Close</b></li>
               </ul>

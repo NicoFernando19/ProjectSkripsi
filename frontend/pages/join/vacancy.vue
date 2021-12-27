@@ -13,14 +13,6 @@
                     <input type="text" v-model="model.companyName" class="form-control" id="companyName" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label for="companyType">Company Type</label>
-                    <input type="text" v-model="model.companyType" class="form-control" id="companyType" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label for="jobDesc">Job Description</label>
-                    <input type="text" v-model="model.jobDesc" class="form-control" id="jobDesc" placeholder="">
-                </div>
-                <div class="form-group">
                     <label for="NumOfWorkforce">Number of Available Workforces</label>
                     <input type="number" v-model="model.NumOfWorkforce" class="form-control" id="NumOfWorkforce" placeholder="">
                 </div>
@@ -29,7 +21,7 @@
                     <input type="text" v-model="model.price" class="form-control" id="price" placeholder="Rp. ?">
                 </div>
                 <div class="form-group">
-                    <label for="specification">Specifications / Requirements</label>
+                    <label for="specification">Offers</label>
                     <textarea class="form-control" v-model="model.specification" id="specification" rows="6"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary center-btn">Next</button>
