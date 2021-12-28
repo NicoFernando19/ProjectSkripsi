@@ -17,8 +17,6 @@ class CompanyInterestSeeder extends Seeder
         CompanyInterest::create([
             'company_id' => 1,
             'companyName' => 'Maju Jaya',
-            'companyType' => 'Indus',
-            'jobDesc' => 'This is company details',
             'NumOfWorkforce' => 3,
             'price' => 'Rp. Sekian',
             'specification' => 'spec'
@@ -27,8 +25,6 @@ class CompanyInterestSeeder extends Seeder
         CompanyInterest::create([
             'company_id' => 3,
             'companyName' => 'Kaleng',
-            'companyType' => 'Indus',
-            'jobDesc' => 'This is company details',
             'NumOfWorkforce' => 6,
             'price' => 'Rp. Sekian',
             'specification' => 'spec'

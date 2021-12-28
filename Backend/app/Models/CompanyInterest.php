@@ -9,8 +9,6 @@ class CompanyInterest extends Model
     protected $fillable = [
         // 'company_id',
         'companyName',
-        'companyType',
-        'jobDesc',
         'NumOfWorkforce',
         'price',
         'specification'

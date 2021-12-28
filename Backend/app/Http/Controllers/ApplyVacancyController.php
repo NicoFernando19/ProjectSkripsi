@@ -24,8 +24,6 @@ class ApplyVacancyController extends Controller
     public function joined(Request $request, $vacancyid) { //id punya vacancy
         $validator = Validator::make($request->all(), [
             'companyName' => 'required|string',
-            'companyType' => 'required|string',
-            'jobDesc' => 'required|string',
             'specification' => 'required'
         ]);
 

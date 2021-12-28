@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Vacancy;
 use App\Models\Company;
+use App\Models\JoinedCompany;
+use App\Models\CompanyInterest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +32,18 @@ class VacancyController extends Controller
             });
             $datas = $data->all();
         } else {
-            $datas = Vacancy::with('company')->get();
+            $datas = Vacancy::with(['company', 'CompanyInterest'])->get();
+            $compInterest = CompanyInterest::where('company_id', Auth::id())->get();
+            foreach ($compInterest as $comp) {
+                $vacancies = JoinedCompany::where('company_interest_id', $comp->id)->get();
+                foreach ($datas as $key => $data) {
+                    foreach ($vacancies as $val => $vacancy) {
+                        if ($vacancy->vacancy_id == $data->id) {
+                            unset($datas[$key]);
+                        }
+                    }
+                }
+            }
         }
         $data = [
             'data' => $datas
