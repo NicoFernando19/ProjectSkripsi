@@ -1,6 +1,5 @@
 <template>
     <div class="viewInvitation">
-        <navbar-web />
         <h2 class="text-center pt-5 pb-5">
             View Vacancy
         </h2>
@@ -44,17 +43,14 @@
 </template>
 
 <script>
-import NavbarWeb from '@/components/NavbarWeb.vue'
-import CategoryType from '@/components/CategoryType.vue'
 import VacancyCard from '../../components/Card/VacancyCard.vue'
 import VacancyServices from '../../store/services/vacancyServices/vacancy'
 import Toast from '../../store/features/notificationToast/toast'
 
 export default {
   name: 'view',
+  layout: 'main',
   components:{
-    NavbarWeb,
-    CategoryType,
     VacancyCard
   },
   watch: {

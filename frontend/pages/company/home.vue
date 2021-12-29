@@ -1,8 +1,6 @@
 <template>
 <div class="home">
-  <navbar-web />
-  <category-type />
-  <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />  
+  <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#253354" size="50" />  
   <div>
     <h2 class="text-center pt-5 pb-5">
       Category Name
@@ -28,7 +26,6 @@
 </template>
 
 <script>
-import NavbarWeb from '@/components/NavbarWeb.vue'
 import CategoryType from '@/components/CategoryType.vue'
 import CompanyCard from '@/components/Card/CompanyCard.vue'
 import Toast from '../../store/features/notificationToast/toast'
@@ -37,9 +34,9 @@ import VueElementLoading from "vue-element-loading"
 
 export default {
   name: 'home',
+  layout: 'main',
   middleware: ['auth', 'businessowner'],
   components:{
-    NavbarWeb,
     CategoryType,
     CompanyCard,
     VueElementLoading

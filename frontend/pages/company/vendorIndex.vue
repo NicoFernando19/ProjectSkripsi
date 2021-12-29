@@ -1,6 +1,5 @@
 <template>
 <div class="homeVendor">
-  <navbar-web />
   <div class="container">
       <div class="center">
         <h2 class="text-center">
@@ -14,17 +13,12 @@
 </template>
 
 <script>
-import NavbarWeb from '@/components/NavbarWeb.vue'
-import CategoryType from '@/components/CategoryType.vue'
 import Cookie from 'js-cookie'
 
 export default {
   name: 'vendorIndex',
   middleware: ['auth', 'vendor'],
-  components:{
-    NavbarWeb,
-    CategoryType
-  },
+  layout: 'main',
   data() {
     return {
       companyName: ''

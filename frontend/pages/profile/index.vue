@@ -1,30 +1,38 @@
 <template>
 <div class="home">
+  <navbar-web />
   <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#253354" size="50" />  
   <div>
-    <h2 class="text-center pt-5 pb-5">
-      Company Detail
-    </h2>
-    <div class="container d-flex justify-content-between pt-5 detail-content">
+    <div class="container my-5 detail-content">
       <div class="detail-left container">
           <div class="row">
               <div class="col-lg-12">
-                  <img class="detail-img" :src="imgUrl" />
+                  <img class="detail-img img-fluid" :src="imgUrl" />
               </div>
           </div>
       </div>
-      <div class="detail-right container">
-          <div class="row">
-              <ul class="list-group pb-2">
-                    <li class="list-group-item">Company Name: {{ CompanyName }}</li>
-                    <li class="list-group-item">Function: IT</li>
-                    <li class="list-group-item">Workforce: 285</li>
-                    <li class="list-group-item">Budget: >Rp 200.000.000</li>
-                    <li class="list-group-item">Phone: {{ model.phoneNumber }}</li>
-                    <li class="list-group-item">Email: {{ model.email }}</li>
-              </ul>
-          </div>
-      </div>
+    </div>
+    <div class="spacing"></div>
+    <div style="max-width: fit-content;" class="d-flex pl-5">
+        <h3>Detail Company</h3>
+        <div class="pl-3">
+            <b-button variant="light" @click="$bvModal.show('Edit')">
+                <font-awesome-icon :icon="['fas', 'edit']" />
+            </b-button>
+        </div>
+        <EditModal id="Edit" title="Edit Company" :data="model"/>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <ul class="list-group">
+                <li class="list-group-item">Company Name: {{ CompanyName }}</li>
+                <li class="list-group-item">Function: IT</li>
+                <li class="list-group-item">Workforce: 285</li>
+                <li class="list-group-item">Budget: >Rp 200.000.000</li>
+                <li class="list-group-item">Phone: {{ model.phoneNumber }}</li>
+                <li class="list-group-item">Email: {{ model.email }}</li>
+            </ul>
+        </div>
     </div>
   </div>  
 <div class="spacing"></div>
@@ -99,16 +107,21 @@
 </template>
 
 <script>
+import NavbarWeb from '@/components/NavbarWeb.vue'
+import CategoryType from '@/components/CategoryType.vue'
 import CompanyServices from '../../store/services/companyServices/company'
 import Toast from '../../store/features/notificationToast/toast'
 import VueElementLoading from "vue-element-loading"
 import config from '../../static/config';
+import EditModal from '@/components/Modals/EditCompany.vue'
 
 export default {
   name: 'detail',
-  layout: 'main',
   components:{
-    VueElementLoading
+    NavbarWeb,
+    CategoryType,
+    VueElementLoading,
+    EditModal
   },
   data() {
     return {

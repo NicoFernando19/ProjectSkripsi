@@ -1,6 +1,5 @@
 <template>
 <div class="joinVacancy">
-  <navbar-web />
   <div class = "pt-4">
     <div class="container pb-5 pl-5 pr-5">
         <h1 class="text-center pt-4 pb-5">
@@ -37,16 +36,13 @@
 </template>
 
 <script>
-import NavbarWeb from '@/components/NavbarWeb.vue'
 import VacancyService from '../../store/services/vacancyServices/vacancy'
 import Toast from '../../store/features/notificationToast/toast'
 import CompanyServices from '../../store/services/companyServices/company'
 
 export default {
   name: 'vacancy',
-  components:{
-    NavbarWeb
-  },
+  layout: 'main',
   async mounted() {
     await this.getCompany();
   },

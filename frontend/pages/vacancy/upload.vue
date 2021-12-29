@@ -1,6 +1,5 @@
 <template>
 <div class="uploadProposal">
-  <navbar-web />
   <div class = "space"></div>
     <div class="container pb-5 pl-5 pr-5">
         <h1 class="text-center pt-4 pb-5">
@@ -26,16 +25,13 @@
 </template>
 
 <script>
-import NavbarWeb from '@/components/NavbarWeb.vue'
 import DocumentService from '../../store/services/documentServices/document'
 import Toast from '../../store/features/notificationToast/toast'
 
 export default {
   name: 'create',
   middleware: 'auth',
-  components: {
-      NavbarWeb
-  },
+  layout: 'main',
   data: () => ({
     model: {
         id: '',

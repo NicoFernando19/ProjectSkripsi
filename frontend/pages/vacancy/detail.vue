@@ -1,7 +1,6 @@
 <template>
 <div class="home">
-  <navbar-web />
-  <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />  
+  <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#253354" size="50" />  
   <div>
     <h2 class="text-center pt-5 pb-4">
         <b>VACANCY STATUS</b>
@@ -38,7 +37,6 @@
 </template>
 
 <script>
-import NavbarWeb from '@/components/NavbarWeb.vue'
 import CategoryType from '@/components/CategoryType.vue'
 import VacancyServices from '../../store/services/vacancyServices/vacancy'
 import Toast from '../../store/features/notificationToast/toast'
@@ -47,8 +45,8 @@ import VacancyCompanyCard from '@/components/Card/VacancyCompanyCard.vue'
 
 export default {
   name: 'detail',
+  layout: 'main',
   components:{
-    NavbarWeb,
     CategoryType,
     VueElementLoading,
     VacancyCompanyCard

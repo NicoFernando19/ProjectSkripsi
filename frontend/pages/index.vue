@@ -1,6 +1,5 @@
 <template>
   <div>
-    <navbar-web />
     <p>Test Skripsi</p>
   </div>
 </template>
@@ -10,6 +9,7 @@ import NavbarWeb from '@/components/NavbarWeb.vue'
 
 export default {
   name: 'Index',
+  layout: 'main',
   middleware: 'auth',
   components:{
     NavbarWeb

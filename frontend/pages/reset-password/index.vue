@@ -1,7 +1,7 @@
 <template>
     <div class="home">
     <div class = "space"></div>
-        <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />
+        <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#253354" size="50" />
         <div class = "pt-5">
             <div class="container">
                 <p class="reg-text" style="font-size: 2rem; font-weight: 800;">Reset Password</p>
@@ -38,7 +38,7 @@
                           </div>
                         </div>
                         <div class="input-group">
-				                  <button type="submit" class="btn">{{ panelPassword ? "Send Link" : "Send Link" }}</button></button>
+				                  <button type="submit" class="btn">{{ panelPassword ? "Send Link" : "Send Link" }}</button>
 			                  </div>
                     </form>
                 </div>
@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import CategoryType from '@/components/CategoryType.vue'
 import ResetPasswordService from '../../store/services/resetPassword/resetPassword'
 import Toast from '../../store/features/notificationToast/toast'
 import VueElementLoading from "vue-element-loading";

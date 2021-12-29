@@ -1,6 +1,5 @@
 <template>
 <div class="vendorComparison">
-  <navbar-web />
   <div>
     <h2 class="text-center pt-5 pb-4">
         <b>COMPARE VENDORS</b>
@@ -162,13 +161,10 @@
 </template>
 
 <script>
-import NavbarWeb from '@/components/NavbarWeb.vue'
 
 export default {
   name: 'VendorComparison',
-  components:{
-    NavbarWeb
-  }
+  layout: 'main'
 }
 </script>
 

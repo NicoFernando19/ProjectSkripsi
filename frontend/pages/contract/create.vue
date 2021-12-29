@@ -1,6 +1,5 @@
 <template>
 <div class="createContract">
-  <navbar-web />
   <div class = "space"></div>
     <div class="container pb-5 pl-5 pr-5">
         <h1 class="text-center pt-4 pb-5">
@@ -70,16 +69,13 @@
 </template>
 
 <script>
-import NavbarWeb from '@/components/NavbarWeb.vue'
 import ContractService from '../../store/services/contractServices/contract'
 import Toast from '../../store/features/notificationToast/toast'
 
 export default {
   name: 'create',
   middleware: 'auth',
-  components: {
-      NavbarWeb
-  },
+  layout:'main',
   data: () => ({
     model: {
         businessName: '',

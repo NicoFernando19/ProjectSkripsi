@@ -1,6 +1,5 @@
 <template>
 <div class="vendorVacancyStatus">
-  <navbar-web />
   <div>
     <h2 class="text-center pt-5 pb-4">
         <b>VACANCY STATUS</b>
@@ -28,18 +27,13 @@
 </template>
 
 <script>
-import NavbarWeb from '@/components/NavbarWeb.vue'
-import CategoryType from '@/components/CategoryType.vue'
 import VacancyServices from '../../store/services/vacancyServices/vacancy'
 import Toast from '../../store/features/notificationToast/toast'
 import Cookie from 'js-cookie'
 
 export default {
   name: 'vendorDetail',
-  components:{
-    NavbarWeb,
-    CategoryType
-  },
+  layout: 'main',
   data() {
     return {
       blockLoader: false,

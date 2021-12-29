@@ -1,6 +1,5 @@
 <template>
 <div class="vendorApproval">
-  <navbar-web />
   <div class = "space"></div>
     <div class="container pb-5 pl-5 pr-5">
         <h1 class="text-center pt-4 pb-5">
@@ -77,13 +76,10 @@
 </template>
 
 <script>
-import NavbarWeb from '@/components/NavbarWeb.vue'
 
 export default {
   name: 'approval',
-  components: {
-      NavbarWeb
-  }
+  layout: 'main'
 }
 </script>
 

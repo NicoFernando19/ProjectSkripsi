@@ -1,21 +1,21 @@
 <template>
 <div>
   <b-navbar toggleable="lg" type="dark" variant="primary">
-    <b-navbar-brand href="/company/Home">NavBar</b-navbar-brand>
+    <b-navbar-brand href="/company/home">NavBar</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav class="mr-auto" v-if="roleCompany() == 'Vendor'">
-        <b-nav-item href="/company/vendorIndex">Vendor</b-nav-item>
-        <b-nav-item href="/vacancy/view">Vacancy</b-nav-item>
-        <b-nav-item href="/contract/approval">Contract</b-nav-item>
+        <b-nav-item><NuxtLink to="/company/vendorIndex" class="text-decoration-none">Vendor</NuxtLink></b-nav-item>
+        <b-nav-item><NuxtLink to="/vacancy/view" class="text-decoration-none">Vacancy</NuxtLink></b-nav-item>
+        <b-nav-item><NuxtLink to="/contract/approval" class="text-decoration-none">Contract</NuxtLink></b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav class="mr-auto" v-else>
-        <b-nav-item href="/company/Home">Home</b-nav-item>
-        <b-nav-item href="/vacancy/view">Vacancy</b-nav-item>
-        <b-nav-item href="/contract/create">Contract</b-nav-item>
+        <b-nav-item><NuxtLink to="/company/home" class="text-decoration-none">Home</NuxtLink></b-nav-item>
+        <b-nav-item><NuxtLink to="/vacancy/view" class="text-decoration-none">Vacancy</NuxtLink></b-nav-item>
+        <b-nav-item><NuxtLink to="/contract/create" class="text-decoration-none">Contract</NuxtLink></b-nav-item>
       </b-navbar-nav>
 
       <!-- center aligned nav items -->
@@ -42,7 +42,7 @@
           <template #button-content>
             {{ model.email }}
           </template>
-          <b-dropdown-item href="#">Profile</b-dropdown-item>
+          <b-dropdown-item href="#" @click="toProfile()">Profile</b-dropdown-item>
           <b-dropdown-item href="#" @click="LogOut()">Sign Out</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
@@ -82,8 +82,14 @@ export default {
       Cookie.remove("authUserId");
       Cookie.remove("authName");
       Cookie.remove("authUserName");
+      Cookie.remove("authCompanyName");
+      Cookie.remove("authRole");
       this.auth = false;
       this.$router.push({ path: "/Login" });
+    },
+    async toProfile() {
+      let userId = Cookie.get("authUserId");
+      this.$router.push({ path: `/profile?id=${userId}` })
     },
     async getNotif() {
       let result = await NotificationServices.listNotification();
@@ -120,5 +126,8 @@ export default {
 <style scoped>
 a{
     color: white;
+}
+.navbar.navbar-dark.bg-primary{
+    background-color: #253354!important;
 }
 </style>
