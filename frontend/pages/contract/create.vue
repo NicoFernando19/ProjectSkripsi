@@ -67,8 +67,8 @@ export default {
       VueElementLoading
   },
   data: () => ({
+    blockLoader: false,
     model: {
-        blockLoader: false,
         company: {
             id: '',
             name: ''
@@ -143,9 +143,9 @@ export default {
         this.showLoader(true)
         await this.getAuthCompany()
         await this.getVendorData()
-        if (this.$route.query['vacancyid']) {
+        if (this.$route.query['vacancyid'] != undefined || this.$route.query['vacancyid'] != null) {
             await this.getVacancy()
-            this.vacancyParam = true  
+            this.vacancyParam = true;
         }
         this.showLoader(false)
     }
