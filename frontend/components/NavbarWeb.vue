@@ -9,22 +9,16 @@
       <b-navbar-nav class="mr-auto" v-if="roleCompany() == 'Vendor'">
         <b-nav-item><NuxtLink to="/company/vendorIndex" class="text-decoration-none">Vendor</NuxtLink></b-nav-item>
         <b-nav-item><NuxtLink to="/vacancy/view" class="text-decoration-none">Vacancy</NuxtLink></b-nav-item>
-        <b-nav-item><NuxtLink to="/contract/approval" class="text-decoration-none">Contract</NuxtLink></b-nav-item>
+        <b-nav-item><NuxtLink to="/contract/list" class="text-decoration-none">Contract</NuxtLink></b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav class="mr-auto" v-else>
         <b-nav-item><NuxtLink to="/company/home" class="text-decoration-none">Home</NuxtLink></b-nav-item>
         <b-nav-item><NuxtLink to="/vacancy/view" class="text-decoration-none">Vacancy</NuxtLink></b-nav-item>
-        <b-nav-item><NuxtLink to="/contract/create" class="text-decoration-none">Contract</NuxtLink></b-nav-item>
+        <b-nav-item><NuxtLink to="/contract/list" class="text-decoration-none">Contract</NuxtLink></b-nav-item>
       </b-navbar-nav>
 
       <!-- center aligned nav items -->
-      <b-navbar-nav class="m-auto">
-        <b-nav-form>
-          <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
-          <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-        </b-nav-form>
-      </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
         <b-nav-item href="/Login" :class="auth ? 'd-none' : 'd-block'">Login</b-nav-item>
         <b-nav-item href="/Registration" :class="auth ? 'd-none' : 'd-block'" >Register</b-nav-item>
@@ -32,9 +26,21 @@
         <b-nav-item-dropdown :class="[auth ? 'd-block' : 'd-none']" right no-caret>
           <!-- Using 'button-content' slot -->
           <template #button-content>
-            <font-awesome-icon :icon="['fas', 'bell']"/>
+            <font-awesome-icon :icon="['fas', 'bell']"/><sup><b-badge class="" variant="danger">{{ notifCount }}</b-badge></sup>
           </template>
-          <b-dropdown-item v-for="notif in notification"  v-bind:key="notif.id">{{ notif.data }}</b-dropdown-item>
+          <b-dropdown-item class="text-center">
+            <strong>Notification</strong>
+          </b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item v-for="notif in notification"  v-bind:key="notif.id" @click="toVacancy(notif.id)"><font-awesome-icon :icon="['fas', 'envelope-open-text']" class="mx-2"/>
+            <NuxtLink :to="notif.vacancyLink != null ? notif.vacancyLink : '#'" class="text-dark text-decoration-none">
+              {{ notif.data }}
+            </NuxtLink>
+          </b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item class="text-center" @click="toNotification()">
+            <NuxtLink to="/notifications" class="text-primary text-decoration-none">See All</NuxtLink>
+          </b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-item-dropdown :class="auth ? 'd-block' : 'd-none'" right>
@@ -54,6 +60,7 @@
 <script>
 import Cookie from 'js-cookie'
 import NotificationServices from '../store/services/notificationServices/notification'
+import Toast from '../store/features/notificationToast/toast'
 
 export default {
   name: 'Navbar',
@@ -63,6 +70,7 @@ export default {
   data: () => ({
     auth: false,
     notification: [],
+    notifCount: 0,
     model: {
       email: ""
     }
@@ -91,6 +99,9 @@ export default {
       let userId = Cookie.get("authUserId");
       this.$router.push({ path: `/profile?id=${userId}` })
     },
+    async toNotification() {
+      this.$router.push({ path: `/notifications` })
+    },
     async getNotif() {
       let result = await NotificationServices.listNotification();
       if (result.status == 200) {
@@ -102,6 +113,7 @@ export default {
           }]
         }else {
           this.notification = result.data.data;
+          this.notifCount = result.data.total;
         }
       } else {
         this.notification = [
@@ -118,6 +130,14 @@ export default {
             var role = parts.pop().split(';').shift()
         }
         return role
+    },
+    async toVacancy(value) {
+      let result = await NotificationServices.updateReadAtNotif(value);
+      if (result.status == 200) {
+        await this.getNotif();
+      }else {
+        Toast.showToast("Load Data","Failed on server", "danger");
+      }
     }
   }
 }
@@ -129,5 +149,18 @@ a{
 }
 .navbar.navbar-dark.bg-primary{
     background-color: #253354!important;
+}
+
+.badge {
+  padding: 0.2em 0.3em;
+  font-size: 85%;
+  z-index: 1;
+}
+</style>
+
+<style>
+.dropdown-item.active, .dropdown-item:active {
+    color: #253354 !important;
+    background-color: #f5f5f5 !important;
 }
 </style>

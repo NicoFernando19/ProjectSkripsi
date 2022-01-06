@@ -32,5 +32,8 @@ class CompanyTypeSeeder extends Seeder
         CompanyType::create([
             "type_name" => "Persero"
         ]);
+        CompanyType::create([
+            "type_name" => "Ltd"
+        ]);
     }
 }

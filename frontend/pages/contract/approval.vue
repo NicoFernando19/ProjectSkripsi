@@ -9,23 +9,23 @@
             <form>
                 <div class="form-group">
                     <label for="inputAddress">Business Company</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="PT ABC">
+                    <input type="text" class="form-control" id="inputAddress" placeholder="PT ABC" readonly>
                 </div>
                 <div class="form-group">
                     <label for="inputAddress">Vendor Company</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="PT XYZ">
+                    <input type="text" class="form-control" id="inputAddress" placeholder="PT XYZ" readonly>
                 </div>
                 <div class="form-group">
                     <label for="inputAddress2">Number of Workforce Needed</label>
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="999">
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="999" readonly>
                 </div>
                 <div class="form-group">
                     <label for="inputAddress">Job Function</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="IT/Digital Marketing/Research">
+                    <input type="text" class="form-control" id="inputAddress" placeholder="IT/Digital Marketing/Research" readonly>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Specifications / Requirements</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>
                 </div>
             </form>
 
@@ -39,20 +39,6 @@
                 <div class="card p-4 m-3" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Document 1</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary center-btn">Download</a>
-                    </div>
-                </div>
-                <div class="card p-4 m-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Document 2</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary center-btn">Download</a>
-                    </div>
-                </div>
-                <div class="card p-4 m-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Document 2</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="#" class="btn btn-primary center-btn">Download</a>
                     </div>

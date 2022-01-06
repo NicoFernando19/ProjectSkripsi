@@ -3,13 +3,17 @@ import config from '~/static/config';
 import Cookies from 'js-cookie';
 
 export default {
-    async GetContract () {
+    async GetContract(page, per_page) {
         let token = Cookies.get('authToken')
         let result = {}
         await axios.get(`${config.API}${config.ListContract}`, {
             headers:{
               "Content-Type": "application/json",
               Authorization: "Bearer " + token
+            },
+            params: {
+                page,
+                per_page
             }
         }).then(response => {
             result = response;
@@ -22,7 +26,17 @@ export default {
     async CreateContract (data) {
         let token = Cookies.get('authToken')
         let result = {}
-        await axios.post(`${config.API}${config.CreateContract}`, data, {
+        let form = new FormData()
+        if(data.file != null)
+            form.append('file', data.file)
+        form.append('company_id', data.company.id)
+        form.append('vendor_id', data.vendor.id)
+        form.append('workforce', data.workforce)
+        form.append('start_date', data.startDate)
+        form.append('end_date', data.endDate)
+        form.append('jobFunction', data.jobFunction)
+        form.append('requirement', data.requirement)
+        await axios.post(`${config.API}${config.CreateContract}`, form, {
             headers:{
               "Content-Type": "application/json",
               Authorization: "Bearer " + token
@@ -38,7 +52,7 @@ export default {
     async GetContractById (data) {
         let token = Cookies.get('authToken')
         let result = {}
-        await axios.get(`${config.API}${config.DetailContract}/${data.id}`, data, {
+        await axios.get(`${config.API}${config.DetailContract}/${data.id}`, {
             headers:{
               "Content-Type": "application/json",
               Authorization: "Bearer " + token
@@ -56,7 +70,7 @@ export default {
         let result = {}
         await axios.put(`${config.API}${config.UpdateContract}/${data.id}`, data, {
             headers:{
-              "Content-Type": "multipart/form-data",
+              "Content-Type": "application/json",
               Authorization: "Bearer " + token
             }
         }).then(response => {

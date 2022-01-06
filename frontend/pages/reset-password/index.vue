@@ -27,6 +27,13 @@
                                       v-model="model.password"
                                       id="inputPassword4"
                                       placeholder="Password">
+                              <small id="passwordHelp" :class="['form-text', 'text-muted', isTrue ? 'd-none' : 'd-block']">Password should contain 
+                                <span :class="has_minimum_lenth ? 'd-none' : ''">atleast 8 characters,</span> 
+                                <span :class="has_lowercase ? 'd-none' : ''">one lowercase letter,</span>
+                                <span :class="has_uppercase ? 'd-none' : ''">one uppercase letter,</span>
+                                <span :class="has_number ? 'd-none' : ''">One number,</span>
+                                <span :class="has_special ? 'd-none' : ''">and one special character.</span>
+                              </small>
                           </div>
                           <div class="form-group">
                               <label for="inputPassword">Password Confirmation</label>
@@ -55,7 +62,6 @@ import VueElementLoading from "vue-element-loading";
 export default {
   name: 'Login',
   components:{
-    CategoryType,
     VueElementLoading
   },
   data: () => ({
@@ -70,6 +76,12 @@ export default {
         token: ""
     },
     emailRules: [],
+    isTrue: '',
+    has_minimum_lenth: '',
+    has_number: '',
+    has_lowercase:'',
+    has_uppercase: '',
+    has_special:'',
   }),
   watch: {
     "model.email": function(mail) {
@@ -88,6 +100,18 @@ export default {
         this.emailRules = ["E-mail is required"];
         this.valid = false;
         this.invalid = true;
+      }
+    },
+    "model.password": function(password) {
+      console.log(password)
+      this.has_minimum_lenth = (password.length > 8);
+      console.log("MIN "+ this.has_minimum_lenth)
+      this.has_number    = /\d/.test(password);
+      this.has_lowercase = /[a-z]/.test(password);
+      this.has_uppercase = /[A-Z]/.test(password);
+      this.has_special   = /[!@#\$%\^\&*\)\(+=._-]/.test(password);
+      if (this.has_number && this.has_lowercase && this.has_uppercase && this.has_special && this.has_minimum_lenth) {
+        this.isTrue = true
       }
     }
   },

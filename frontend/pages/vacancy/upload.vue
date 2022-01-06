@@ -16,7 +16,7 @@
                     <input type="file" @change="onChange" class="form-control-file" id="documentName">
                 </div>
                 <div class="space"></div>
-                <button type="submit" class="btn btn-primary center-btn">Submit</button>
+                <button type="submit" id="sumbitBtn" class="btn btn-primary center-btn">Submit</button>
             </form>
             
         </div>
@@ -44,8 +44,9 @@ export default {
         this.model.file = e.target.files[0];
     },
     async proposal() {
+        document.getElementById("submitBtn").disable = true;
         this.model.id = this.$route.query['id'];
-        console.log(this.model.file);
+
         let res = await DocumentService.UploadFile(this.model);
         if (res.status == 201) {
             Toast.showToast("Create Contract", "Create Contract Success!", "success");

@@ -23,11 +23,8 @@
                     <label for="specification">Offers</label>
                     <textarea class="form-control" v-model="model.specification" id="specification" rows="6"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary center-btn">Next</button>
+                <button type="submit" id="sumbitBtn" class="btn btn-primary center-btn">Next</button>
             </form>
-            
-            <!-- <div class="space"></div>
-            <a @click="next()" class="btn btn-success center-btn">Next</a> -->
 
         </div>
     </div>
@@ -43,6 +40,7 @@ import CompanyServices from '../../store/services/companyServices/company'
 export default {
   name: 'vacancy',
   layout: 'main',
+  middleware: 'auth',
   async mounted() {
     await this.getCompany();
   },
@@ -69,6 +67,7 @@ export default {
         this.model.companyName = result.data.companyName;
     },
     async next() {
+        document.getElementById("submitBtn").disable = true;
         var idx = this.$route.query['vacancyId'];
         let res = await VacancyService.joinVacancy(this.model, idx);
         if (res.status == 201) {

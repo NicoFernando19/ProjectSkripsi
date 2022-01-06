@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Auth;
 
 class CompanyController extends Controller
@@ -15,18 +16,27 @@ class CompanyController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api');
+        // $this->middleware('auth:api');
     }
 
     public function listCompany(Request $request)
     {
-        if (!empty($request->name)) {
-            $value = $request->get("name");
-            $datas = Company::where('id', '!=', Auth::id())
-                        ->where("name", "LIKE", "%$value%")
+        if (!empty($request->name) || $request->get("company_type") != "0") {
+            $name = $request->get("name");
+            $companyType = $request->get("company_type");
+            $datas = Company::with('Roles')
+                        ->where('id', '!=', Auth::id())
+                        ->where("name", "LIKE", "%$name%")
                         ->get();
+            if ($companyType != "0") {
+                $data = $datas->filter( function ($value, $key) use($companyType){ 
+                    return collect($value['Roles'])->contains('role_name', $companyType);
+                });
+                $datas = $data->all();
+            }
+            $datas = app('App\Http\Controllers\PaginationController')->paginate($datas, 9);
         }else {
-            $datas = Company::where('id', '!=', Auth::id())->get();
+            $datas = Company::where('id', '!=', Auth::id())->paginate(9);
         }
         $data = [
             'data' => $datas
@@ -81,6 +91,13 @@ class CompanyController extends Controller
     {
         try {
             $data = Company::with(['CompanyType', 'Roles', 'WorkHistory'])->find($id);
+            foreach($data->Roles as $role){
+                $data['roleName'] = $role->role_name;
+            }
+            foreach($data->WorkHistory as $work) {
+                $work['start_date'] = Carbon::parse($work->startDate)->format("d M Y");
+                $work['end_date'] = Carbon::parse($work->endDate)->format("d M Y");  
+            }
             $data['companyName'] = $data->CompanyType->type_name.' '.$data->name;
             return response()->json($data, 200);
         } catch (Exception $err) {
@@ -101,7 +118,6 @@ class CompanyController extends Controller
             'BidangUsaha' => 'required|string',
             'Industri' => 'required|string',
             'password' => 'string|confirmed',
-            'company_type_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -117,10 +133,26 @@ class CompanyController extends Controller
                 $file = $request->file('file');
                 $fileName = app('App\Http\Controllers\DocumentUpload\FileController')->upload($file);
             }
-            $data->update($request->all());
+            $data->update($request->except('password'));
             if(!is_null($request->password)){
                 $request->password = app('hash')->make($request->password);
                 $data->password = $request->password;
+                $data->imgName = $fileName;
+                $data->save();
+            }
+            return response()->json($data, 200);
+        }catch (Exception $error) {
+            return response()->json($error, 500);
+        }
+    }
+
+    public function updateImage(Request $request, $id)
+    {
+        try{
+            $data = Company::find($id);
+            if($request->hasFile('file')) {
+                $file = $request->file('file');
+                $fileName = app('App\Http\Controllers\DocumentUpload\FileController')->upload($file);
                 $data->imgName = $fileName;
                 $data->save();
             }
@@ -138,6 +170,15 @@ class CompanyController extends Controller
             $data->delete();
             return response()->json(['success' => 'data has been deleted'], 200);
         }catch (Exception $error) {
+            return response()->json($error, 500);
+        }
+    }
+
+    public function getCompContract(){
+        try {
+            $data = Company::with(['Contract.Company', 'Contract.Vendor'])->where('id', Auth::id())->first();
+            return response()->json($data, 200);
+        } catch (Exception $error) {
             return response()->json($error, 500);
         }
     }

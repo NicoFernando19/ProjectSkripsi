@@ -15,8 +15,8 @@ class CompanyInterestSeeder extends Seeder
     public function run()
     {
         CompanyInterest::create([
-            'company_id' => 1,
-            'companyName' => 'Maju Jaya',
+            'company_id' => 2,
+            'companyName' => 'Tigaraksa',
             'NumOfWorkforce' => 3,
             'price' => 'Rp. Sekian',
             'specification' => 'spec'

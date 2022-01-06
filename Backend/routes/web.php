@@ -39,7 +39,9 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->post('company/create', ['uses' => 'CompanyController@create']);
     $router->get('company/getData/{id}', ['uses' => 'CompanyController@showById']);
     $router->put('company/update/{id}', ['uses' => 'CompanyController@update']);
+    $router->post('company/update-image/{id}', ['uses' => 'CompanyController@updateImage']);
     $router->delete('company/delete/{id}', ['uses' => 'CompanyController@destroy']);
+    $router->get('company/companyContract', ['uses' => 'CompanyController@getCompContract']);
 
     //COMPANY TYPE
     $router->get('company-type/list', ['uses' => 'CompanyTypeController@listCompanyType']);
@@ -86,7 +88,8 @@ $router->group(['prefix' => 'api'], function () use ($router)
 
     //NOTIFICATION
     $router->get('notification/list', ['uses' => 'Notifications\NotificationsController@listNotif']);
-
+    $router->get('notification/list/all', ['uses' => 'Notifications\NotificationsController@listAllNotif']);
+    $router->put('notification/update', ['uses' => 'Notifications\NotificationsController@update']);
 
     // JOIN VACANCY
     $router->post('join/vacancy/{vacancyid}', ['uses' => 'ApplyVacancyController@joined']);

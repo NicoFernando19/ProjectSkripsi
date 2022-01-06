@@ -14,6 +14,7 @@ export default  {
     CreateCompany: "/api/company/create",
     DetailCompany: "/api/company/getData",
     UpdateCompany: "/api/company/update",
+    UpdateImageCompany: "/api/company/update-image",
     DeleteCompany: "/api/company/delete",
 
     //COMPANY TYPE
@@ -54,6 +55,8 @@ export default  {
 
     // NOTIFICATION
     ListNotification: "/api/notification/list",
+    ListAllNotification: "/api/notification/list/all",
+    UpdateNotification: "/api/notification/update",
 
     // UPLOAD FILE
     UploadFile: "/api/upload/company-interest/file",

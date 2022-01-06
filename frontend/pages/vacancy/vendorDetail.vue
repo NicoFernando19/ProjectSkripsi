@@ -1,5 +1,5 @@
 <template>
-<div class="vendorVacancyStatus">
+<div class="vendorVacancyStatus vh-100">
   <div>
     <h2 class="text-center pt-5 pb-4">
         <b>VACANCY STATUS</b>
@@ -22,7 +22,11 @@
   </div>  
 <div class="spacing"></div>
 <div class="spacing"></div>
-<button type="submit" class="btn btn-primary center-btn" @click="toProposal()">Join Vacancy</button>
+<button 
+  type="button" 
+  :class="['btn', model.status == 'Applied' ? 'btn-success' : 'btn-primary', 'center-btn']" 
+  @click="model.status == 'Applied' ? '' : toProposal()">{{ model.status == 'Applied' ? 'Applied' : 'Join Vacancy'}}
+</button>
 </div>
 </template>
 
@@ -48,6 +52,7 @@ export default {
         Budget: '',
         Requirement: '',
         isActive:'',
+        status: '',
         company_transaction: []
       }
     }
@@ -89,6 +94,7 @@ export default {
       this.model.Budget = data.Budget;
       this.model.Requirement = data.Requirement;
       this.model.isActive = data.isActive;
+      this.model.status = data.status;
       this.model.company_transaction = data.company_transaction;
     },
     toProposal(){

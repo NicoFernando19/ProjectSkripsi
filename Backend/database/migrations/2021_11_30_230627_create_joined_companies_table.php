@@ -19,7 +19,6 @@ class CreateJoinedCompaniesTable extends Migration
             $table->foreign('vacancy_id')->references('id')->on('vacancies')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('company_interest_id');
             $table->foreign('company_interest_id')->references('id')->on('company_interests')->onUpdate('cascade')->onDelete('cascade');
-            $table->boolean('status')->nullable();
             $table->timestamps();
         });
     }

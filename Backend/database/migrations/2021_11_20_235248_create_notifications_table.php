@@ -19,6 +19,7 @@ class CreateNotificationsTable extends Migration
             $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
             $table->text('data');
+            $table->string('vacancyLink')->nullable();
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });

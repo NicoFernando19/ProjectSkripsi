@@ -99,6 +99,14 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
         return $this->hasMany(WorkHistory::class);
     }
 
+    public function Contract() {
+        return $this->hasMany(Contract::class);
+    }
+
+    public function ContractVendor() {
+        return $this->hasMany(Contract::class, "vendor_id");
+    }
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));

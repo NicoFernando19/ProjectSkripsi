@@ -3,23 +3,28 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-// $table->id();
-//             $table->string('businessName');
-//             $table->string('vendorName');
-//             $table->integer('workforce');
-//             $table->string('jobFunction');
-//             $table->longText('requirement')->nullable();
-//             $table->string('document');
-//             $table->timestamps();
+
 class Contract extends Model
 {
     protected $fillable = [
-        'businessName',
-        'vendorName',
+        'company_id',
+        'vendor_id',
         'workforce',
         'jobFunction',
+        'start_date',
+        'end_date',
+        'status',
+        'document',
         'requirement',
-        'document'
+        'feedbackNotes'
     ];
+
+    public function Company(){
+        return $this->belongsTo(Company::class);
+    }
+
+    public function Vendor() {
+        return $this->belongsTo(Company::class, 'vendor_id');
+    }
 
 }

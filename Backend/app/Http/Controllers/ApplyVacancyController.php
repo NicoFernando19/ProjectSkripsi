@@ -49,7 +49,8 @@ class ApplyVacancyController extends Controller
             $notification = Notification::create([
                 'type' => 'Applied',
                 'company_id' => $vacancy->company->id,
-                'data' => 'One company has been applied to your job vacancy'
+                'data' => 'One company has been applied to your job vacancy',
+                'vacancyLink' => '/vacancy/detail?id='.$vacancy->id
             ]);
 
             $result = [

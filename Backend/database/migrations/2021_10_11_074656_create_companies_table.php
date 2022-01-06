@@ -38,7 +38,7 @@ class CreateCompaniesTable extends Migration
             $table->foreign('company_type_id')->references('id')->on('company_types')->onUpdate('cascade')->onDelete('cascade');
             $table->datetime("lastLogin")->nullable();
             $table->boolean("isActive")->default(1);
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->timestamps();
         });
     }

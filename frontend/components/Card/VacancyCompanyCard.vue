@@ -1,13 +1,13 @@
 <template>
     <div>
-        <div class="card p-4 m-3" style="width: 18rem;" @show="Loader">
+        <div class="card p-4 m-3 text-center" style="width: 20.5rem;" @show="Loader">
             <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />
             <img class="card-img-top" :src="`${Url}/${company.imgName}`" :alt="company.imgName">
             <div class="card-body">
                 <h5 class="card-title">{{ company.name }}</h5>
                 <p class="card-text">{{ company.BidangUsaha }}</p>
                 <button class="btn btn-primary center-btn" @click="DetailCompany(company.id, vacancyid)">Detail Company</button>
-                <button class="mt-2 btn btn-success center-btn" @click="CreateContract(vacancyid)">Create Contract</button>
+                <button class="mt-2 btn btn-success center-btn" @click="CreateContract(vacancyid, company.id)">Create Contract</button>
             </div>
         </div>
     </div>
@@ -50,9 +50,9 @@ export default {
                 path: `/company/detail?id=${id}&vacancyid=${vacid}`
             })
         },
-        CreateContract(vacid) {
+        CreateContract(vacid, compid) {
             this.$router.push({
-                path: `/contract/create?vacancyid=${vacid}`
+                path: `/contract/create?vacancyid=${vacid}&vendorid=${compid}`
             })
         }
     }

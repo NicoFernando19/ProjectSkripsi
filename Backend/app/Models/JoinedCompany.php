@@ -8,6 +8,6 @@ class JoinedCompany extends Model
 {
     protected $fillable = [
         'company_interest_id',
-        'vacancy_id',
+        'vacancy_id'
     ];
 }

@@ -3,13 +3,16 @@ import config from '~/static/config';
 import Cookies from 'js-cookie';
 
 export default {
-    async listVacancy(data) {
+    async listVacancy(data, page) {
         let token = Cookies.get('authToken')
         let result = {}
         await axios.post(`${config.API}${config.ListVacancy}`, data, {
             headers:{
               "Content-Type": "application/json",
               Authorization: "Bearer " + token
+            },
+            params: {
+              page
             }
         }).then(response => {
             result = response;

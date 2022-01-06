@@ -29,7 +29,7 @@
                     </span>
                 </div>
                 <div class="input-group">
-				          <button type="submit" class="btn">Login</button>
+				          <button type="submit" id="submitBtn" class="btn">Login</button>
 			          </div>
                 <p class="login-register-text">Don't have an account? <NuxtLink to="/Registration">Register Here</NuxtLink></p>
             </form>
@@ -104,6 +104,7 @@ export default {
     },
     async login() {
         this.showLoader(true);
+        document.getElementById("submitBtn").disable = true;
         var res = await LoginService.Login(
             this.model.email,
             this.model.password

@@ -2,98 +2,85 @@
 <div class="home">
   <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#253354" size="50" />  
   <div>
-    <h2 class="text-center pt-5 pb-5">
-      Company Detail
-    </h2>
-    <div class="container d-flex justify-content-between pt-5 detail-content">
+    <div class="container d-flex flex-column justify-content-between pt-5 detail-content">
       <div class="detail-left container">
           <div class="row">
               <div class="col-lg-12">
-                  <img class="detail-img" :src="imgUrl" />
+                  <img class="detail-img" :src="imgUrl" width="80%"/>
               </div>
           </div>
       </div>
       <div class="detail-right container">
+        <button class="mt-2 btn btn-success center-btn" @click="CreateContract(model.id)" v-show="model.roles == 'Vendor'">Create Contract</button>
+      </div>
+      <div class="detail-right container">
+          <h2 class="text-left pt-5 pb-3">
+            Company Detail
+          </h2>
           <div class="row">
-              <ul class="list-group pb-2">
-                    <li class="list-group-item">Company Name: {{ CompanyName }}</li>
-                    <li class="list-group-item">Function: IT</li>
-                    <li class="list-group-item">Workforce: 285</li>
-                    <li class="list-group-item">Budget: >Rp 200.000.000</li>
-                    <li class="list-group-item">Phone: {{ model.phoneNumber }}</li>
-                    <li class="list-group-item">Email: {{ model.email }}</li>
-              </ul>
+            <div class="col-6" style="border-right: 2px solid gray"> 
+              <div class="row">
+                <div class="col-6"><strong>Company Name</strong></div>
+                <div class="col-6">{{ CompanyName }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6"><strong>Role</strong></div>
+                <div class="col-6">{{ model.roles == 'Vendor' ? 'Outsource Provider' : model.roles }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6"><strong>Date of Establishment</strong></div>
+                <div class="col-6">{{ model.TanggalBerdiri }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6"><strong>Field of Business</strong></div>
+                <div class="col-6">{{ model.BidangUsaha }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6"><strong>Phone</strong></div>
+                <div class="col-6">{{ model.phoneNumber }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6"><strong>Email</strong></div>
+                <div class="col-6"><a :href="mailtoMail" class="text-decoration-none">{{ model.email }}</a></div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="row">
+                <div class="col-6"><strong>Industry</strong></div>
+                <div class="col-6">{{ model.Industri }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6"><strong>Sub Industry</strong></div>
+                <div class="col-6">{{ model.SubIndustri }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6"><strong>Address</strong></div>
+                <div class="col-6">{{ model.address }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6"><strong>Country</strong></div>
+                <div class="col-6">{{ model.country }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6"><strong>About</strong></div>
+                <div class="col-6">{{ model.about }}</div>
+              </div>
+              <div class="row">
+                <div class="col-6"><strong>Website</strong></div>
+                <div class="col-6"><a :href="model.WebsiteUrl" class="text-decoration-none">{{ model.WebsiteUrl }}</a></div>
+              </div>
+            </div>
           </div>
       </div>
     </div>
   </div>  
-<div class="spacing"></div>
-<div style="max-width: fit-content;" class="pl-5">
-<h3>Employees</h3>
-</div>
-<div class="container-fluid d-flex align-content-between flex-wrap justify-content-center pt-2 pad">
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Detail</a>
-        </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Detail</a>
-        </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Detail</a>
-        </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Detail</a>
-        </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Detail</a>
-        </div>
-      </div>
-      <div class="card p-4 m-3" style="width: 18rem;">
-        <img class="card-img-top" src="" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary center-btn">Detail</a>
-        </div>
-      </div>
-</div>
-
-  <div class="spacing"></div>
-  <h2 class="text-center pt-5 pb-5">
-      Previous Works
-  </h2>
   <div class="container-xl pb-5 prev-work">
-    <ul class="list-group pb-2">
-        <li class="list-group-item">(Feb 2020 - Apr 2021) proyek website LMS PT ABC </li>
-        <li class="list-group-item">(Feb 2020 - Apr 2021) proyek website LMS PT ABC </li>
-        <li class="list-group-item">(Feb 2020 - Apr 2021) proyek website LMS PT ABC </li>
-        <li class="list-group-item">(Feb 2020 - Apr 2021) proyek website LMS PT ABC </li>
-        <li class="list-group-item">(Feb 2020 - Apr 2021) proyek website LMS PT ABC </li>
-    </ul>
+    <h2 class="text-left pt-5 pb-3">
+      Previous Works
+    </h2>
+    <list-history
+      :histories="histories" 
+    />
   </div>
 </div>
 </template>
@@ -103,12 +90,16 @@ import CompanyServices from '../../store/services/companyServices/company'
 import Toast from '../../store/features/notificationToast/toast'
 import VueElementLoading from "vue-element-loading"
 import config from '../../static/config';
+import ListHistory from '../../components/ListHistory/ListHistory.vue';
+import Moment from "moment"
 
 export default {
   name: 'detail',
   layout: 'main',
+  middleware: 'auth',
   components:{
-    VueElementLoading
+    VueElementLoading,
+    ListHistory
   },
   data() {
     return {
@@ -138,7 +129,9 @@ export default {
         state: '',
         zip: '',
         imgName: ''
-      }
+      },
+      histories: [],
+      mailtoMail: ''
     }
   },
   async mounted() {
@@ -174,10 +167,11 @@ export default {
       this.model.name = result.data.name;
       this.model.username = result.data.username;
       this.model.email = result.data.email;
+      this.mailtoMail = `mailto:${this.model.email}`;
       this.model.DoB = result.data.DoB;
-      this.model.roles = result.data.roles;
+      this.model.roles = result.data.roleName;
       this.model.phoneNumber = result.data.phoneNumber;
-      this.model.TanggalBerdiri = result.data.TanggalBerdiri;
+      this.model.TanggalBerdiri = Moment(String(result.data.TanggalBerdiri)).format('D MMMM YYYY');
       this.model.WebsiteUrl = result.data.WebsiteUrl;
       this.model.BidangUsaha = result.data.BidangUsaha;
       this.model.Industri = result.data.Industri;
@@ -191,6 +185,12 @@ export default {
       this.model.state = result.data.state;
       this.model.zip = result.data.zip;
       this.model.imgName = result.data.imgName;
+      this.histories = result.data.work_history;
+    },
+    CreateContract(compid) {
+        this.$router.push({
+            path: `/contract/create?vendorid=${compid}`
+        })
     }
   }
 }

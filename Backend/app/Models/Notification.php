@@ -10,6 +10,7 @@ class Notification extends Model
         'type',
         'company_id',
         'data',
+        'vacancyLink',
         'read_at'
     ];
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\CompanyRole;
 use Tymon\JWTAuth\JWTAuth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -50,7 +51,6 @@ class AuthController extends Controller
             'zip' => 'required|string',
             'state' => 'required|string',
             'email' => 'required|string|email',
-            'BidangUsaha' => 'required|string',
             'Industri' => 'required|string',
             'password' => 'required|string|confirmed',
             'company_type_id' => 'required'
@@ -62,9 +62,15 @@ class AuthController extends Controller
             ];
             return response()->json($err, 400);
         }
-
+        $user = Company::create($request->except(['password', 'role_id']));
         $request->password = app('hash')->make($request->password);
-        $user = Company::create($request->all());
+        $user->password = $request->password;
+        $user->save();
+
+        $companyRole = CompanyRole::create([
+            'company_id' => $user->id,
+            'role_id' => $request->get('role_id')
+        ]);
 
         return response()->json([
             'status' => 'success',

@@ -19,34 +19,30 @@
                 </div>
                 <div class="form-group">
                     <label for="Title">Vacancy Title</label>
-                    <input type="text" v-model="model.Title" class="form-control" id="Title" placeholder="1234 Main St">
+                    <input type="text" v-model="model.Title" class="form-control" id="Title" placeholder="Title">
                 </div>
                 <div class="form-group">
                     <label for="jobType">Job Function</label>
-                    <input type="text" v-model="model.jobType" class="form-control" id="jobType" placeholder="Apartment, studio, or floor">
+                    <input type="text" v-model="model.jobType" class="form-control" id="jobType" placeholder="IT, CS, or Accounting">
                 </div>
                 <div class="form-group">
                     <label for="jobDesc">Job Description</label>
-                    <input type="text" v-model="model.jobDesc" class="form-control" id="jobDesc" placeholder="1234 Main St">
+                    <input type="text" v-model="model.jobDesc" class="form-control" id="jobDesc" placeholder="Job description">
                 </div>
                 <div class="form-group">
                     <label for="NumWorkfore">Number of Workforce Needed</label>
-                    <input type="number" v-model="model.NumWorkforce" class="form-control" id="NumWorkfore" placeholder="Apartment, studio, or floor">
+                    <input type="number" v-model="model.NumWorkforce" class="form-control" id="NumWorkfore" placeholder="Number of Workforce">
                 </div>
                 <div class="form-group">
                     <label for="Budget">Budget</label>
-                    <input type="text" v-model="model.Budget" class="form-control" id="Budget" placeholder="Apartment, studio, or floor">
+                    <input type="text" v-model="model.Budget" class="form-control" id="Budget" placeholder="Rp.">
                 </div>
                 <div class="form-group">
                     <label for="Requirement">Specifications / Requirements</label>
                     <textarea v-model="model.Requirement" class="form-control" id="Requirement" rows="3"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="isActive">isActive</label>
-                    <input type="number" v-model="model.isActive" class="form-control" id="isActive" placeholder="0/1">
-                </div>
                 <div class="space"></div>
-                <button type="submit" class="btn btn-primary center-btn">Submit</button>
+                <button type="submit" id="submitBtn" class="btn btn-primary center-btn">Submit</button>
             </form>
            
         </div>
@@ -63,9 +59,6 @@ export default {
   name: 'create',
   layout: 'main',
   middleware: 'auth',
-  components:{
-    NavbarWeb
-  },
   data: () => ({
     model: {
         PostDate: '',
@@ -76,11 +69,12 @@ export default {
         NumWorkforce: '',
         Budget: '',
         Requirement: '',
-        isActive:''
+        isActive: 1
     }
   }),
   methods: {
     async vacancy() {
+        document.getElementById("submitBtn").disable = true;
         let res = await VacancyService.CreateVacancy(
             this.model.PostDate,
             this.model.Deadline,

@@ -2,20 +2,15 @@ import axios from 'axios'
 import config from '~/static/config';
 import Cookies from 'js-cookie';
 
-export default {
-    async UploadFile(data) {
+export default{
+    async listCompanyType() {
         let token = Cookies.get('authToken')
-        let form = new FormData()
-        if(data.file != null)
-            form.append('file', data.file)
-        form.append('id', data.id);
-        form.append('documentType', data.documentType);
         let result = {}
-        await axios.post(`${config.API}/${config.UploadFile}`, form, {
+        await axios.get(`${config.API}${config.ListCompanyType}`, {
             headers:{
-              "Content-Type": "undefined",
+              "Content-Type": "application/json",
               Authorization: "Bearer " + token
-            }
+            },
         }).then(response => {
             result = response;
         }).catch(err => {
