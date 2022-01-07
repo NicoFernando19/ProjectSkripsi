@@ -38,6 +38,7 @@ import Cookie from 'js-cookie'
 export default {
   name: 'vendorDetail',
   layout: 'main',
+  middleware: 'auth',
   data() {
     return {
       blockLoader: false,

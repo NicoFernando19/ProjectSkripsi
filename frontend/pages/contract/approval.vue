@@ -65,6 +65,7 @@
 
 export default {
   name: 'approval',
+  middleware: 'auth',
   layout: 'main'
 }
 </script>

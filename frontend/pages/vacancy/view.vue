@@ -48,6 +48,7 @@ import VueElementLoading from "vue-element-loading"
 
 export default {
   layout: 'main',
+  middleware: 'auth',
   components:{
     VacancyCard,
     VueElementLoading

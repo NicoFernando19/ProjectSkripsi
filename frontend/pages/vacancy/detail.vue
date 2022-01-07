@@ -46,6 +46,7 @@ import VacancyCompanyCard from '@/components/Card/VacancyCompanyCard.vue'
 export default {
   name: 'detail',
   layout: 'main',
+  middleware: 'auth',
   components:{
     CategoryType,
     VueElementLoading,
