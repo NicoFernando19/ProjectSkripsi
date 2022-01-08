@@ -23,6 +23,9 @@
 </template>
 <script>
 import VueElementLoading from "vue-element-loading";
+import ContractService from "../../store/services/contractServices/contract"
+import Config from "../../static/config"
+import Toast from '../../store/features/notificationToast/toast'
 
 export default {
   name: "PreviewDoc",
@@ -34,6 +37,7 @@ export default {
     id: {type: String},
     title: { type: String },
     doc_src: { type: String },
+    contract_id : { type: String }
   },
   data: () => {
     return {
@@ -42,6 +46,7 @@ export default {
       alert: "",
       ErrorMessage: "",
       model: {
+        id: '',
         file: ''
       }
     };
@@ -61,8 +66,15 @@ export default {
         this.blockLoader = val;
       }
     },
-    onChange(e){
+    async onChange(e){
         this.model.file = e.target.files[0];
+        this.model.id = this.contract_id;
+        let result = await ContractService.UpdateDocument(this.model)
+        if (result.status == 200) {
+          this.doc_src = `${Config.StorageUrl}/${result.data.document}`
+        } else {
+          Toast.showToast("Updated Document", "Failed to change document!", "danger");
+        }
     },
     handleToast(toastTitle, style, message) {
       this.$bvToast.toast(message, {

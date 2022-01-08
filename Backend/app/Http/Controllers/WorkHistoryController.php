@@ -15,13 +15,17 @@ class WorkHistoryController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth:api');
+        $this->middleware('auth:api');
     }
 
-    public function listWorks()
+    public function listWorks(Request $request)
     {
+        if($request->get('per_page')){
+            $perpage=$request->get('per_page');
+        }
+        $datas = WorkHistory::where('company_id', Auth::id())->paginate($perpage);
         $data = [
-            'data' => WorkHistory::all()
+            'data' => $datas
         ];
 
         return response()->json($data, 200);

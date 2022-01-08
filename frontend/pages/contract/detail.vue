@@ -20,6 +20,9 @@
                         <span class="text"><strong> Job Function </strong></span>
                     </div>
                     <div class="form-group">
+                        <span class="text"><strong> Job Description </strong></span>
+                    </div>
+                    <div class="form-group">
                         <span class="text"><strong> Work Force </strong></span>
                     </div>
                     <div class="form-group">
@@ -40,6 +43,9 @@
                     <hr>
                     <div class="form-group">
                         <span class="text">{{model.jobFunc}}</span>
+                    </div>
+                    <div class="form-group">
+                        <span class="text">{{model.jobDesc}}</span>
                     </div>
                     <div class="form-group">
                         <span class="text">{{model.workForce}} Persons</span>
@@ -80,6 +86,7 @@ export default {
         model: {
             id: '',
             jobFunc: '',
+            jobDesc: '',
             workForce: '',
             companyName: '',
             vendorName: '',
@@ -121,6 +128,7 @@ export default {
         loadData(result) {
             this.model.id = result.id
             this.model.jobFunc = result.jobFunction
+            this.model.jobDesc = result.jobDesc
             this.model.workForce = result.workforce
             this.model.companyName = result.company.name
             this.model.vendorName = result.vendor.name

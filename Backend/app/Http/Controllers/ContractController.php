@@ -98,6 +98,22 @@ class ContractController extends Controller
         }
     }
 
+    public function updateDocument(Request $request, $id)
+    {
+        try{
+            $data = Contract::find($id);
+            if($request->hasFile('file')) {
+                $file = $request->file('file');
+                $fileName = app('App\Http\Controllers\DocumentUpload\FileController')->upload($file);
+                $data->document = $fileName;
+                $data->save();
+            }
+            return response()->json($data, 200);
+        }catch (Exception $error) {
+            return response()->json($error, 500);
+        }
+    }
+
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [

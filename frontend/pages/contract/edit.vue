@@ -18,7 +18,11 @@
                 </div>
                 <div class="form-group">
                     <label for="jobFunction">Job Role</label>
-                    <input type="text" v-model="model.jobFunction" class="form-control" id="jobFunction" placeholder="IT/Digital Marketing/Research" readonly>
+                    <input type="text" v-model="model.jobFunction" class="form-control" id="jobFunction" placeholder="CS (Customer Service)/Digital Marketing" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="jobFunction">Job Description</label>
+                    <input type="text" v-model="model.jobDesc" class="form-control" id="jobDescription" placeholder="Job Description" readonly>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -55,7 +59,7 @@
                                     >
                                     Preview
                                 </b-button>
-                                <PreviewModal id="PreviewDoc" title="Contract Agreement" :doc_src="model.documentUrl" />
+                                <PreviewModal id="PreviewDoc" :contract_id="model.id" title="Contract Agreement" :doc_src="model.documentUrl" />
                             </div>
                         </div>
                     </div>
@@ -115,6 +119,7 @@ export default {
             },
             workforce: '',
             jobFunction: '',
+            jobDesc: '',
             startDate: '',
             endDate: '',
             requirement: '',
@@ -187,6 +192,7 @@ export default {
             this.model.vendor.id = data.vendor.id;
             this.model.vendor.name = data.vendor.name;
             this.model.jobFunction = data.jobFunction;
+            this.model.jobDesc = data.jobDesc;
             this.model.workforce = data.workforce;
             this.model.startDate = data.start_date;
             this.model.endDate = data.end_date;

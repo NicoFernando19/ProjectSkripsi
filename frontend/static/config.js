@@ -50,8 +50,16 @@ export default  {
     ListContract: "/api/contract/index",
     CreateContract: "/api/contract/create",
     DetailContract: "/api/contract/detail",
+    UpdateDocumentContract: "/api/contract/update-document",
     UpdateContract: "/api/contract/update",
     DeleteContract: "/api/contract/delete",
+
+    // WORK HISTORY
+    ListWorkHistory: "/api/work-history/list",
+    CreateWorkHistory: "/api/work-history/create",
+    DetailWorkHistory: "/api/work-history/getData",
+    UpdateWorkHistory: "/api/work-history/update",
+    DeleteWorkHistory: "/api/work-history/delete",
 
     // NOTIFICATION
     ListNotification: "/api/notification/list",

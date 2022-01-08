@@ -18,7 +18,11 @@
                 </div>
                 <div class="form-group">
                     <label for="jobFunction">Job Role</label>
-                    <input type="text" v-model="model.jobFunction" class="form-control" id="jobFunction" placeholder="IT/Digital Marketing/Research" :readonly="vacancyParam">
+                    <input type="text" v-model="model.jobFunction" class="form-control" id="jobFunction" placeholder="CS (Customer Service)/Digital Marketing" :readonly="vacancyParam">
+                </div>
+                <div class="form-group">
+                    <label for="jobFunction">Job Description</label>
+                    <input type="text" v-model="model.jobDesc" class="form-control" id="jobFunction" placeholder="Job Description" :readonly="vacancyParam">
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -82,6 +86,7 @@ export default {
         },
         workforce: '',
         jobFunction: '',
+        jobDesc: '',
         startDate: '',
         endDate: '',
         requirement: '',
@@ -109,7 +114,6 @@ export default {
     async contract() {
         document.getElementById("submitBtn").disable = true;
         let res = await ContractService.CreateContract(this.model);
-        console.log(res)
         if (res.status == 201) {
             Toast.showToast("Create Contract", "Create Contract Success!", "success");
             this.$router.push({ path: "/company/Home" });

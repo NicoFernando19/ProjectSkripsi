@@ -11,6 +11,7 @@ class Contract extends Model
         'vendor_id',
         'workforce',
         'jobFunction',
+        'jobDesc',
         'start_date',
         'end_date',
         'status',

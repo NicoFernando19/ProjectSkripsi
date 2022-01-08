@@ -21,6 +21,7 @@ class CreateContractsTable extends Migration
             $table->foreign('vendor_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('workforce');
             $table->string('jobFunction');
+            $table->string('jobDesc')->nullable();
             $table->date("start_date")->nullable();
             $table->date("end_date")->nullable();
             $table->string('document')->nullable();
