@@ -47,6 +47,7 @@ import VueElementLoading from "vue-element-loading"
 
 export default {
   name: 'Login',
+  middleware: 'login',
   components:{
     VueElementLoading
   },

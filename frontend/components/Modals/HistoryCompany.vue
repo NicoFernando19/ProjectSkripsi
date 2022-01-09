@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="form-group m-0">
-                            <input placeholder="Search By Name" type="text" id="filter" class="form-control" v-model='data.name'>
+                            <input placeholder="Search By Title" type="text" id="filter" class="form-control" v-model='data.title'>
                         </div>
                         <div>
                             <b-button class="search-button" variant="primary" @click="getWorkHistory()">Search</b-button>
@@ -179,7 +179,7 @@ export default {
                 }
             ],
             data: {
-                name:''
+                title:''
             },
             currentPage: 1,
             total: 0,
@@ -210,7 +210,7 @@ export default {
         },
         async getWorkHistory() {
             this.showLoader(true)
-            let result = await WorkHistoryServices.ListWorkHistory(this.selected, this.currentPage)
+            let result = await WorkHistoryServices.ListWorkHistory(this.selected, this.currentPage, this.data.title)
             if (result.status == 200) {
                 this.items = result.data.data.data
                 this.total = result.data.data.total

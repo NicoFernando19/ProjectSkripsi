@@ -126,6 +126,7 @@ import VueElementLoading from "vue-element-loading";
 
 export default {
   name: 'Home',
+  middleware: 'login',
   components:{
     NavbarWeb,
     CategoryType,

@@ -3,7 +3,7 @@ import config from '~/static/config';
 import Cookies from 'js-cookie';
 
 export default{
-    async ListWorkHistory(per_page, page) {
+    async ListWorkHistory(per_page, page, title) {
         let token = Cookies.get('authToken')
         let result = {}
         await axios.get(`${config.API}${config.ListWorkHistory}`, {
@@ -13,7 +13,8 @@ export default{
             },
             params: {
                 page,
-                per_page
+                per_page, 
+                title
             }
         }).then(response => {
             result = response;

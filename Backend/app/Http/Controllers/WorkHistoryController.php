@@ -23,7 +23,15 @@ class WorkHistoryController extends Controller
         if($request->get('per_page')){
             $perpage=$request->get('per_page');
         }
-        $datas = WorkHistory::where('company_id', Auth::id())->paginate($perpage);
+        if (!empty($request->title)) {
+            $title = $request->get("title");
+            $datas = WorkHistory::where('company_id', Auth::id())
+                        ->where('Title', 'LIKE',  "%$title%")
+                        ->paginate($perpage);
+        }else {
+            $datas = WorkHistory::where('company_id', Auth::id())->paginate($perpage);
+        }
+        
         $data = [
             'data' => $datas
         ];

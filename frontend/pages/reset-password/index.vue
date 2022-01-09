@@ -60,7 +60,8 @@ import Toast from '../../store/features/notificationToast/toast'
 import VueElementLoading from "vue-element-loading";
 
 export default {
-  name: 'Login',
+  name: 'ResetPassword',
+  middleware: 'login',
   components:{
     VueElementLoading
   },
