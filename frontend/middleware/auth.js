@@ -8,23 +8,20 @@ export default async function({ redirect }) {
             "Content-Type": "application/json",
             'Authorization' : `Bearer ${Cookie.get("authToken")}`
         }}).then(response => {
+            
 
         }).catch(err => {
-            Cookie.remove("authToken");
-            Cookie.remove("authUserId");
-            Cookie.remove("authName");
-            Cookie.remove("authUserName");
-            Cookie.remove("authCompanyName");
-            Cookie.remove("authRole");
+            if(Cookie.get("authToken")){
+                Cookie.remove("authToken");
+                Cookie.remove("authUserId");
+                Cookie.remove("authName");
+                Cookie.remove("authUserName");
+                Cookie.remove("authCompanyName");
+                Cookie.remove("authRole");
+            }
             return redirect("/Login")
         })
     }else{
-        Cookie.remove("authToken");
-        Cookie.remove("authUserId");
-        Cookie.remove("authName");
-        Cookie.remove("authUserName");
-        Cookie.remove("authCompanyName");
-        Cookie.remove("authRole");
         return redirect("/Login")
     }
 }

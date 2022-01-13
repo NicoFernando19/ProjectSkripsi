@@ -12,21 +12,9 @@ export default async function({ redirect }) {
                 return redirect("/company/vendorIndex")
             }
         }).catch(err => {
-            Cookie.remove("authToken");
-            Cookie.remove("authUserId");
-            Cookie.remove("authName");
-            Cookie.remove("authUserName");
-            Cookie.remove("authCompanyName");
-            Cookie.remove("authRole");
             return redirect("/Login")
         })
     }else{
-        Cookie.remove("authToken");
-        Cookie.remove("authUserId");
-        Cookie.remove("authName");
-        Cookie.remove("authUserName");
-        Cookie.remove("authCompanyName");
-        Cookie.remove("authRole");
         return redirect("/Login")
     }
 }
