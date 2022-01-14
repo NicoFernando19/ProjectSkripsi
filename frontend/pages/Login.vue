@@ -115,12 +115,12 @@ export default {
             this.state.userId = res.data.user.id;
             this.state.token = res.data.token;
             this.state.name = res.data.user.name;
-            Cookie.set("authToken", this.state.token);
-            Cookie.set("authUserId", this.state.userId);
-            Cookie.set("authName", this.state.name);
-            Cookie.set("authCompanyName", res.data.user.companyName);
-            Cookie.set("authUserName", res.data.user.username);
-            Cookie.set("authRole", res.data.user.companyRoles);
+            Cookie.set("authToken", this.state.token, { expires: 1 });
+            Cookie.set("authUserId", this.state.userId, { expires: 1 });
+            Cookie.set("authName", this.state.name, { expires: 1 });
+            Cookie.set("authCompanyName", res.data.user.companyName, { expires: 1 });
+            Cookie.set("authUserName", res.data.user.username, { expires: 1 });
+            Cookie.set("authRole", res.data.user.companyRoles, { expires: 1 });
             Toast.showToast("Login Verification","Login Success", "success");
             if (res.data.user.companyRoles == "Business Owner") {
               this.$router.push({ path: "company/Home" });
