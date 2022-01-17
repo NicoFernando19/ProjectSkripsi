@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Contract;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Notification;
+use App\Models\Company;
 use Auth;
 
 class ContractController extends Controller
@@ -92,6 +94,15 @@ class ContractController extends Controller
                 $data->save();
             }
 
+            $company = Company::find($data->company_id);
+
+            $notification = Notification::create([
+                'type' => 'Created Contract',
+                'company_id' => $data->vendor_id,
+                'data' => $company->CompanyType->type_name.' '.$company->name.' has created contract with you',
+                'vacancyLink' => '/contract/detail?id='.$data->id
+            ]);
+
             return response()->json($data, 201);
         }catch (Exception $error) {
             return response()->json($error, 500);
@@ -108,6 +119,30 @@ class ContractController extends Controller
                 $data->document = $fileName;
                 $data->save();
             }
+
+            foreach(Auth::user()->Roles as $role) {
+                if ($role->role_name != 'Business Owner') {
+                    $company = Company::find($data->vendor_id);
+        
+                    $notification = Notification::create([
+                        'type' => 'Updated Contract',
+                        'company_id' => $data->company_id,
+                        'data' => $company->CompanyType->type_name.' '.$company->name.' has been updated contract\'s document',
+                        'vacancyLink' => '/contract/detail?id='.$data->id
+                    ]);
+                } else {
+                    $company = Company::find($data->company_id);
+        
+                    $notification = Notification::create([
+                        'type' => 'Updated Contract',
+                        'company_id' => $data->vendor_id,
+                        'data' => $company->CompanyType->type_name.' '.$company->name.' has been updated contract\'s document',
+                        'vacancyLink' => '/contract/detail?id='.$data->id
+                    ]);
+                }
+            }
+            
+
             return response()->json($data, 200);
         }catch (Exception $error) {
             return response()->json($error, 500);

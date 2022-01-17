@@ -9,7 +9,7 @@
             <form @submit.stop.prevent="next()">
                 <div class="form-group">
                     <label for="companyName">Company Name</label>
-                    <input type="text" v-model="model.companyName" class="form-control" id="companyName" placeholder="">
+                    <input type="text" v-model="model.companyName" class="form-control" id="companyName" placeholder="" readonly>
                 </div>
                 <div class="form-group">
                     <label for="NumOfWorkforce">Number of Available Workforces</label>
@@ -23,7 +23,7 @@
                     <label for="specification">Offers</label>
                     <textarea class="form-control" v-model="model.specification" id="specification" rows="6"></textarea>
                 </div>
-                <button type="submit" id="sumbitBtn" class="btn btn-primary center-btn">Next</button>
+                <button type="submit" id="submitBtn" class="btn btn-primary center-btn">Next</button>
             </form>
 
         </div>

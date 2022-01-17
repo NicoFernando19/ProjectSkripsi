@@ -8,6 +8,7 @@ use App\Models\Vacancy;
 use App\Models\CompanyInterest;
 use App\Models\JoinedCompany;
 use App\Models\Notification;
+use App\Models\Company;
 
 class ApplyVacancyController extends Controller
 {
@@ -45,11 +46,12 @@ class ApplyVacancyController extends Controller
             ]);
 
             $vacancy = Vacancy::find($vacancyid);
+            $company = Company::find($companyInterest->company_id);
 
             $notification = Notification::create([
                 'type' => 'Applied',
                 'company_id' => $vacancy->company->id,
-                'data' => 'One company has been applied to your job vacancy',
+                'data' => $company->CompanyType->type_name.' '.$company->name.' has been applied to your job vacancy',
                 'vacancyLink' => '/vacancy/detail?id='.$vacancy->id
             ]);
 

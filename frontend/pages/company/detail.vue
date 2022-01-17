@@ -74,7 +74,7 @@
       </div>
     </div>
   </div>  
-  <div class="container-xl pb-5 prev-work">
+  <div class="container-xl pb-5 prev-work" v-show="model.roles == 'Vendor'">
     <h2 class="text-left pt-5 pb-3">
       Previous Works
     </h2>

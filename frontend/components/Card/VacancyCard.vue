@@ -62,7 +62,6 @@ export default {
             if (parts.length === 2){
                 var role = parts.pop().split(';').shift()
             }
-            console.log(role)
             if(role == 'Vendor'){
                 this.$router.push({
                     path: `/vacancy/vendorDetail?id=${id}`

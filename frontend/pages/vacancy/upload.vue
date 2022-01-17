@@ -16,7 +16,7 @@
                     <input type="file" @change="onChange" class="form-control-file" id="documentName">
                 </div>
                 <div class="space"></div>
-                <button type="submit" id="sumbitBtn" class="btn btn-primary center-btn">Submit</button>
+                <button type="submit" id="submitBtn" class="btn btn-primary center-btn">Submit</button>
             </form>
             
         </div>

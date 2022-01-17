@@ -80,7 +80,7 @@
       </div>
     </div>
   </div>  
-  <div class="container-xl pb-5 prev-work">
+  <div class="container-xl pb-5 prev-work" v-show="roleCompany() == 'Vendor'">
     <div class="d-flex">
       <h2 class="text-left pt-5 pb-3">
         Previous Works
@@ -164,6 +164,15 @@ export default {
       } else {
         this.blockLoader = val;
       }
+    },
+    roleCompany() {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${'authRole'}=`);
+      if (parts.length === 2){
+          var role = parts.pop().split(';').shift()
+      }
+      role = role.replace("%20", " ");
+      return role
     },
     async getData() {
       this.showLoader(true)
