@@ -71,6 +71,7 @@ export default {
         this.model.id = this.contract_id;
         let result = await ContractService.UpdateDocument(this.model)
         if (result.status == 200) {
+          await this.$parent.getContractDetail()
           this.doc_src = `${Config.StorageUrl}/${result.data.document}`
         } else {
           Toast.showToast("Updated Document", "Failed to change document!", "danger");
