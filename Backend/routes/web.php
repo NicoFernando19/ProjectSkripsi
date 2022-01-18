@@ -58,6 +58,7 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->put('vacancy/update/{id}', ['uses' => 'VacancyController@update']);
     $router->put('vacancy/update-status/{id}', ['uses' => 'VacancyController@updateVacancyStatus']);
     $router->delete('vacancy/delete/{id}', ['uses' => 'VacancyController@destroy']);
+    $router->delete('vacancy/reject-joined-company/{id}/{compId}', ['uses' => 'VacancyController@rejectCompany']);
 
     //TRANSACTION
     $router->get('transaction/list', ['uses' => 'JoinedCompanyController@listlistJoinedCompany']);

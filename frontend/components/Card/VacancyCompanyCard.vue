@@ -8,6 +8,7 @@
                 <p class="card-text">{{ company.BidangUsaha }}</p>
                 <button class="btn btn-primary center-btn" @click="DetailCompany(company.id, vacancyid)">Detail Company</button>
                 <button class="mt-2 btn btn-success center-btn" @click="CreateContract(vacancyid, company.id)">Create Contract</button>
+                <button class="mt-2 btn btn-danger center-btn" @click="Reject(vacancyid, company.id)">Reject</button>
             </div>
         </div>
     </div>
@@ -16,6 +17,8 @@
 <script>
 import config from '../../static/config';
 import VueElementLoading from "vue-element-loading"
+import Toast from '../../store/features/notificationToast/toast'
+import VacancyServices from '../../store/services/vacancyServices/vacancy'
 
 export default {
     components:{
@@ -54,6 +57,14 @@ export default {
             this.$router.push({
                 path: `/contract/create?vacancyid=${vacid}&vendorid=${compid}`
             })
+        },
+        async Reject(vacid, compid) {
+            let result = await VacancyServices.DeleteJoinedCompanyVacancy(vacid, compid)
+            if (result.status == '200') {
+                await this.$parent.getData()
+            } else {
+                Toast.showToast("Reject Action","Failed to do some action", "danger");
+            }
         }
     }
 }

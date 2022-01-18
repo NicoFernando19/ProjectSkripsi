@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Vacancy;
 use App\Models\Company;
 use App\Models\JoinedCompany;
+use App\Models\Notification;
 use App\Models\CompanyInterest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -182,6 +183,27 @@ class VacancyController extends Controller
         try{
             $data = Vacancy::find($id);
             $data->delete();
+            return response()->json(['success' => 'data has been deleted'], 200);
+        }catch (Exception $error) {
+            return response()->json($error, 500);
+        }
+    }
+
+    public function rejectCompany($id, $compId)
+    {
+        try{
+            $data = Vacancy::with(['CompanyInterest' => function($comp) use ($compId) {
+                $comp->where('company_id', $compId)->delete();
+            }])->find($id);
+            $data->save();
+
+            $notification = Notification::create([
+                'type' => 'Rejected',
+                'company_id' => $compId,
+                'data' => 'Your application has been rejected',
+                'vacancyLink' => '/vacancy/vendorDetail?id='.$data->id
+            ]);
+
             return response()->json(['success' => 'data has been deleted'], 200);
         }catch (Exception $error) {
             return response()->json($error, 500);

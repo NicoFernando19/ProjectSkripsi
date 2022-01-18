@@ -32,6 +32,7 @@ export default  {
     UpdateVacancy: "/api/vacancy/update",
     UpdateStatusVacancy: "/api/vacancy/update-status",
     DeleteVacancy: "/api/vacancy/delete",
+    DeleteJoinedCompaniesVacancy: "/api/vacancy/reject-joined-company",
 
     // TRANSACTION
     ListTransaction: "/api/transaction/list",

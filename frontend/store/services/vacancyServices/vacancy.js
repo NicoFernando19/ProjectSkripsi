@@ -138,6 +138,22 @@ export default {
         return result
     },
 
+    async DeleteJoinedCompanyVacancy (id, compId) {
+        let token = Cookies.get('authToken')
+        let result = {}
+        await axios.delete(`${config.API}${config.DeleteJoinedCompaniesVacancy}/${id}/${compId}`, {
+            headers:{
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token
+            }
+        }).then(response => {
+            result = response;
+        }).catch(err => {
+            result = err.response;
+        })
+        return result
+    },
+
     async joinVacancy (data, id) {
         let token = Cookies.get('authToken')
         let result = {}
