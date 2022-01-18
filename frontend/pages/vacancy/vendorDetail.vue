@@ -1,5 +1,5 @@
 <template>
-<div class="vendorVacancyStatus vh-100">
+<div class="vendorVacancyStatus">
   <div>
     <h2 class="text-center pt-5 pb-4">
         <b>VACANCY STATUS</b>
@@ -21,7 +21,48 @@
     </div>
   </div>  
 <div class="spacing"></div>
-<div class="spacing"></div>
+<div class="container-xl pb-5" v-show="model.status == 'Applied'">
+    <h2 class="text-left pt-5 pb-3">
+      Applied
+    </h2>
+    <div class="row">
+      <div class="col-md-6">
+        <embed :src="JoinedCompany.document.pathUrl" width="100%" height="800px" />
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6">
+            <strong>
+              Document
+            </strong>
+          </div>
+          <div class="col-md-6">
+            {{ JoinedCompany.document.name }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <strong>
+              Cost Estimation
+            </strong>
+          </div>
+          <div class="col-md-6">
+            {{ JoinedCompany.price }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <strong>
+              Offering
+            </strong>
+          </div>
+          <div class="col-md-6">
+            {{ JoinedCompany.specification }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <button 
   type="button" 
   :class="['btn', model.status == 'Applied' ? 'btn-success' : 'btn-primary', 'center-btn']" 
@@ -55,11 +96,24 @@ export default {
         isActive:'',
         status: '',
         company_transaction: []
+      },
+      JoinedCompany: {
+        id: '',
+        company_id: '',
+        price: '',
+        specification: '',
+        document: {
+          name: '',
+          pathUrl: '',
+        }
       }
     }
   },
   async mounted() {
     await this.getData();
+    if (this.model.status == 'Applied') {
+      await this.GetJoinedData();
+    }
   },
   methods: {
     showLoader(val) {
@@ -70,6 +124,24 @@ export default {
       } else {
         this.blockLoader = val;
       }
+    },
+    async GetJoinedData() {
+      this.showLoader(true)
+      this.JoinedCompany.id = this.$route.query['id'];
+      this.JoinedCompany.company_id = Cookie.get('authUserId');
+      let result = await VacancyServices.GetJoinedById(this.JoinedCompany)
+      console.log(result)
+      if (result.status == 200) {
+        result.data.company_interest.forEach(data => {
+          this.JoinedCompany.price = data.price;
+          this.JoinedCompany.specification = data.specification
+          this.JoinedCompany.document.name = data.document.documentType
+          this.JoinedCompany.document.pathUrl = data.document.pathUrl
+        });
+      } else {
+        Toast.showToast("Load Data","Failed to load data from server", "danger");
+      }
+      this.showLoader(false)
     },
     async getData() {
       this.showLoader(true)

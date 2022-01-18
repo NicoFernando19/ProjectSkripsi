@@ -70,6 +70,25 @@ export default {
         })
         return result
     },
+
+    async GetJoinedById (data) {
+        let token = Cookies.get('authToken')
+        let result = {}
+        await axios.get(`${config.API}${config.DetailJoinedVacancy}/${data.id}`,{
+            headers:{
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token
+            },
+            params: {
+                company_id: data.company_id
+            }
+        }).then(response => {
+            result = response;
+        }).catch(err => {
+            result = err.response;
+        })
+        return result
+    },
     
     async UpdateVacancy (data) {
         let token = Cookies.get('authToken')

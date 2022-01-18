@@ -23,6 +23,6 @@ class CompanyInterest extends Model
     }
 
     public function Document() {
-        return $this->hasMany(Document::class);
+        return $this->hasOne(Document::class);
     }
 }

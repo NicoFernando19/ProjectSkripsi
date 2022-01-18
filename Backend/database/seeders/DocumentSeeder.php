@@ -21,5 +21,13 @@ class DocumentSeeder extends Seeder
             'pathUrl' => 'example.pdf',
             'mime' => 'application/pdf' 
         ]);
+
+        Document::create([
+            'company_interest_id' => 2,
+            'documentType' => 'proposal',
+            'documentName' => 'Proposal Kerja',
+            'pathUrl' => 'example.pdf',
+            'mime' => 'application/pdf' 
+        ]);
     }
 }

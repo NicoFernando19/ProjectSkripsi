@@ -18,7 +18,7 @@ class VacancyController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api');
+        // $this->middleware('auth:api');
     }
 
     public function listVacancy(Request $request)
@@ -108,6 +108,19 @@ class VacancyController extends Controller
                     $data['status'] = 'Applied';
                 }
             }
+            return response()->json($data, 200);
+        } catch (Exception $err) {
+            return response()->json($err, 500);
+        }
+    }
+
+    public function getCompanyDetailFromVacancyId(Request $request, $id)
+    {
+        try {
+            $data = Vacancy::with(['CompanyInterest' => function($comp) use ($request) {
+                $comp->with('Document');
+                $comp->where('company_id', $request->company_id);
+            }])->with(['Company'])->find($id);
             return response()->json($data, 200);
         } catch (Exception $err) {
             return response()->json($err, 500);

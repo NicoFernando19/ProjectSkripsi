@@ -54,6 +54,7 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->post('vacancy/list', ['uses' => 'VacancyController@listVacancy']);
     $router->post('vacancy/create', ['uses' => 'VacancyController@create']);
     $router->get('vacancy/getData/{id}', ['uses' => 'VacancyController@showById']);
+    $router->get('vacancy/getDataJoined/{id}', ['uses' => 'VacancyController@getCompanyDetailFromVacancyId']);
     $router->put('vacancy/update/{id}', ['uses' => 'VacancyController@update']);
     $router->put('vacancy/update-status/{id}', ['uses' => 'VacancyController@updateVacancyStatus']);
     $router->delete('vacancy/delete/{id}', ['uses' => 'VacancyController@destroy']);

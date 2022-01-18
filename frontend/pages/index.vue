@@ -10,7 +10,9 @@ import NavbarWeb from '@/components/NavbarWeb.vue'
 export default {
   name: 'Index',
   layout: 'main',
-  middleware: ['auth'],
+  middleware: function({ redirect }) {
+      redirect('/Login');
+  },
   components:{
     NavbarWeb
   },  

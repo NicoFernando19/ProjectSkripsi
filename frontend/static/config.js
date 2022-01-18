@@ -28,6 +28,7 @@ export default  {
     ListVacancy: "/api/vacancy/list",
     CreateVacancy: "/api/vacancy/create",
     DetailVacancy: "/api/vacancy/getData",
+    DetailJoinedVacancy: "/api/vacancy/getDataJoined",
     UpdateVacancy: "/api/vacancy/update",
     UpdateStatusVacancy: "/api/vacancy/update-status",
     DeleteVacancy: "/api/vacancy/delete",
