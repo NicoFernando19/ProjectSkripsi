@@ -66,7 +66,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Notes</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" placeholder="All Good/Need Revision"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" v-model="model.feedbackNotes" rows="6" placeholder="All Good/Need Revision"></textarea>
                 </div>
                 <div class="space"></div>
                 <div class="d-flex">
@@ -176,6 +176,7 @@ export default {
             this.model.contract.id = this.$route.query['id']
             let result = await ContractService.GetContractById(this.model.contract)
             if (result.status == 200) {
+                console.log(result.data)
                 this.populateData(result.data)
             } else {
                 Toast.showToast("Load Data Contract", "Failed to Load Data!", "danger");

@@ -62,7 +62,7 @@ export default {
       blockLoader: false,
       data: {
         name: "",
-        company_type: "0"
+        company_type: "Vendor"
       },
       companies: [],
       currentPage: 1,
