@@ -11,7 +11,7 @@
           </div>
       </div>
       <div class="detail-right container">
-        <button class="mt-2 btn btn-success center-btn" @click="CreateContract(model.id)" v-show="model.roles == 'Vendor'">Create Contract</button>
+        <button class="mt-2 btn btn-primary center-btn" @click="CreateContract(model.id)" v-show="model.roles == 'Vendor'">Create Contract</button>
       </div>
       <div class="detail-right container">
           <h2 class="text-left pt-5 pb-3">
@@ -290,6 +290,7 @@ export default {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 20px;
     max-width: fit-content;
 }
 

@@ -72,7 +72,7 @@
                 <div class="d-flex">
                     <button type="button" class="btn btn-secondary" @click="goBack()">Back</button>
                     <button type="button" id="submitBtn" class="btn btn-primary ml-auto" v-if="role == 'Business Owner'" @click="contract()">Save</button>
-                    <button type="button" id="submitBtnR" class="btn btn-danger ml-auto" @click="contract('Revise')" v-show="model.status != 'Approved'" v-if="role == 'Vendor'">Revised</button>
+                    <button type="button" id="submitBtnR" class="btn btn-third ml-auto" @click="contract('Revise')" v-show="model.status != 'Approved'" v-if="role == 'Vendor'">Revised</button>
                     <button type="button" id="submitBtnA" class="btn btn-success ml-auto" @click="contract('Approved')" v-show="model.status != 'Approved'" v-if="role == 'Vendor'">Approve</button>
                 </div>
             </form>
@@ -228,5 +228,14 @@ export default {
     margin-left: auto;
     margin-right: auto;
     max-width: fit-content;
+    border-radius: 20px;
+}
+
+.btn{
+    border-radius: 20px;
+}
+
+.btn-third{
+    color:#fff;
 }
 </style>

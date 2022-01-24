@@ -124,5 +124,12 @@ export default {
     max-width: fit-content;
 }
 
-.search-button { margin: 0 0 0 1rem; }
+.search-button { 
+  margin: 0 0 0 1rem; 
+  border-radius: 20px;
+  }
+
+  .clear-button { 
+  border-radius: 20px;
+  }
 </style>

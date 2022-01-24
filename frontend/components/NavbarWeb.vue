@@ -148,7 +148,8 @@ a{
     color: white;
 }
 .navbar.navbar-dark.bg-primary{
-    background-color: #253354!important;
+    /* background-color: #253354!important; */
+    background-color: #59D9CF!important;
 }
 
 .badge {
@@ -163,4 +164,5 @@ a{
     color: #253354 !important;
     background-color: #f5f5f5 !important;
 }
+
 </style>

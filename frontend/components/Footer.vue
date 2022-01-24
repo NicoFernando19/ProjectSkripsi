@@ -15,7 +15,7 @@
 <style scoped>
 
 .footer-color {
-    background-color: #253354;
+    background-color: #59D9CF;
 }
 
 .copyright {

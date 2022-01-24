@@ -1,0 +1,51 @@
+BO cari jasa -> pilih kategori -> pilih vendor -> isi form request/vacancy -> kirim request
+-> vendor accept/reject (accept)-> [manage contract]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tipe class(Gk semua)
+People = Orang
+Org = Sistem melibatkan company (bank, logistic etc.)
+Transaction (Physical Doc) = Dokumen secara fisik (invoice kertas, buku tabungan)
+logical doc = digital doc (Alfagift, e-receipt)
+
+
+Relationship antar class:
+CRC card
+
+contohnya kolaborasi untuk mendapatkan data
+
+
+
+
+
+
+
+
+
+
+
+
+
+

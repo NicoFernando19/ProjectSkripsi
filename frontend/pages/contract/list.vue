@@ -28,7 +28,7 @@
                 :items="items" 
                 :fields="fields" class="mt-3">
                 <template #cell(status)="row">
-                    <span :class="['border', 'rounded', 'px-2 py-1', row.item.status == 'Approved' ? 'text-white border-success bg-success' : row.item.status == 'Revise' ? 'text-white border-danger bg-danger' : 'text-white border-secondary bg-secondary']">
+                    <span :class="['border', 'rounded', 'px-2 py-1', row.item.status == 'Approved' ? 'text-white border-success bg-success' : row.item.status == 'Revise' ? 'text-white border-third bg-third' : 'text-white border-secondary bg-secondary']">
                         {{ row.item.status == 'Approved' ? 'Approved' : row.item.status == "Revise" ? "Revise" : 'Waiting' }}
                     </span>
                 </template>

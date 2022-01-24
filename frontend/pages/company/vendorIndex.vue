@@ -6,7 +6,7 @@
             WELCOME {{ companyName }}
         </h2>
         <div class="space"></div>
-        <a href="/vacancy/view" class="btn btn-success center-btn">View Vacancy</a> 
+        <a href="/vacancy/view" class="btn btn-primary center-btn">View Vacancy</a> 
       </div>
   </div> 
 </div>
@@ -43,6 +43,7 @@ export default {
     margin-left: auto;
     margin-right: auto;
     max-width: fit-content;
+    border-radius: 20px;
 }
 
 .space{

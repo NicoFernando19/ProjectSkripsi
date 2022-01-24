@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="card text-center p-4 m-3" style="width: 20.5rem; height: 18rem; cursor: pointer;" @show="Loader"  @click="DetailVacancy(vacancy.id)">
+        <div class="card shadow text-center p-4 m-3" style="width: 20.5rem; height: 18rem; cursor: pointer; border-color: #59D9CF;" @show="Loader"  @click="DetailVacancy(vacancy.id)">
             <div class="card-header p-0 bg-transparent border-0 mb-2 text-right" v-if="role == 'Vendor'">
-                <span :class="['border', 'rounded', 'px-2 py-1', vacancy.status == 'Applied' ? 'text-white border-success bg-success' : 'text-white border-secondary bg-secondary']">
+                <span :class="['border', 'rounded', 'px-2 py-1', vacancy.status == 'Applied' ? 'text-white border-success bg-success' : 'text-white border-secondary bg-third']">
                     {{ vacancy.status == 'Applied' ? 'Applied' : 'Unapplied' }}
                 </span>
             </div>

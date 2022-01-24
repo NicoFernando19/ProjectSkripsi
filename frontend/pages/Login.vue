@@ -3,7 +3,7 @@
   <div class = "space"></div>
   <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#253354" size="50" />
   <div class = "pt-5">
-    <div class="container">
+    <div class="container shadow">
         <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
         <div class="col-lg-12">
             <form @submit.stop.prevent="login()">
@@ -29,7 +29,7 @@
                     </span>
                 </div>
                 <div class="input-group">
-				          <button type="submit" id="submitBtn" class="btn">Login</button>
+				          <button type="submit" id="submitBtn" class="btn btn-primary">Login</button>
 			          </div>
                 <p class="login-register-text">Don't have an account? <NuxtLink to="/Registration">Register Here</NuxtLink></p>
             </form>

@@ -171,5 +171,6 @@ export default {
     margin-left: auto;
     margin-right: auto;
     max-width: fit-content;
+    border-radius: 20px;
 }
 </style>

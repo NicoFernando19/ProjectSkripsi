@@ -132,9 +132,13 @@ export default {
 
 .company-field { margin: 0 1rem; }
 
-.search-button { margin: 0 0 0 2rem; }
+.search-button { margin: 0 0 0 2rem; border-radius: 20px;}
 
 .space{
   height: 50px;
 }
+
+  .clear-button { 
+  border-radius: 20px;
+  }
 </style>

@@ -22,23 +22,33 @@ export default {
 
 <style>
 .btn-primary {
-    background-color: #253354 !important;
-    border-color: #253354 !important;
+    background-color: #27A599 !important;
+    border-color: #27A599 !important;
 }
 
 .page-item.active .page-link{
-  background-color: #253354 !important;
-  border-color: #253354 !important;
+  background-color: #27A599 !important;
+  border-color: #27A599!important;
 }
 
 .btn-secondary {
-  background-color: #6B737D !important;
-  border-color: #6B737D !important;
+  background-color: #C2C2C2 !important;
+  border-color: #C2C2C2 !important;
+}
+
+.btn-third {
+  background-color: #FF990A !important;
+  border-color: #FF990A !important;
 }
 
 .bg-secondary {
-  background-color: #6B737D !important;
-  border-color: #6B737D !important;
+  background-color: #C2C2C2 !important;
+  border-color: #C2C2C2 !important;
+}
+
+.bg-third {
+  background-color: #FF9F1C !important;
+  border-color: #FF9F1C !important;
 }
 
 .btn-danger {
@@ -59,5 +69,9 @@ export default {
 .bg-success {
   background-color: #3D7568 !important;
   border-color: #3D7568 !important;
+}
+
+.border-third{
+  border-block-color: #FF9F1C;
 }
 </style>
