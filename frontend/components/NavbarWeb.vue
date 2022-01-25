@@ -7,15 +7,15 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav class="mr-auto" v-if="roleCompany() == 'Vendor'">
-        <b-nav-item><NuxtLink to="/company/vendorIndex" class="text-decoration-none">Vendor</NuxtLink></b-nav-item>
-        <b-nav-item><NuxtLink to="/vacancy/view" class="text-decoration-none">Vacancy</NuxtLink></b-nav-item>
-        <b-nav-item><NuxtLink to="/contract/list" class="text-decoration-none">Contract</NuxtLink></b-nav-item>
+        <b-nav-item><NuxtLink to="/company/vendorIndex" class="text-decoration-none"><b>Vendor</b></NuxtLink></b-nav-item>
+        <b-nav-item><NuxtLink to="/vacancy/view" class="text-decoration-none"><b>Vacancy</b></NuxtLink></b-nav-item>
+        <b-nav-item><NuxtLink to="/contract/list" class="text-decoration-none"><b>Contract</b></NuxtLink></b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav class="mr-auto" v-else>
-        <b-nav-item><NuxtLink to="/company/home" class="text-decoration-none">Home</NuxtLink></b-nav-item>
-        <b-nav-item><NuxtLink to="/vacancy/view" class="text-decoration-none">Vacancy</NuxtLink></b-nav-item>
-        <b-nav-item><NuxtLink to="/contract/list" class="text-decoration-none">Contract</NuxtLink></b-nav-item>
+        <b-nav-item><NuxtLink to="/company/home" class="text-decoration-none"><b>Home</b></NuxtLink></b-nav-item>
+        <b-nav-item><NuxtLink to="/vacancy/view" class="text-decoration-none"><b>Vacancy</b></NuxtLink></b-nav-item>
+        <b-nav-item><NuxtLink to="/contract/list" class="text-decoration-none"><b>Contract</b></NuxtLink></b-nav-item>
       </b-navbar-nav>
 
       <!-- center aligned nav items -->
@@ -26,7 +26,7 @@
         <b-nav-item-dropdown :class="[auth ? 'd-block' : 'd-none']" right no-caret>
           <!-- Using 'button-content' slot -->
           <template #button-content>
-            <font-awesome-icon :icon="['fas', 'bell']"/><sup><b-badge class="" variant="danger">{{ notifCount }}</b-badge></sup>
+            <font-awesome-icon class="bell" :icon="['fas', 'bell']"/><sup><b-badge class="" variant="danger">{{ notifCount }}</b-badge></sup>
           </template>
           <b-dropdown-item class="text-center">
             <strong>Notification</strong>
@@ -45,8 +45,8 @@
 
         <b-nav-item-dropdown :class="auth ? 'd-block' : 'd-none'" right>
           <!-- Using 'button-content' slot -->
-          <template #button-content>
-            {{ model.email }}
+          <template class="text-white" #button-content>
+            <span class="comp-name">{{ model.email }}</span>
           </template>
           <b-dropdown-item href="#" @click="toProfile()">Profile</b-dropdown-item>
           <b-dropdown-item href="#" @click="LogOut()">Sign Out</b-dropdown-item>
@@ -149,7 +149,7 @@ a{
 }
 .navbar.navbar-dark.bg-primary{
     /* background-color: #253354!important; */
-    background-color: #59D9CF!important;
+    background-color: #37D2C5!important;
 }
 
 .badge {
@@ -163,6 +163,10 @@ a{
 .dropdown-item.active, .dropdown-item:active {
     color: #253354 !important;
     background-color: #f5f5f5 !important;
+}
+
+.bell, .comp-name{
+  color: #fff;
 }
 
 </style>
