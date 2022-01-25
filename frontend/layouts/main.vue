@@ -21,6 +21,9 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: #F8F8F8 !important;
+}
 .btn-primary {
     background-color: #27A599 !important;
     border-color: #27A599 !important;

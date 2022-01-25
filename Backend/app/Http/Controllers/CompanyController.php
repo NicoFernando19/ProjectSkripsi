@@ -96,7 +96,12 @@ class CompanyController extends Controller
             }
             foreach($data->WorkHistory as $work) {
                 $work['start_date'] = Carbon::parse($work->startDate)->format("d M Y");
-                $work['end_date'] = Carbon::parse($work->endDate)->format("d M Y");  
+                $work['end_date'] = Carbon::parse($work->endDate)->format("d M Y"); 
+                if ($work->endDate >= Carbon::now()) {
+                    $work['moreThenNow'] = true;
+                } else {
+                    $work['moreThenNow'] = false;
+                }
             }
             $data['companyName'] = $data->CompanyType->type_name.' '.$data->name;
             return response()->json($data, 200);

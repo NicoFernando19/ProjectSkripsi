@@ -157,6 +157,9 @@ export default {
                 let res = await ContractService.UpdateContract(this.model);
                 if (res.status == 200) {
                     Toast.showToast("Updated Contract", "Updated Contract Success!", "success");
+                    this.$router.push({
+                        path: '/contract/list'
+                    })
                 } else {
                     Toast.showToast("Updated Contract", "Invalid Data!", "danger");
                 }

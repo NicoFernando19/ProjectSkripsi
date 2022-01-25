@@ -36,7 +36,7 @@
                     <b-button size="sm" @click="toDetail(row.item.id)" class="mr-2">
                         <font-awesome-icon :icon="['fas', 'file-alt']"/>
                     </b-button>
-                    <b-button size="sm" @click="toEdit(row.item.id)" class="mr-2">
+                    <b-button size="sm" @click="toEdit(row.item.id)" class="mr-2" v-show="row.item.status != 'Approved'">
                         <font-awesome-icon :icon="['fas', 'edit']"/>
                     </b-button>
                 </template>   

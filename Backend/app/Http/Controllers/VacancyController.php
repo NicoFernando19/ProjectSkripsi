@@ -43,14 +43,14 @@ class VacancyController extends Controller
                 if (!empty($request->title) || !empty($request->company)) {
                     $title = $request->get("title");
                     $company = $request->get("company");
-                    $datas = Vacancy::with('company')->get();
+                    $datas = Vacancy::with('company')->where('isActive', true)->get();
                     $data = $datas->filter( function ($value, $key) use($title, $company){  
                         return (str_contains(strtolower($value->Title), strtolower($title)) && str_contains(strtolower($value->company->name) , strtolower($company)));
                     });
                     $datas = $data->all();
                     $datas = app('App\Http\Controllers\PaginationController')->paginate($datas, 9);
                 } else {
-                    $datas = Vacancy::with(['company', 'CompanyInterest'])->get();
+                    $datas = Vacancy::with(['company', 'CompanyInterest'])->where('isActive', true)->get();
                     $compInterest = CompanyInterest::where('company_id', Auth::id())->get();
                     foreach ($compInterest as $comp) {
                         $vacancies = JoinedCompany::where('company_interest_id', $comp->id)->get();

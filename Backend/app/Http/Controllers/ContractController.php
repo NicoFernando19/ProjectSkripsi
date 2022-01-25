@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Notification;
 use App\Models\Company;
+use App\Models\WorkHistory;
 use Auth;
 
 class ContractController extends Controller
@@ -168,6 +169,47 @@ class ContractController extends Controller
         try{
             $data = Contract::find($id);
             $data->update($request->all());
+
+            foreach(Auth::user()->Roles as $role) {
+                if ($role->role_name == 'Business Owner') {
+                    $company = Company::find($data->company_id);
+        
+                    $notification = Notification::create([
+                        'type' => 'Updated Contract',
+                        'company_id' => $data->vendor_id,
+                        'data' => $company->CompanyType->type_name.' '.$company->name.' has been updated the contract',
+                        'vacancyLink' => '/contract/edit?id='.$data->id
+                    ]);
+                } else {
+                    $company = Company::find($data->vendor_id);
+                    if ($request->get('status') == 'Revise') {
+                        $notification = Notification::create([
+                            'type' => 'Updated Contract',
+                            'company_id' => $data->company_id,
+                            'data' => $company->CompanyType->type_name.' '.$company->name.' has request to revise the contract',
+                            'vacancyLink' => '/contract/edit?id='.$data->id
+                        ]);
+                    } else {
+                        $notification = Notification::create([
+                            'type' => 'Updated Contract',
+                            'company_id' => $data->company_id,
+                            'data' => $company->CompanyType->type_name.' '.$company->name.' has approved the contract',
+                            'vacancyLink' => '/contract/detail?id='.$data->id
+                        ]);
+
+                        $comp = Company::find($data->company_id);
+
+                        $workHistory = WorkHistory::create([
+                            'company_id' => $data->vendor_id,
+                            'Title' => 'Work with '.$comp->CompanyType->type_name.' '.$comp->name,
+                            'startDate' => $request->startDate,
+                            'endDate' => $request->endDate
+                        ]);
+                    }
+        
+                }
+            }
+
             return response()->json($data, 200);
         }catch (Exception $error) {
             return response()->json($error, 500);

@@ -13,54 +13,64 @@
                     <hr>
                     <embed :src="model.document" width="100%" height="800px" />
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <span>Detail</span>
                     <hr>
-                    <div class="form-group">
-                        <span class="text"><strong> Job Function </strong></span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="text"><strong> Job Function </strong></span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="text">{{model.jobFunc}}</span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <span class="text"><strong> Job Description </strong></span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="text"><strong> Job Description </strong></span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="text">{{model.jobDesc}}</span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <span class="text"><strong> Work Force </strong></span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="text"><strong> Work Force </strong></span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="text">{{model.workForce}} Persons</span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <span class="text"><strong> Company </strong></span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="text"><strong> Company </strong></span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="text">{{model.companyName}}</span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <span class="text"><strong> Company Vendor </strong></span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="text"><strong> Company Vendor </strong></span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="text">{{model.vendorName}}</span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <span class="text"><strong> Start Date </strong></span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="text"><strong> Start Date </strong></span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="text">{{model.startDate}}</span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <span class="text"><strong> End Date </strong></span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <span>Detail</span>
-                    <hr>
-                    <div class="form-group">
-                        <span class="text">{{model.jobFunc}}</span>
-                    </div>
-                    <div class="form-group">
-                        <span class="text">{{model.jobDesc}}</span>
-                    </div>
-                    <div class="form-group">
-                        <span class="text">{{model.workForce}} Persons</span>
-                    </div>
-                    <div class="form-group">
-                        <span class="text">{{model.companyName}}</span>
-                    </div>
-                    <div class="form-group">
-                        <span class="text">{{model.vendorName}}</span>
-                    </div>
-                    <div class="form-group">
-                        <span class="text">{{model.startDate}}</span>
-                    </div>
-                    <div class="form-group">
-                        <span class="text">{{model.endDate}}</span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="text"><strong> End Date </strong></span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="text">{{model.endDate}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
