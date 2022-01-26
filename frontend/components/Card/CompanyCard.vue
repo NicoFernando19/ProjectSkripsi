@@ -2,7 +2,7 @@
     <div>
         <div class="card shadow text-center p-4 m-3" style="width: 20.5rem; height: 18rem; cursor: pointer; border-color: #59D9CF;" @show="Loader" @click="DetailCompany(company.id)">
             <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />
-            <img class="card-img-top" :src="`${Url}/${company.imgName}`" :alt="company.imgName">
+            <img class="card-img-top card-img-height" :src="`${Url}/${company.imgName}`" :alt="company.imgName">
             <div class="card-body">
                 <h5 class="card-title">{{ company.name }}</h5>
                 <p class="card-text">{{ company.BidangUsaha }}</p>
@@ -50,3 +50,9 @@ export default {
     }
 }
 </script>
+
+<style>
+.card-img-height {
+    height: 70% !important;
+}
+</style>

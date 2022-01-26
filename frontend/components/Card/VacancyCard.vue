@@ -7,7 +7,7 @@
                 </span>
             </div>
             <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />
-            <img class="card-img-top" :src="`${Url}/${vacancy.company.imgName}`" :alt="vacancy.company.imgName">
+            <img class="card-img-top card-img-height" :src="`${Url}/${vacancy.company.imgName}`" :alt="vacancy.company.imgName">
             <!-- Tes -->
             <div class="card-body">
                 <h5 class="card-title">{{ vacancy.Title }}</h5>
@@ -76,3 +76,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.card-img-height {
+    height: 50% !important;
+}
+</style>

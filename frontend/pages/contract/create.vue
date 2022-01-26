@@ -18,33 +18,33 @@
                 </div>
                 <div class="form-group">
                     <label for="jobFunction">Job Role</label>
-                    <input type="text" v-model="model.jobFunction" class="form-control" id="jobFunction" placeholder="CS (Customer Service)/Digital Marketing" :readonly="vacancyParam">
+                    <input type="text" v-model="model.jobFunction" class="form-control" id="jobFunction" placeholder="CS (Customer Service)/Digital Marketing" :readonly="vacancyParam" required>
                 </div>
                 <div class="form-group">
                     <label for="jobFunction">Job Description</label>
-                    <input type="text" v-model="model.jobDesc" class="form-control" id="jobFunction" placeholder="Job Description" :readonly="vacancyParam">
+                    <input type="text" v-model="model.jobDesc" class="form-control" id="jobFunction" placeholder="Job Description" :readonly="vacancyParam" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                     <label for="PostDate">Start Date Contract</label>
-                    <input type="date" v-model="model.startDate" class="form-control" id="PostDate">
+                    <input type="date" v-model="model.startDate" class="form-control" id="PostDate" required>
                     </div>
                     <div class="form-group col-md-6">
                     <label for="Deadline">End Date Contract</label>
-                    <input type="date" v-model="model.endDate" class="form-control" id="Deadline">
+                    <input type="date" v-model="model.endDate" class="form-control" id="Deadline" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="workforce">Number of Workforce Needed</label>
-                    <input type="number" v-model="model.workforce" class="form-control" id="workforce" placeholder="999">
+                    <input type="number" v-model="model.workforce" class="form-control" id="workforce" placeholder="999" min="1" required>
                 </div>
                 <div class="form-group">
                     <label for="requirement">Specifications / Requirements</label>
-                    <textarea class="form-control" v-model="model.requirement" id="requirement" rows="3"></textarea>
+                    <textarea class="form-control" v-model="model.requirement" id="requirement" rows="3" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="document">Document</label>
-                    <input type="file" @change="onChange" class="form-control-file" id="document">
+                    <b-form-file class="form-control-file" id="document" @change="onChange" required></b-form-file>
                 </div>
                 <div class="space"></div>
                 <button type="submit" id="submitBtn" class="btn btn-primary center-btn">Submit</button>

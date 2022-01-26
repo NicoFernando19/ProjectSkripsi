@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label for="workforce">Number of Workforce Needed</label>
-                    <input type="number" v-model="model.workforce" class="form-control" id="workforce" placeholder="999" :readonly="role == 'Vendor'">
+                    <input type="number" v-model="model.workforce" class="form-control" id="workforce" placeholder="999" :readonly="role == 'Vendor'" min="1">
                 </div>
                 <div class="form-group">
                     <label for="requirement">Specifications / Requirements</label>

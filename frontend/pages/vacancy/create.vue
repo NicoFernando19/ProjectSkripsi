@@ -10,32 +10,34 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                     <label for="PostDate">Post Date</label>
-                    <input type="date" v-model="model.PostDate" class="form-control" id="PostDate">
+                    <input type="date" v-model="model.PostDate" class="form-control" id="PostDate" required>
                     </div>
                     <div class="form-group col-md-6">
                     <label for="Deadline">Deadline</label>
-                    <input type="date" v-model="model.Deadline" class="form-control" id="Deadline">
+                    <input type="date" v-model="model.Deadline" class="form-control" id="Deadline" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="Title">Vacancy Title</label>
-                    <input type="text" v-model="model.Title" class="form-control" id="Title" placeholder="Title">
+                    <input type="text" v-model="model.Title" class="form-control" id="Title" placeholder="Title" required>
                 </div>
                 <div class="form-group">
                     <label for="jobType">Job Function</label>
-                    <input type="text" v-model="model.jobType" class="form-control" id="jobType" placeholder="IT, CS, or Accounting">
+                    <input type="text" v-model="model.jobType" class="form-control" id="jobType" placeholder="IT, CS, or Accounting" required>
                 </div>
                 <div class="form-group">
                     <label for="jobDesc">Job Description</label>
-                    <input type="text" v-model="model.jobDesc" class="form-control" id="jobDesc" placeholder="Job description">
+                    <input type="text" v-model="model.jobDesc" class="form-control" id="jobDesc" placeholder="Job description" required>
                 </div>
                 <div class="form-group">
                     <label for="NumWorkfore">Number of Workforce Needed</label>
-                    <input type="number" v-model="model.NumWorkforce" class="form-control" id="NumWorkfore" placeholder="Number of Workforce">
+                    <input type="number" v-model="model.NumWorkforce" class="form-control" id="NumWorkfore" placeholder="Number of Workforce" min="1" required>
                 </div>
                 <div class="form-group">
                     <label for="Budget">Budget</label>
-                    <input type="text" v-model="model.Budget" class="form-control" id="Budget" placeholder="Rp.">
+                    <b-input-group prepend="Rp." class="mb-2 mr-sm-2 mb-sm-0">
+                        <input type="number" v-model="model.Budget" class="form-control" id="Budget" placeholder="5000000" min="1" required>
+                    </b-input-group>
                 </div>
                 <div class="form-group">
                     <label for="Requirement">Specifications / Requirements</label>

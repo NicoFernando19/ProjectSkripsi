@@ -16,17 +16,17 @@ class VacancySeeder extends Seeder
     {
         Vacancy::create([
             'company_id' => 1,
-            'Title' => 'Job',
-            'jobType' => 'CS',
+            'Title' => 'Need Customer Service',
+            'jobType' => 'CS (Customer Service)',
             'jobDesc' => 'Taking care of customer',
-            'NumWorkforce' => 1,
+            'NumWorkforce' => 2,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
         ]);
 
         Vacancy::create([
             'company_id' => 1,
-            'Title' => 'Vacancy',
+            'Title' => 'Need IT Resources',
             'jobType' => 'IT',
             'jobDesc' => 'Taking care of Computer',
             'NumWorkforce' => 2,
@@ -36,19 +36,19 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'company_id' => 3,
-            'Title' => 'Job 2',
-            'jobType' => 'CS',
-            'jobDesc' => 'Taking care of customer',
-            'NumWorkforce' => 1,
+            'Title' => 'Need Sales',
+            'jobType' => 'Sales',
+            'jobDesc' => 'Sale our product',
+            'NumWorkforce' => 2,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
         ]);
 
         Vacancy::create([
             'company_id' => 3,
-            'Title' => 'Vacancy 2',
-            'jobType' => 'IT',
-            'jobDesc' => 'Taking care of Computer',
+            'Title' => 'Need Accountant',
+            'jobType' => 'Accounting',
+            'jobDesc' => 'Calculate every sales',
             'NumWorkforce' => 2,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
@@ -56,9 +56,9 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'company_id' => 4,
-            'Title' => 'Job 3',
-            'jobType' => 'CS',
-            'jobDesc' => 'Taking care of customer',
+            'Title' => 'Need Security Guard',
+            'jobType' => 'Security Guard',
+            'jobDesc' => 'security officers are tasked with securing the premises and personnel by staying on patrol',
             'NumWorkforce' => 10,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
@@ -66,9 +66,9 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'company_id' => 4,
-            'Title' => 'Vacancy 3',
-            'jobType' => 'IT',
-            'jobDesc' => 'Taking care of Computer',
+            'Title' => 'Need Personal Assistant',
+            'jobType' => 'Personal Assistant',
+            'jobDesc' => 'Work with CEO to manage everything',
             'NumWorkforce' => 2,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
@@ -76,8 +76,8 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'company_id' => 6,
-            'Title' => 'Job 4',
-            'jobType' => 'CS',
+            'Title' => 'Need IT Support',
+            'jobType' => 'IT support',
             'jobDesc' => 'Taking care of customer',
             'NumWorkforce' => 3,
             'Budget' => 'Rp. 500.000',
@@ -86,9 +86,9 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'company_id' => 6,
-            'Title' => 'Vacancy 4',
-            'jobType' => 'IT',
-            'jobDesc' => 'Taking care of Computer',
+            'Title' => 'Need Marketing',
+            'jobType' => 'Marketing',
+            'jobDesc' => 'Market',
             'NumWorkforce' => 2,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
@@ -96,19 +96,19 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'company_id' => 7,
-            'Title' => 'Job 5',
-            'jobType' => 'CS',
-            'jobDesc' => 'Taking care of customer',
-            'NumWorkforce' => 17,
+            'Title' => 'Need Writer',
+            'jobType' => 'Writer',
+            'jobDesc' => 'Write anything',
+            'NumWorkforce' => 7,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
         ]);
 
         Vacancy::create([
             'company_id' => 7,
-            'Title' => 'Vacancy 5',
-            'jobType' => 'IT',
-            'jobDesc' => 'Taking care of Computer',
+            'Title' => 'Need Copywriter',
+            'jobType' => 'Copywriter',
+            'jobDesc' => 'Copywriter',
             'NumWorkforce' => 4,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
@@ -116,9 +116,9 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'company_id' => 9,
-            'Title' => 'Job 6',
-            'jobType' => 'CS',
-            'jobDesc' => 'Taking care of customer',
+            'Title' => 'Need Web Developer',
+            'jobType' => 'IT',
+            'jobDesc' => 'Creating Web',
             'NumWorkforce' => 4,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
@@ -126,9 +126,9 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'company_id' => 9,
-            'Title' => 'Vacancy 6',
-            'jobType' => 'IT',
-            'jobDesc' => 'Taking care of Computer',
+            'Title' => 'Need Payroll Clerk',
+            'jobType' => 'Payroll Clerk',
+            'jobDesc' => 'Manage payment process',
             'NumWorkforce' => 2,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
@@ -136,9 +136,9 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'company_id' => 10,
-            'Title' => 'Job 7',
-            'jobType' => 'CS',
-            'jobDesc' => 'Taking care of customer',
+            'Title' => 'Need Cleaning Service',
+            'jobType' => 'Cleaning Service',
+            'jobDesc' => 'Clean all the office',
             'NumWorkforce' => 17,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
@@ -146,9 +146,9 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'company_id' => 10,
-            'Title' => 'Vacancy 7',
-            'jobType' => 'IT',
-            'jobDesc' => 'Taking care of Computer',
+            'Title' => 'Need Gardener',
+            'jobType' => 'Gardener',
+            'jobDesc' => 'Taking care of a garden',
             'NumWorkforce' => 4,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
@@ -156,9 +156,9 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'company_id' => 12,
-            'Title' => 'Job 8',
-            'jobType' => 'CS',
-            'jobDesc' => 'Taking care of customer',
+            'Title' => 'Need Designer',
+            'jobType' => 'Designer',
+            'jobDesc' => 'Design everything',
             'NumWorkforce' => 4,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'
@@ -166,9 +166,9 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'company_id' => 12,
-            'Title' => 'Vacancy 8',
-            'jobType' => 'IT',
-            'jobDesc' => 'Taking care of Computer',
+            'Title' => 'Need Musician',
+            'jobType' => 'Musician',
+            'jobDesc' => 'Produce music',
             'NumWorkforce' => 2,
             'Budget' => 'Rp. 500.000',
             'Requirement' => 'Must be Qualified'

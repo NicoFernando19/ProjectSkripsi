@@ -13,11 +13,13 @@
                 </div>
                 <div class="form-group">
                     <label for="NumOfWorkforce">Number of Available Workforces</label>
-                    <input type="number" v-model="model.NumOfWorkforce" class="form-control" id="NumOfWorkforce" placeholder="">
+                    <input type="number" v-model="model.NumOfWorkforce" class="form-control" id="NumOfWorkforce" placeholder="" min="1" required>
                 </div>
                 <div class="form-group">
                     <label for="price">Estimated Service Price</label>
-                    <input type="text" v-model="model.price" class="form-control" id="price" placeholder="Rp. ?">
+                    <b-input-group prepend="Rp." class="mb-2 mr-sm-2 mb-sm-0">
+                        <input type="number" v-model="model.price" class="form-control" id="price" placeholder="5000000" min="1" required>
+                    </b-input-group>
                 </div>
                 <div class="form-group">
                     <label for="specification">Offers</label>

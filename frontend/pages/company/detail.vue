@@ -108,7 +108,7 @@
             </strong>
           </div>
           <div class="col-md-6">
-            {{ JoinedCompany.price }}
+            Rp. {{ JoinedCompany.price }}
           </div>
         </div>
         <div class="row">

@@ -10,6 +10,7 @@
               <ul class="list-group pb-2">
                     <li class="list-group-item">Title: {{model.Title}}</li>
                     <li class="list-group-item">Job Function: {{model.jobType}}</li>
+                    <li class="list-group-item">Job Description: {{model.jobDesc}}</li>
                     <li class="list-group-item">Workforce Needed: {{model.NumWorkforce}}</li>
                     <li class="list-group-item">Budget: {{model.Budget}}</li>
                     <li class="list-group-item">Specification: {{model.Requirement}}</li>

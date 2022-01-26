@@ -45,7 +45,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company.png',
+            'imgName' => 'company2.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
@@ -63,7 +63,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company.png',
+            'imgName' => 'company3.png',
             'company_type_id' => 3,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
@@ -81,7 +81,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company.png',
+            'imgName' => 'company4.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
@@ -99,7 +99,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company.png',
+            'imgName' => 'company5.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
@@ -117,7 +117,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company.png',
+            'imgName' => 'company6.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
@@ -135,7 +135,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company.png',
+            'imgName' => 'company7.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
@@ -153,7 +153,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company.png',
+            'imgName' => 'company8.png',
             'company_type_id' => 1,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
@@ -171,7 +171,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company.png',
+            'imgName' => 'company9.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
@@ -189,7 +189,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company.png',
+            'imgName' => 'company10.png',
             'company_type_id' => 1,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
@@ -207,7 +207,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company.png',
+            'imgName' => 'company11.png',
             'company_type_id' => 1,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
@@ -225,7 +225,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company.png',
+            'imgName' => 'company12.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
