@@ -110,7 +110,7 @@
                 </div>
               </div>
                 <div class="input-group">
-				          <button type="submit" id="submitBtn" class="btn">Register</button>
+				          <button type="submit" id="submitBtn" class="btn btn-primary">Register</button>
 			          </div>
                 <p class="login-register-text d-flex justify-content-center">Already have an account? <NuxtLink to="/Login" class="pl-1">Login Here</NuxtLink></p>
             </form>

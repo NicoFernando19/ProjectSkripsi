@@ -139,6 +139,7 @@ export default {
         let result = await VacancyService.GetVacancyById(this.model.vacancy)
         if (result.status == 200) {
             this.model.jobFunction = result.data.jobType
+            this.model.jobDesc = result.data.jobDesc
         } else {
             Toast.showToast("Load Data", "There is some error in the server", "danger");
         }

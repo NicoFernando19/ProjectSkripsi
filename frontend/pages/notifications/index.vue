@@ -33,7 +33,7 @@
                 </template> 
                 <template #cell(vacancy_links)="row">
                     <b-button size="sm" @click="toVacancy(row.item.vacancyLink, row.item.id)" class="mr-2">
-                        Go to Vacancy
+                        Go to
                     </b-button>
                 </template>    
             </b-table>
