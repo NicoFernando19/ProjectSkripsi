@@ -18,6 +18,8 @@ export default async function({ redirect }) {
                 Cookie.remove("authUserName");
                 Cookie.remove("authCompanyName");
                 Cookie.remove("authRole");
+                Cookie.remove("authLastLogin");
+                Cookie.remove("authimgName");
             }
             return redirect("/Login")
         })

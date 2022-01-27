@@ -1,7 +1,7 @@
 <template>
 <div>
   <b-navbar toggleable="lg" type="dark" variant="primary">
-    <b-navbar-brand href="/company/home">NavBar</b-navbar-brand>
+    <b-navbar-brand href="/company/home">OutWeb</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -48,8 +48,20 @@
           <template class="text-white" #button-content>
             <span class="comp-name">{{ model.email }}</span>
           </template>
-          <b-dropdown-item href="#" @click="toProfile()">Profile</b-dropdown-item>
-          <b-dropdown-item href="#" @click="LogOut()">Sign Out</b-dropdown-item>
+          <div class="d-flex justify-content-center">
+              <img class="card-img-top p-2" :src="model.imgName" style="height:80px;object-fit: contain;" alt="Card image cap">
+            </div>
+            <div class="card-body">
+              <p>
+                <small>
+                  Last Login {{ model.lastLogin }}
+                </small>
+              </p>
+            </div>
+            <div class="d-flex">
+              <b-dropdown-item href="#" @click="toProfile()">Profile</b-dropdown-item>
+              <b-dropdown-item href="#" @click="LogOut()">Sign Out</b-dropdown-item>
+            </div>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -61,6 +73,8 @@
 import Cookie from 'js-cookie'
 import NotificationServices from '../store/services/notificationServices/notification'
 import Toast from '../store/features/notificationToast/toast'
+import Moment from 'moment'
+import Config from '../static/config'
 
 export default {
   name: 'Navbar',
@@ -73,7 +87,9 @@ export default {
     notifCount: 0,
     interval: null,
     model: {
-      email: ""
+      email: "",
+      imgName: "",
+      lastLogin: ""
     }
   }),
   beforeDestroy () {
@@ -83,6 +99,8 @@ export default {
     async getAuth() {
       if (Cookie.get("authToken") != null) {
         this.model.email = Cookie.get("authName");
+        this.model.lastLogin = Moment(String(Cookie.get('authLastLogin'))).format('LLLL')
+        this.model.imgName = `${Config.API}${Config.StoragePathUrl}/${Cookie.get('authimgName')}`
         this.auth = true;
         await this.getNotif();
       } else {
@@ -96,6 +114,8 @@ export default {
       Cookie.remove("authUserName");
       Cookie.remove("authCompanyName");
       Cookie.remove("authRole");
+      Cookie.remove("authLastLogin");
+      Cookie.remove("authimgName");
       this.auth = false;
       this.$router.push({ path: "/Login" });
     },

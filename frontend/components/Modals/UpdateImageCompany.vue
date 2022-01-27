@@ -35,6 +35,7 @@
 import VueElementLoading from "vue-element-loading";
 import Toast from '../../store/features/notificationToast/toast'
 import CompanyService from '../../store/services/companyServices/company'
+import Cookie from 'js-cookie'
 
 export default {
     name: "HistoryCompany",
@@ -79,6 +80,11 @@ export default {
             this.form.id = this.data.id
             let res = await CompanyService.UpdateCompanyImage(this.form)
             if (res.status == 200) {
+                Cookie.remove("authimgName");
+                Cookie.set("authimgName", res.data.imgName, { expires: 1 });
+                if (this.$root.$children[2].$refs.navbar != null) {
+                    await this.$root.$children[2].$refs.navbar.getAuth();
+                }
                 this.$bvModal.hide(this.id)
                 this.$parent.getData()
             } else {

@@ -8,6 +8,7 @@ export default  {
 
     // STORAGE
     StorageUrl: "http://localhost:8000/storage/uploads",
+    StoragePathUrl: "/storage/uploads",
 
     // COMPANY
     ListCompany: "/api/company/list",

@@ -121,6 +121,8 @@ export default {
             Cookie.set("authCompanyName", res.data.user.companyName, { expires: 1 });
             Cookie.set("authUserName", res.data.user.username, { expires: 1 });
             Cookie.set("authRole", res.data.user.companyRoles, { expires: 1 });
+            Cookie.set("authLastLogin", res.data.user.lastLogin, { expires: 1 });
+            Cookie.set("authimgName", res.data.user.imgName, { expires: 1 });
             Toast.showToast("Login Verification","Login Success", "success");
             if (res.data.user.companyRoles == "Business Owner") {
               this.$router.push({ path: "company/Home" });
