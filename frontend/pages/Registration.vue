@@ -207,12 +207,16 @@ export default {
       this.has_special   = /[!@#\$%\^\&*\)\(+=._-]/.test(password);
       if (this.has_number && this.has_lowercase && this.has_uppercase && this.has_special && this.has_minimum_lenth) {
         this.isTrue = true
+        this.passwordRule = [];
+        this.passwordInvalid = false;
       } else {
         this.isTrue = false
       }
-      this.passwordRules = ["Password does not match!"]
-      this.passwordMatch = false
-      this.passwordUnmatch = true
+      if (password != this.model.password_confirmation) {
+        this.passwordRules = ["Password does not match!"]
+        this.passwordMatch = false
+        this.passwordUnmatch = true
+      }
     },
     "model.password_confirmation": function(value) {
       const pattern = this.model.password;
