@@ -216,6 +216,51 @@ class ContractController extends Controller
         }
     }
 
+    public function updateStatus(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'status' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            $return = [
+                'error' => $validator->errors()
+            ];
+            return response()->json($return, 400);
+        }
+
+        try{
+            $data = Contract::find($id);
+            $data->update($request->all());
+
+            foreach(Auth::user()->Roles as $role) {
+                if ($role->role_name != 'Business Owner') {
+                    $company = Company::find($data->vendor_id);
+        
+                    $notification = Notification::create([
+                        'type' => 'Updated Contract',
+                        'company_id' => $data->company_id,
+                        'data' => $company->CompanyType->type_name.' '.$company->name.' has rejected the contract',
+                        'vacancyLink' => '/contract/list'
+                    ]);
+                } else {
+                    $company = Company::find($data->company_id);
+        
+                    $notification = Notification::create([
+                        'type' => 'Updated Contract',
+                        'company_id' => $data->vendor_id,
+                        'data' => $company->CompanyType->type_name.' '.$company->name.' has cancelled the contract',
+                        'vacancyLink' => '/contract/list'
+                    ]);
+                }
+            }
+
+            return response()->json($data, 200);
+        }catch (Exception $error) {
+            return response()->json($error, 500);
+        }
+    }
+
     public function destroy($id)
     {
         try{

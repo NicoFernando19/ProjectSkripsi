@@ -24,7 +24,7 @@ class CompanyController extends Controller
         if (!empty($request->name) || $request->get("company_type") != "0") {
             $name = $request->get("name");
             $companyType = $request->get("company_type");
-            $datas = Company::with('Roles')
+            $datas = Company::with(['Roles', 'CompanyType'])
                         ->where('id', '!=', Auth::id())
                         ->where("name", "LIKE", "%$name%")
                         ->get();
@@ -34,9 +34,15 @@ class CompanyController extends Controller
                 });
                 $datas = $data->all();
             }
+            foreach ($datas as $key => $user) {
+                $user['companyName'] = $user->CompanyType->type_name.' '.$user->name;
+            }
             $datas = app('App\Http\Controllers\PaginationController')->paginate($datas, 9);
         }else {
-            $datas = Company::where('id', '!=', Auth::id())->paginate(9);
+            $datas = Company::with(['Roles', 'CompanyType'])->where('id', '!=', Auth::id())->paginate(9);
+            foreach ($datas as $key => $user) {
+                $user['companyName'] = $user->CompanyType->type_name.' '.$user->name;
+            }
         }
         $data = [
             'data' => $datas

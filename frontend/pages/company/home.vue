@@ -90,6 +90,7 @@ export default {
     async getCompanies() {
       this.showLoader(true);
       let res = await CompanyServices.listCompany(this.data, this.currentPage, this.data.company_type);
+      console.log(res)
       if (res.status == 200){
         Toast.showToast("Load Data","Load Data Successfully", "success");
         this.companies = res.data.data.data;

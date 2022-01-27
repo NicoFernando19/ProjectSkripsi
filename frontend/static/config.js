@@ -55,6 +55,7 @@ export default  {
     DetailContract: "/api/contract/detail",
     UpdateDocumentContract: "/api/contract/update-document",
     UpdateContract: "/api/contract/update",
+    UpdateStatusContract: "/api/contract/update-status",
     DeleteContract: "/api/contract/delete",
 
     // WORK HISTORY

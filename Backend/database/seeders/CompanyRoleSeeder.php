@@ -73,5 +73,40 @@ class CompanyRoleSeeder extends Seeder
             'company_id' => 12,
             'role_id' => 3
         ]);
+
+        CompanyRole::create([
+            'company_id' => 13,
+            'role_id' => 2
+        ]);
+
+        CompanyRole::create([
+            'company_id' => 14,
+            'role_id' => 2
+        ]);
+
+        CompanyRole::create([
+            'company_id' => 15,
+            'role_id' => 2
+        ]);
+
+        CompanyRole::create([
+            'company_id' => 16,
+            'role_id' => 3
+        ]);
+
+        CompanyRole::create([
+            'company_id' => 17,
+            'role_id' => 3
+        ]);
+
+        CompanyRole::create([
+            'company_id' => 18,
+            'role_id' => 2
+        ]);
+
+        CompanyRole::create([
+            'company_id' => 19,
+            'role_id' => 2
+        ]);
     }
 }

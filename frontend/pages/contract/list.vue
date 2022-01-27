@@ -28,17 +28,27 @@
                 :items="items" 
                 :fields="fields" class="mt-3">
                 <template #cell(status)="row">
-                    <span :class="['border', 'rounded', 'px-2 py-1', row.item.status == 'Approved' ? 'text-white border-success bg-success' : row.item.status == 'Revise' ? 'text-white border-third bg-third' : 'text-white border-secondary bg-secondary']">
-                        {{ row.item.status == 'Approved' ? 'Approved' : row.item.status == "Revise" ? "Revise" : 'Waiting' }}
+                    <span :class="['border', 'rounded', 'px-2 py-1', row.item.status == 'Approved' ? 'text-white border-success bg-success' : row.item.status == 'Revise' ? 'text-white border-third bg-third' : row.item.status == 'Reject' ? 'text-white border-danger bg-danger' : row.item.status == 'Cancel' ? 'text-white border-danger bg-danger' : 'text-white border-secondary bg-secondary']">
+                        {{ row.item.status == 'Approved' ? 'Approved' : row.item.status == "Revise" ? "Revise" : row.item.status == "Cancel" ? 'Cancel' : row.item.status == "Reject" ? 'Rejected' : 'Waiting' }}
                     </span>
                 </template>
                 <template #cell(contract_details)="row">
-                    <b-button size="sm" @click="toDetail(row.item.id)" class="mr-2">
+                    <b-button size="sm" variant="info" @click="toDetail(row.item.id)" class="mr-2">
                         <font-awesome-icon :icon="['fas', 'file-alt']"/>
                     </b-button>
-                    <b-button size="sm" @click="toEdit(row.item.id)" class="mr-2" v-show="row.item.status != 'Approved'">
+                    <b-button size="sm" variant="warning" @click="toEdit(row.item.id)" :class="{'mr-2' : true, 'd-none' : (row.item.status == 'Reject' || row.item.status == 'Cancel') }" v-show="row.item.status != 'Approved'">
                         <font-awesome-icon :icon="['fas', 'edit']"/>
                     </b-button>
+                </template>
+                <template #cell(action)="row">
+                    <div v-show="!(row.item.status == 'Reject' || row.item.status == 'Cancel')">
+                        <b-button size="sm" variant="danger" @click="toChangeStat(row.item.id, 'Cancel')" class="mr-2" v-show="role == 'Business Owner'">
+                            Cancel
+                        </b-button>
+                        <b-button size="sm" variant="danger" @click="toChangeStat(row.item.id, 'Reject')" class="mr-2" v-show="role == 'Vendor'">
+                            Reject
+                        </b-button>
+                    </div>
                 </template>   
             </b-table>
 
@@ -118,11 +128,20 @@ export default {
               key: 'status'
           },
           {
-              key: 'contract_details'
+              key: 'contract_details',
+              label: 'Contract Action'
+          },
+          {
+              key: 'action',
+              label: 'Action'
           }
         ],
         data: {
             vendor:''
+        },
+        model: {
+            id: '',
+            status: ''
         },
         currentPage: 1,
         total: 0,
@@ -173,6 +192,16 @@ export default {
             this.$router.push({
                 path: `/contract/edit?id=${value}`
             })
+        },
+        async toChangeStat(id,value) {
+            this.model.id = id;
+            this.model.status = value
+            let result = await ContractService.UpdateStatusContract(this.model)
+            if (result.status == 200) {
+                await this.getContracts();
+            }else{
+                Toast.showToast("Update Data","Failed on server", "danger");
+            }
         }
     }
 }

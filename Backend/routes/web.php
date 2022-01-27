@@ -80,6 +80,7 @@ $router->group(['prefix' => 'api'], function () use ($router)
     $router->get('contract/detail/{id}', ['uses' => 'ContractController@showById']);
     $router->post('contract/update-document/{id}', ['uses' => 'ContractController@updateDocument']);
     $router->put('contract/update/{id}', ['uses' => 'ContractController@update']);
+    $router->put('contract/update-status/{id}', ['uses' => 'ContractController@updateStatus']);
     $router->delete('contract/delete/{id}', ['uses' => 'ContractController@destroy']);
 
     // WORK HISTORY
