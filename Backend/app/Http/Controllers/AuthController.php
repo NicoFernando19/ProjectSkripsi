@@ -44,16 +44,20 @@ class AuthController extends Controller
     public function Register(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'role_id' => 'required|integer|min:1',
             'username' => 'required|string',
             'address' => 'required|string',
             'name' => 'required|string',
             'city' => 'required|string',
             'zip' => 'required|string',
             'state' => 'required|string',
-            'email' => 'required|string|email',
+            'email' => 'required|string|email|unique:companies',
             'Industri' => 'required|string',
-            'password' => 'required|string|confirmed',
-            'company_type_id' => 'required'
+            'password' => 'required|string|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
+            'company_type_id' => 'required|integer|min:1'
+        ], [
+            'role_id.min' => 'Register as is required.',
+            'company_type_id.min' => 'Company Type is required.'
         ]);
 
         if($validator->fails()){

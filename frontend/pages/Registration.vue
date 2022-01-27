@@ -44,7 +44,7 @@
                       </div>
                       <div class="form-group col-md-12">
                           <label for="inputPassword4">Password</label>
-                          <input type="password" :class="['form-control', isTrue ? 'is-valid' : '']" v-model="model.password" id="inputPassword4" placeholder="Password">
+                          <input type="password" :class="{'form-control' : true, 'is-valid': isTrue, 'is-invalid': passwordInvalid}" v-model="model.password" id="inputPassword4" placeholder="Password" required>
                           <small id="passwordHelp" :class="['form-text', 'text-muted', isTrue ? 'd-none' : 'd-block']">Password should contain 
                             <span :class="has_minimum_lenth ? 'd-none' : ''">atleast 8 characters,</span> 
                             <span :class="has_lowercase ? 'd-none' : ''">one lowercase letter,</span>
@@ -52,6 +52,9 @@
                             <span :class="has_number ? 'd-none' : ''">One number,</span>
                             <span :class="has_special ? 'd-none' : ''">and one special character.</span>
                           </small>
+                          <div class="invalid-feedback" v-for="error in passwordRule" :key="error">
+                            {{ error }}
+                          </div>
                       </div>
                   </div>
 
@@ -74,12 +77,15 @@
                   </div>
                   <div class="form-group">
                       <label for="companyType">Company Type</label>
-                      <select v-model="model.company_type_id" id="companyType" class="form-control" required>
+                      <select v-model="model.company_type_id" id="companyType" :class="{'form-control' : true, 'is-valid': CompanyTypeSelected, 'is-invalid': CompanyTypeUnselected}" required>
                           <option value="0" selected>Choose...</option>
                           <option v-for="type in companyTypes" :key="type.id" :value="type.id">
                             {{ type.type_name }}
                           </option>
                       </select>
+                      <div class="invalid-feedback" v-for="error in companyTypeRules" :key="error">
+                        {{ error }}
+                      </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-md-6">
@@ -163,9 +169,16 @@ export default {
     passwordUnmatch: false,
     passwordRules: [],
 
+    passwordInvalid: false,
+    passwordRule: [],
+
     TypeSelected: false,
     TypeUnselected: false,
     companyRules: [],
+
+    CompanyTypeSelected: false,
+    CompanyTypeUnselected: false,
+    companyTypeRules: [],
   }),
   watch: {
     "model.email": function(mail) {
@@ -187,21 +200,24 @@ export default {
       }
     },
     "model.password": function(password) {
-      this.has_minimum_lenth = (password.length > 8);
-      console.log("MIN "+ this.has_minimum_lenth)
+      this.has_minimum_lenth = (password.length >= 8);
       this.has_number    = /\d/.test(password);
       this.has_lowercase = /[a-z]/.test(password);
       this.has_uppercase = /[A-Z]/.test(password);
       this.has_special   = /[!@#\$%\^\&*\)\(+=._-]/.test(password);
       if (this.has_number && this.has_lowercase && this.has_uppercase && this.has_special && this.has_minimum_lenth) {
         this.isTrue = true
+      } else {
+        this.isTrue = false
       }
+      this.passwordRules = ["Password does not match!"]
+      this.passwordMatch = false
+      this.passwordUnmatch = true
     },
     "model.password_confirmation": function(value) {
       const pattern = this.model.password;
       if (pattern != value) {
         this.passwordRules = ["Password does not match!"]
-        console.log(this.passwordRules)
         this.passwordMatch = false
         this.passwordUnmatch = true
       } else {
@@ -217,6 +233,16 @@ export default {
       } else {
         this.TypeUnselected = false
         this.TypeSelected = true
+      }
+    },
+    "model.company_type_id": function(value) {
+      if (value == "0") {
+        this.companyTypeRules = ["Company Type is required"]
+        this.CompanyTypeUnselected = true
+        this.CompanyTypeSelected = false
+      } else {
+        this.CompanyTypeUnselected = false
+        this.CompanyTypeSelected = true
       }
     }
   },
@@ -268,6 +294,27 @@ export default {
             Toast.showToast("Registration", "Registration Success!", "success");
             this.$router.push({ path: "/Login" });
         } else {
+            console.log(res)
+            if (res.data.errors.role_id) {
+              this.companyRules = res.data.errors.role_id
+              this.TypeUnselected = true
+              this.TypeSelected = false
+            }
+            if (res.data.errors.company_type_id) {
+              this.companyTypeRules = res.data.errors.company_type_id
+              this.CompanyTypeUnselected = true
+              this.CompanyTypeSelected = false
+            }
+            if (res.data.errors.email) {
+              this.emailRules = res.data.errors.email;
+              this.valid = false;
+              this.invalid = true;
+            }
+            if (res.data.errors.password) {
+              this.passwordRule = res.data.errors.password;
+              this.isTrue = false;
+              this.passwordInvalid = true;
+            }
             Toast.showToast("Registration", "Invalid Data!", "danger");
         }
       this.showLoader(false)
