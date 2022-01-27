@@ -28,7 +28,6 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
         'name',
         'username', 
         'email', 
-        'DoB',
         'roles',
         'phoneNumber',
         'TanggalBerdiri',
@@ -46,7 +45,6 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
         'zip',
         'imgName',
         'lastLogin',
-        'isActive',
         'password'
     ];
 

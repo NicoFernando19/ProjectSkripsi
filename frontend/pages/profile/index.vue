@@ -130,7 +130,6 @@ export default {
         name: '',
         username: '', 
         email: '', 
-        DoB: '',
         roles: '',
         phoneNumber: '',
         TanggalBerdiri: '',
@@ -195,7 +194,6 @@ export default {
       this.model.username = result.data.username;
       this.model.email = result.data.email;
       this.mailtoMail = `mailto:${this.model.email}`;
-      this.model.DoB = result.data.DoB;
       this.model.roles = result.data.roleName;
       this.model.phoneNumber = result.data.phoneNumber;
       this.model.TanggalBerdiri = Moment(String(result.data.TanggalBerdiri)).format('D MMMM YYYY');

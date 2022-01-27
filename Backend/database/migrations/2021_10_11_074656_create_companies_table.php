@@ -18,7 +18,6 @@ class CreateCompaniesTable extends Migration
             $table->string("username");
             $table->string('name');
             $table->string('email')->unique();
-            $table->date("DoB")->nullable();
             $table->string("roles")->nullable();
             $table->string("phoneNumber")->nullable();
             $table->date("TanggalBerdiri")->nullable();

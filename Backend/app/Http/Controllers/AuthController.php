@@ -37,6 +37,9 @@ class AuthController extends Controller
                 'message' => 'Incorrect Password or Email'
             ], 400);
         }
+        Auth::user()->update([
+            'lastLogin' => Carbon::now()
+        ]);
         return $this->respondWithToken($token);
     }
 
