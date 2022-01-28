@@ -1,5 +1,6 @@
 export default  {
-    API: "http://localhost:8000",
+    // API: "http://localhost:8000",
+    API: "https://apithesis.herokuapp.com",
     Login: "/api/login",
     Register: "/api/register",
     ApiStats: "/api/stats",
@@ -7,7 +8,7 @@ export default  {
     ResetPassword: "/api/password/reset",
 
     // STORAGE
-    StorageUrl: "http://localhost:8000/storage/uploads",
+    StorageUrl: "https://apithesis.herokuapp.com/storage/uploads",
     StoragePathUrl: "/storage/uploads",
 
     // COMPANY
