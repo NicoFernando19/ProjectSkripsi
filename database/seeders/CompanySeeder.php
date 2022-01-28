@@ -47,7 +47,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company2.png',
+            'imgName' => 'Company2.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
@@ -180,7 +180,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company16.png',
+            'imgName' => 'Company16.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
@@ -294,7 +294,7 @@ class CompanySeeder extends Seeder
             'SubIndustri' => 'Sub Industri',
             'about' => 'This is company details',
             'address' => 'This is company address',
-            'imgName' => 'company21.png',
+            'imgName' => 'Company21.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
             'country' => 'Indonesia'
