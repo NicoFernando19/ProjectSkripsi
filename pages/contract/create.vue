@@ -44,7 +44,8 @@
                 </div>
                 <div class="form-group">
                     <label for="document">Document</label>
-                    <b-form-file class="form-control-file" id="document" @change="onChange" required></b-form-file>
+                    <b-form-file class="form-control-file" id="document" @change="onChange" accept="application/pdf" required></b-form-file>
+                    <small class="form-text text-info">PDF only</small>
                 </div>
                 <div class="space"></div>
                 <button type="submit" id="submitBtn" class="btn btn-primary center-btn">Submit</button>
