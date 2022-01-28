@@ -128,7 +128,6 @@ export default {
             this.showLoader(true)
             this.model.id = this.$route.query['id']
             let result = await ContractService.GetContractById(this.model)
-            console.log(result.data)
             if (result.status = 200) {
                 this.loadData(result.data)
             } else {
@@ -145,7 +144,7 @@ export default {
             this.model.vendorName = result.vendor.name
             this.model.startDate = Moment(String(result.start_date)).format('D MMMM YYYY')
             this.model.endDate = Moment(String(result.end_date)).format('D MMMM YYYY')
-            this.model.document = Config.StorageUrl + result.document
+            this.model.document = `${Config.StorageUrl}/${result.document}`
         }
     }
 }
