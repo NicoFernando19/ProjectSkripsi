@@ -38,7 +38,7 @@ return [
             'transport' => 'smtp',
             'host' => env('MAIL_HOST', 'smtp-mail.outlook.com'),
             'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME', 'fortesting1981@outlook.com'),
             'password' => env('MAIL_PASSWORD', 'testing198!'),
             'timeout' => null,
@@ -84,8 +84,8 @@ return [
     */
 
     'from' => [
-        'address' => env('fortesting1981@outlook.com'),
-        'name' => env('fortesting1981@outlook.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'fortesting1981@outlook.com'),
+        'name' => env('MAIL_FROM_NAME', 'fortesting1981@outlook.com'),
     ],
 
     /*
