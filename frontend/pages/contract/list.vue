@@ -40,7 +40,7 @@
                         <font-awesome-icon :icon="['fas', 'edit']"/>
                     </b-button>
                 </template>
-                <template #cell(action)="row">
+                <!-- <template #cell(action)="row">
                     <div v-show="!(row.item.status == 'Reject' || row.item.status == 'Cancel')">
                         <b-button size="sm" variant="danger" @click="toChangeStat(row.item.id, 'Cancel')" class="mr-2" v-show="role == 'Business Owner'">
                             Cancel
@@ -49,7 +49,7 @@
                             Reject
                         </b-button>
                     </div>
-                </template>   
+                </template>    -->
             </b-table>
 
             <div class="container d-flex justify-content-center">
@@ -131,10 +131,10 @@ export default {
               key: 'contract_details',
               label: 'Contract Action'
           },
-          {
-              key: 'action',
-              label: 'Action'
-          }
+        //   {
+        //       key: 'action',
+        //       label: 'Action'
+        //   }
         ],
         data: {
             vendor:''

@@ -15,12 +15,15 @@ class RoleSeeder extends Seeder
     public function run()
     {
         Role::create([
+            "id" => 1,
             "role_name" => "Admin"
         ]);
         Role::create([
+            "id" => 2,
             "role_name" => "Vendor"
         ]);
         Role::create([
+            "id" => 3,
             "role_name" => "Business Owner"
         ]);
     }
