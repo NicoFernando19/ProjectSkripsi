@@ -82,6 +82,7 @@
 import ContractService from "../../store/services/contractServices/contract"
 import Toast from '../../store/features/notificationToast/toast'
 import VueElementLoading from "vue-element-loading"
+import Config from "../../static/config"
 import Moment from "moment"
 
 export default {
@@ -144,7 +145,7 @@ export default {
             this.model.vendorName = result.vendor.name
             this.model.startDate = Moment(String(result.start_date)).format('D MMMM YYYY')
             this.model.endDate = Moment(String(result.end_date)).format('D MMMM YYYY')
-            this.model.document = "http://localhost:8000/storage/uploads/" + result.document
+            this.model.document = Config.StorageUrl + result.document
         }
     }
 }
