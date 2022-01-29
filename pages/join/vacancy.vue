@@ -22,7 +22,7 @@
                     </b-input-group>
                 </div>
                 <div class="form-group">
-                    <label for="specification">Offers</label>
+                    <label for="specification">Requirements</label>
                     <textarea class="form-control" v-model="model.specification" id="specification" rows="6"></textarea>
                 </div>
                 <button type="submit" id="submitBtn" class="btn btn-primary center-btn">Next</button>
