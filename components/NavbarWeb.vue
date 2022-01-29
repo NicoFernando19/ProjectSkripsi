@@ -92,9 +92,9 @@ export default {
       lastLogin: ""
     }
   }),
-  beforeDestroy () {
-	  clearInterval(this.interval)
-  },
+  // beforeDestroy () {
+	//   clearInterval(this.interval)
+  // },
   methods: {
     async getAuth() {
       if (Cookie.get("authToken") != null) {
@@ -127,29 +127,27 @@ export default {
       this.$router.push({ path: `/notifications` })
     },
     async getNotif() {
-      this.interval = setInterval(async () => {
-        let result = await NotificationServices.listNotification();
-        if (result.status == 200) {
-          if (result.data.data.length == 0) {
-            this.notification = [
-            {
-              id: 1,
-              data: 'There are no notifications to display'
-            }]
-            this.notifCount = result.data.total;
-          }else {
-            this.notification = result.data.data;
-            this.notifCount = result.data.total;
-          }
-        } else {
+      let result = await NotificationServices.listNotification();
+      if (result.status == 200) {
+        if (result.data.data.length == 0) {
           this.notification = [
-            {
-              id: 1,
-              data: 'There are some error in the server'
-            }]
-          this.notifCount = 0;
+          {
+            id: 1,
+            data: 'There are no notifications to display'
+          }]
+          this.notifCount = result.data.total;
+        }else {
+          this.notification = result.data.data;
+          this.notifCount = result.data.total;
         }
-      }, 300000)
+      } else {
+        this.notification = [
+          {
+            id: 1,
+            data: 'There are some error in the server'
+          }]
+        this.notifCount = 0;
+      }
     }, 
     roleCompany() {
         const value = `; ${document.cookie}`;
