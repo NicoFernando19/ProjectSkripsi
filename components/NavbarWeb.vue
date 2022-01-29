@@ -149,7 +149,7 @@ export default {
             }]
           this.notifCount = 0;
         }
-      }, 1000)
+      }, 300000)
     }, 
     roleCompany() {
         const value = `; ${document.cookie}`;
