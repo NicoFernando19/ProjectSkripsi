@@ -33,10 +33,10 @@
                     </span>
                 </template>
                 <template #cell(contract_details)="row">
-                    <b-button size="sm" variant="info" @click="toDetail(row.item.id)" class="mr-2">
+                    <b-button size="sm" variant="info" @click="toDetail(row.item.id)" title="Detail Contract" class="mr-2">
                         <font-awesome-icon :icon="['fas', 'file-alt']"/>
                     </b-button>
-                    <b-button size="sm" variant="warning" @click="toEdit(row.item.id)" :class="{'mr-2' : true, 'd-none' : (row.item.status == 'Reject' || row.item.status == 'Cancel') }" v-show="row.item.status != 'Approved'">
+                    <b-button size="sm" variant="warning" @click="toEdit(row.item.id)" title="Edit Contract" :class="{'mr-2' : true, 'd-none' : (row.item.status == 'Reject' || row.item.status == 'Cancel') }" v-show="row.item.status != 'Approved'">
                         <font-awesome-icon :icon="['fas', 'edit']"/>
                     </b-button>
                 </template>
