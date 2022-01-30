@@ -12,7 +12,7 @@
         <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />
         <div class="form-group text-right">
           <label class="btn btn-success">Change Document
-              <input type="file" @change="onChange" name="file" id="image" style="visibility:hidden; position: absolute;">
+              <input type="file" @change="onChange" name="file" accept="application/pdf" id="image" style="visibility:hidden; position: absolute;">
           </label>
         </div>
         <div class="form-group">
