@@ -88,7 +88,8 @@ export default {
             formatter: 'formatDate'
           },
           {
-              key: 'vacancy_links'
+              key: 'vacancy_links',
+              label: 'Action'
           }
         ],
         data: {
