@@ -44,7 +44,10 @@
                     <textarea v-model="model.Requirement" class="form-control" id="Requirement" rows="3"></textarea>
                 </div>
                 <div class="space"></div>
-                <button type="submit" id="submitBtn" class="btn btn-primary center-btn">Submit</button>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-secondary" @click="goBack()">Back</button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary ml-auto">Submit</button>
+                </div>
             </form>
            
         </div>
@@ -95,6 +98,11 @@ export default {
         } else {
             Toast.showToast("Add Vacancy", "Invalid Data!", "danger");
         }
+    },
+    goBack() {
+        this.$router.push({
+            path: '/vacancy/view'
+        })
     }
   }
 }

@@ -48,7 +48,10 @@
                     <small class="form-text text-info">PDF only</small>
                 </div>
                 <div class="space"></div>
-                <button type="submit" id="submitBtn" class="btn btn-primary center-btn">Submit</button>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-secondary" @click="goBack()">Back</button>
+                    <button type="submit" id="submitBtn" class="btn btn-primary ml-auto">Submit</button>
+                </div>
             </form>
             
         </div>
@@ -154,6 +157,11 @@ export default {
             this.vacancyParam = true;
         }
         this.showLoader(false)
+    },
+    goBack() {
+        this.$router.push({
+            path: '/contract/list'
+        })
     }
   }
 }
