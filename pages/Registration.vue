@@ -10,7 +10,7 @@
             <form @submit.stop.prevent="register()">
               <div class="row">
                 <div class="form-group col-md-12">
-                  <label for="companyRole">Register as</label>
+                  <label for="companyRole">Register as <span class="text-danger">*</span></label>
                   <select v-model="model.role_id" id="companyType" :class="{'form-control' : true, 'is-valid': TypeSelected, 'is-invalid': TypeUnselected}" required>
                       <option value="0" selected>Choose...</option>
                       <option value="2">Outsourcing Provider</option>
@@ -25,7 +25,7 @@
                 <div class="col-6">
                   <div class="form-row">
                       <div class="form-group col-md-12">
-                          <label for="inputEmail4">Email</label>
+                          <label for="inputEmail4">Email <span class="text-danger">*</span></label>
                           <input type="email" :class="{ 'form-control': true , 'is-invalid': invalid , 'is-valid': valid}"
                               v-model="model.email"
                               :rules="emailRules"
@@ -35,15 +35,15 @@
                           </div>
                       </div>
                       <div class="form-group col-md-12">
-                          <label for="name">Company Name</label>
+                          <label for="name">Company Name <span class="text-danger">*</span></label>
                           <input type="text" class="form-control" v-model="model.name" id="name" placeholder="Company Name" required>
                       </div>
                       <div class="form-group col-md-12">
-                          <label for="Industry">Industry</label>
+                          <label for="Industry">Industry <span class="text-danger">*</span></label>
                           <input type="text" class="form-control" v-model="model.Industri" id="Industry" placeholder="Industry" required>
                       </div>
                       <div class="form-group col-md-12">
-                          <label for="inputPassword4">Password</label>
+                          <label for="inputPassword4">Password <span class="text-danger">*</span></label>
                           <input type="password" :class="{'form-control' : true, 'is-valid': isTrue, 'is-invalid': passwordInvalid}" v-model="model.password" id="inputPassword4" placeholder="Password" required>
                           <small id="passwordHelp" :class="['form-text', 'text-muted', isTrue ? 'd-none' : 'd-block']">Password should contain 
                             <span :class="has_minimum_lenth ? 'd-none' : ''">atleast 8 characters,</span> 
@@ -72,11 +72,11 @@
                       </div>
                   </div>
                   <div class="form-group">
-                      <label for="inputAddress">Address</label>
+                      <label for="inputAddress">Address <span class="text-danger">*</span></label>
                       <input type="text" class="form-control" v-model="model.address" id="inputAddress" placeholder="1234 Main St">
                   </div>
                   <div class="form-group">
-                      <label for="companyType">Company Type</label>
+                      <label for="companyType">Company Type <span class="text-danger">*</span></label>
                       <select v-model="model.company_type_id" id="companyType" :class="{'form-control' : true, 'is-valid': CompanyTypeSelected, 'is-invalid': CompanyTypeUnselected}" required>
                           <option value="0" selected>Choose...</option>
                           <option v-for="type in companyTypes" :key="type.id" :value="type.id">
@@ -89,11 +89,11 @@
                   </div>
                   <div class="form-row">
                       <div class="form-group col-md-6">
-                      <label for="inputCity">City</label>
+                      <label for="inputCity">City <span class="text-danger">*</span></label>
                       <input type="text" class="form-control" v-model="model.city" id="inputCity" required>
                       </div>
                       <div class="form-group col-md-4">
-                      <label for="inputState">State</label>
+                      <label for="inputState">State <span class="text-danger">*</span></label>
                       <select v-model="model.state" id="inputState" class="form-control" required>
                           <option selected>Choose...</option>
                           <option>...</option>
@@ -102,7 +102,7 @@
                       </select>
                       </div>
                       <div class="form-group col-md-2">
-                      <label for="inputZip">Zip</label>
+                      <label for="inputZip">Zip <span class="text-danger">*</span></label>
                       <input type="text" class="form-control" v-model="model.zip" id="inputZip" required>
                       </div>
                   </div>

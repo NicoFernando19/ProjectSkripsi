@@ -9,32 +9,32 @@
             <form @submit.stop.prevent="vacancy()">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                    <label for="PostDate">Post Date</label>
+                    <label for="PostDate">Post Date <span class="text-danger">*</span></label>
                     <input type="date" v-model="model.PostDate" class="form-control" id="PostDate" required>
                     </div>
                     <div class="form-group col-md-6">
-                    <label for="Deadline">Deadline</label>
+                    <label for="Deadline">Deadline <span class="text-danger">*</span></label>
                     <input type="date" v-model="model.Deadline" class="form-control" id="Deadline" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="Title">Vacancy Title</label>
+                    <label for="Title">Vacancy Title <span class="text-danger">*</span></label>
                     <input type="text" v-model="model.Title" class="form-control" id="Title" placeholder="Title" required>
                 </div>
                 <div class="form-group">
-                    <label for="jobType">Job Function</label>
+                    <label for="jobType">Job Function <span class="text-danger">*</span></label>
                     <input type="text" v-model="model.jobType" class="form-control" id="jobType" placeholder="IT, CS, or Accounting" required>
                 </div>
                 <div class="form-group">
-                    <label for="jobDesc">Job Description</label>
+                    <label for="jobDesc">Job Description <span class="text-danger">*</span></label>
                     <input type="text" v-model="model.jobDesc" class="form-control" id="jobDesc" placeholder="Job description" required>
                 </div>
                 <div class="form-group">
-                    <label for="NumWorkfore">Number of Workforce Needed</label>
+                    <label for="NumWorkfore">Number of Workforce Needed <span class="text-danger">*</span></label>
                     <input type="number" v-model="model.NumWorkforce" class="form-control" id="NumWorkfore" placeholder="Number of Workforce" min="1" required>
                 </div>
                 <div class="form-group">
-                    <label for="Budget">Budget</label>
+                    <label for="Budget">Budget <span class="text-danger">*</span></label>
                     <b-input-group prepend="Rp." class="mb-2 mr-sm-2 mb-sm-0">
                         <input type="number" v-model="model.Budget" class="form-control" id="Budget" placeholder="5000000" min="1" required>
                     </b-input-group>

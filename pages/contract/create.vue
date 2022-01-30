@@ -17,33 +17,33 @@
                     <input type="text" v-model="model.vendor.name" class="form-control" id="vendorName" placeholder="Outsource Provide Name" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="jobFunction">Job Role</label>
+                    <label for="jobFunction">Job Role <span class="text-danger">*</span></label>
                     <input type="text" v-model="model.jobFunction" class="form-control" id="jobFunction" placeholder="CS (Customer Service)/Digital Marketing" :readonly="vacancyParam" required>
                 </div>
                 <div class="form-group">
-                    <label for="jobFunction">Job Description</label>
+                    <label for="jobFunction">Job Description <span class="text-danger">*</span></label>
                     <input type="text" v-model="model.jobDesc" class="form-control" id="jobFunction" placeholder="Job Description" :readonly="vacancyParam" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                    <label for="PostDate">Start Date Contract</label>
+                    <label for="PostDate">Start Date Contract <span class="text-danger">*</span></label>
                     <input type="date" v-model="model.startDate" class="form-control" id="PostDate" required>
                     </div>
                     <div class="form-group col-md-6">
-                    <label for="Deadline">End Date Contract</label>
+                    <label for="Deadline">End Date Contract <span class="text-danger">*</span></label>
                     <input type="date" v-model="model.endDate" class="form-control" id="Deadline" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="workforce">Number of Workforce Needed</label>
+                    <label for="workforce">Number of Workforce Needed <span class="text-danger">*</span></label>
                     <input type="number" v-model="model.workforce" class="form-control" id="workforce" placeholder="999" min="1" required>
                 </div>
                 <div class="form-group">
-                    <label for="requirement">Specifications / Requirements</label>
+                    <label for="requirement">Specifications / Requirements <span class="text-danger">*</span></label>
                     <textarea class="form-control" v-model="model.requirement" id="requirement" rows="3" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="document">Document</label>
+                    <label for="document">Document <span class="text-danger">*</span></label>
                     <b-form-file class="form-control-file" id="document" @change="onChange" accept="application/pdf" required></b-form-file>
                     <small class="form-text text-info">PDF only</small>
                 </div>

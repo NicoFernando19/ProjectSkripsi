@@ -8,11 +8,11 @@
         <div class="col-lg-12">
             <form @submit.stop.prevent="proposal()">
                 <div class="form-group">
-                    <label for="documentType">Document Type</label>
+                    <label for="documentType">Document Type <span class="text-danger">*</span></label>
                     <input type="text" v-model="model.documentType" class="form-control" id="documentType" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label for="documentName">Document</label>
+                    <label for="documentName">Document <span class="text-danger">*</span></label>
                     <input type="file" @change="onChange" class="form-control-file" id="documentName">
                 </div>
                 <div class="space"></div>

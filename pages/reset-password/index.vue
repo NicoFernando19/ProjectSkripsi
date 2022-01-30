@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <form @submit.stop.prevent="panelPassword ? reset() : sendEmail()" >
                         <div class="form-group">
-                            <label for="inputEmail4">Email</label>
+                            <label for="inputEmail4">Email <span class="text-danger">*</span></label>
                             <input type="email" :class="{ 'form-control': true , 'is-invalid': invalid , 'is-valid': valid}"
                                 v-model="model.email"
                                 v-on:keyup="onKeyEnter"

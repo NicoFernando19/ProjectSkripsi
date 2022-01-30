@@ -35,11 +35,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="workforce">Number of Workforce Needed</label>
+                    <label for="workforce">Number of Workforce Needed <span class="text-danger">*</span></label>
                     <input type="number" v-model="model.workforce" class="form-control" id="workforce" placeholder="999" :readonly="role == 'Vendor'" min="1">
                 </div>
                 <div class="form-group">
-                    <label for="requirement">Specifications / Requirements</label>
+                    <label for="requirement">Specifications / Requirements <span class="text-danger">*</span></label>
                     <textarea class="form-control" v-model="model.requirement" id="requirement" rows="3" :readonly="role == 'Vendor'"></textarea>
                 </div>
                 <div class="d-flex justify-content-center">
