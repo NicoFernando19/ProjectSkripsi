@@ -10,6 +10,7 @@
         "illuminate/mail": "^8.70",
         "illuminate/notifications": "^8.70",
         "laravel/lumen-framework": "^8.0",
+        "laravelista/lumen-vendor-publish": "8.0",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
