@@ -45,7 +45,7 @@
                           </div>
                         </div>
                         <div class="input-group">
-				                  <button type="submit" class="btn">{{ panelPassword ? "Reset Password" : "Send Link" }}</button>
+				                  <button type="submit" class="btn btn-primary">{{ panelPassword ? "Reset Password" : "Send Link" }}</button>
 			                  </div>
                     </form>
                 </div>
