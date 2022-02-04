@@ -61,7 +61,7 @@ export default {
         async Reject(vacid, compid) {
             let result = await VacancyServices.DeleteJoinedCompanyVacancy(vacid, compid)
             if (result.status == '200') {
-                Toast.showToast("Reject Company","Application rejected", "danger");
+                Toast.showToast("Reject Company","Application rejected", "success");
                 await this.$parent.getData()
             } else {
                 Toast.showToast("Reject Action","Failed to do some action", "danger");
