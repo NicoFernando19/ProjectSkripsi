@@ -86,6 +86,7 @@ export default {
                     await this.$root.$children[2].$refs.navbar.getAuth();
                 }
                 this.$bvModal.hide(this.id)
+                Toast.showToast("Updated Data","Image profile updated successfully", "success");
                 this.$parent.getData()
             } else {
                 Toast.showToast("Updated Data","Failed to update data", "danger");
