@@ -6,6 +6,7 @@
         Upload Proposal
         </h1>
         <div class="col-lg-12">
+            <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#253354" size="50" />
             <form @submit.stop.prevent="proposal()">
                 <div class="form-group">
                     <label for="documentType">Document Type <span class="text-danger">*</span></label>
@@ -27,6 +28,7 @@
 <script>
 import DocumentService from '../../store/services/documentServices/document'
 import Toast from '../../store/features/notificationToast/toast'
+import VueElementLoading from "vue-element-loading";
 
 export default {
   name: 'create',
@@ -40,10 +42,20 @@ export default {
     }
   }),
   methods: {
+    showLoader(val) {
+      if (!val) {
+        setTimeout(() => {
+          this.blockLoader = false;
+        }, 500);
+      } else {
+        this.blockLoader = val;
+      }
+    },
     onChange(e){
         this.model.file = e.target.files[0];
     },
     async proposal() {
+        this.showLoader(true)
         document.getElementById("submitBtn").disable = true;
         this.model.id = this.$route.query['id'];
 
@@ -54,6 +66,7 @@ export default {
         } else {
             Toast.showToast("Create Contract", "Invalid Data!", "danger");
         }
+        this.showLoader(false)
     }
   }
 }

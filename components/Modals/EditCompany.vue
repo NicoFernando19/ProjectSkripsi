@@ -237,14 +237,17 @@ export default {
         this.showLoader(false)
     },
     async onSubmit() {
+      this.showLoader(true)
       document.getElementById("submitBtn").disabled = true
       let res = await CompanyService.UpdateCompany(this.form)
       if (res.status == 200) {
         this.$bvModal.hide(this.id)
+        Toast.showToast("Updated Data","Data updated successfully", "success");
         this.$parent.getData()
       } else {
         Toast.showToast("Updated Data","Failed to update data", "danger");
       }
+      this.showLoader(false)
     }
   }
 };
