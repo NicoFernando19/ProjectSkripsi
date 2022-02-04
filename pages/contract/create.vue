@@ -116,14 +116,16 @@ export default {
         this.model.file = e.target.files[0];
     },
     async contract() {
+        this.showLoader(true)
         document.getElementById("submitBtn").disable = true;
         let res = await ContractService.CreateContract(this.model);
         if (res.status == 201) {
             Toast.showToast("Create Contract", "Create Contract Success!", "success");
-            this.$router.push({ path: "/company/Home" });
+            this.$router.push({ path: "/contract/list" });
         } else {
             Toast.showToast("Create Contract", "Invalid Data!", "danger");
         }
+        this.showLoader(false)
     },
     async getVendorData() {
         this.model.vendor.id = this.$route.query['vendorid']
