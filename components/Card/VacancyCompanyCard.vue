@@ -62,6 +62,7 @@ export default {
             let result = await VacancyServices.DeleteJoinedCompanyVacancy(vacid, compid)
             if (result.status == '200') {
                 await this.$parent.getData()
+                Toast.showToast("Reject Company","Application has been rejected successfully", "danger");
             } else {
                 Toast.showToast("Reject Action","Failed to do some action", "danger");
             }
