@@ -61,10 +61,10 @@ export default {
 
         let res = await DocumentService.UploadFile(this.model);
         if (res.status == 201) {
-            Toast.showToast("Create Contract", "Create Contract Success!", "success");
+            Toast.showToast("Join Vacancy", "Join Vacancy Success!", "success");
             this.$router.push({ path: "/company/Home" });
         } else {
-            Toast.showToast("Create Contract", "Invalid Data!", "danger");
+            Toast.showToast("Join Vacancy", "Invalid Data!", "danger");
         }
         this.showLoader(false)
     }
