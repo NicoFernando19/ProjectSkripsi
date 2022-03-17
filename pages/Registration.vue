@@ -154,7 +154,7 @@ export default {
         state: '',
         password_confirmation: '',
         role_id: 0,
-        imgName: 'company.png'
+        imgName: 'user.jpg'
     },
     companyTypes: [],
     emailRules: [],
