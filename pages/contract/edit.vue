@@ -86,6 +86,7 @@
 import ContractService from '../../store/services/contractServices/contract'
 import Toast from '../../store/features/notificationToast/toast'
 import VueElementLoading from "vue-element-loading"
+import Config from "../../static/config"
 import PreviewModal from '@/components/modalPreviewDoc/PreviewDoc'
 import Cookie from 'js-cookie'
 
@@ -205,7 +206,7 @@ export default {
             this.model.document = data.document;
             this.model.status = data.status;
             if (data.document != null) {
-                this.model.documentUrl = "http://localhost:8000/storage/uploads/" + data.document
+                this.model.documentUrl = `${Config.StorageUrl}/${data.document}`;
             }
         },
         goBack() {
