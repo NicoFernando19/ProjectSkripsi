@@ -79,17 +79,33 @@
       <h2 class="text-left pt-5 pb-3">
         Employees
       </h2>
-      <div class="mr-auto pt-5 pl-2">
-          <div class="d-flex align-items-center mt-2">
-              <span>
-                  Show
-              </span>
-              <b-form-select v-model="perPage" :options="options" size="sm" class="ml-1" @change="handlePerPageContent()"></b-form-select>
-              <span class="ml-1">
-                  entries
-              </span>
+    </div>
+    <div class="d-flex">
+      <div class="col-md-3">
+        <div class="pl-2">
+              <div class="d-flex align-items-center">
+                  <span>
+                      Show
+                  </span>
+                  <b-form-select v-model="perPage" :options="options" size="sm" class="ml-1" @change="handlePerPageContent()"></b-form-select>
+                  <span class="ml-1">
+                      entries
+                  </span>
+              </div>
           </div>
-      </div>  
+      </div>
+      <div class="col-md-9 d-flex justify-content-end">
+        <div class="form-group m-0 mr-2">
+            <input placeholder="Search By Job Title" type="text" id="filter" class="form-control" v-model='filterByJobTitle'>
+        </div>
+        <div class="form-group m-0 mr-2">
+            <input placeholder="Search By Name" type="text" id="filter" class="form-control" v-model='filterByName'>
+        </div>
+        <div>
+            <b-button class="clear-button search-button" variant="primary" @click="getEmployee()">Search</b-button>
+            <b-button class="clear-button" variant="secondary" @click="clearFilter()">Reset</b-button>
+        </div>
+      </div>
     </div>
     <div class="container d-flex align-content-start flex-wrap justify-content-start pt-3 pad">
       <employee-card
@@ -216,6 +232,8 @@ export default {
         imgName: '',
         employees: {},
       },
+      filterByName: '',
+      filterByJobTitle: '',
       histories: [],
       mailtoMail: '',
       JoinedCompany: {
@@ -270,7 +288,7 @@ export default {
     async getData() {
       this.showLoader(true)
       this.model.id = this.$route.query['id'];
-      let result = await CompanyServices.GetCompanyById(this.model, this.currentPage, this.perPage)
+      let result = await CompanyServices.GetCompanyById(this.model, this.currentPage, this.perPage, this.filterByName, this.filterByJobTitle)
 
       if (result.status == 200) {
         this.loadData(result);
@@ -321,6 +339,14 @@ export default {
     },
     async handlePerPageContent() {
       this.getData();
+    },
+    async getEmployee() {
+      await this.getData();
+    },
+    async clearFilter() {
+      this.filterByName = '';
+      this.filterByJobTitle = '';
+      await this.getData();
     }
   }
 }
@@ -349,6 +375,9 @@ export default {
     margin-right: auto;
     border-radius: 20px;
     max-width: fit-content;
+}
+.clear-button { 
+  border-radius: 20px;
 }
 
 /* .prev-work{

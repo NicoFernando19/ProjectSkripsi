@@ -4,8 +4,8 @@
             <vue-element-loading :active="blockLoader" spinner="bar-fade-scale" color="#F06292" size="50" />
             <img class="card-img-top card-img-height" :src="`${Url}/${employee.imgName}`" :alt="employee.imgName">
             <div class="card-body">
-                <h5 class="card-title" style="font-size:0.9rem">{{ employee.name }}</h5>
-                <p class="card-text">{{ employee.bio }}</p>
+                <h5 class="card-title m-0" style="font-size:0.9rem">{{ employee.name }}</h5>
+                <p class="card-text" style="font-size:0.75rem">{{ employee.jobTitle }}</p>
             </div>
         </div>
     </div>

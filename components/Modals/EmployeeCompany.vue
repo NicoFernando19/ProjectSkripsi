@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="form-group m-0">
-                            <input placeholder="Search By Title" type="text" id="filter" class="form-control" v-model='data.name'>
+                            <input placeholder="Search By Name" type="text" id="filter" class="form-control" v-model='data.name'>
                         </div>
                         <div>
                             <b-button class="search-button" variant="primary" @click="getEmployee()">Search</b-button>

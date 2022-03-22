@@ -39,7 +39,7 @@ export default {
         return result
     },
 
-    async GetCompanyById (data, Page, perPage) {
+    async GetCompanyById (data, Page, perPage, name, jobTitle) {
         let token = Cookies.get('authToken')
         let result = {}
         await axios.get(`${config.API}${config.DetailCompany}/${data.id}`, {
@@ -49,7 +49,9 @@ export default {
             },
             params: {
                 Page,
-                perPage
+                perPage,
+                name,
+                jobTitle
             }
         }).then(response => {
             result = response;
