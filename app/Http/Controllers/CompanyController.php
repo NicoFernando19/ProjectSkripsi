@@ -102,7 +102,14 @@ class CompanyController extends Controller
             Paginator::currentPageResolver(function () use ($currentPage) {
                 return $currentPage;
             });
-            $data->setRelation('employees', $data->employees()->paginate($request->perPage));
+            if ($request->name != null || $request->name != '') {
+                $data->setRelation('employees', $data->employees()->whereRaw('LOWER(`name`) LIKE ?', "%".strtolower($request->name)."%")->paginate($request->perPage));
+            }else 
+            if ($request->jobTitle != null || $request->jobTitle != '') {
+                $data->setRelation('employees', $data->employees()->whereRaw('LOWER(`jobTitle`) LIKE ?', "%".strtolower($request->jobTitle)."%")->paginate($request->perPage));
+            }else {
+                $data->setRelation('employees', $data->employees()->paginate($request->perPage));
+            }
             $data['roleName'] = $data->Role->role_name;
             foreach($data->WorkHistory as $work) {
                 $work['start_date'] = Carbon::parse($work->startDate)->format("d M Y");
