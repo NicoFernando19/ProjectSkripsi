@@ -165,6 +165,7 @@ export default {
         async getContracts(){
             this.showLoader(true)
             let result = await ContractService.GetContract(this.currentPage, this.selected)
+            console.log(result.data.data);
             if (result.status == 200) {
                 this.items = result.data.data.data
                 this.total = result.data.data.total

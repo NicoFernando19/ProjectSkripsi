@@ -34,10 +34,10 @@
                     <input type="date" v-model="model.endDate" class="form-control" id="Deadline" readonly>
                     </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="workforce">Number of Workforce Needed <span class="text-danger">*</span></label>
                     <input type="number" v-model="model.workforce" class="form-control" id="workforce" placeholder="999" :readonly="role == 'Vendor'" min="1">
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="requirement">Specifications / Requirements <span class="text-danger">*</span></label>
                     <textarea class="form-control" v-model="model.requirement" id="requirement" rows="3" :readonly="role == 'Vendor'"></textarea>
@@ -118,7 +118,7 @@ export default {
             vacancy: {
                 id: ''
             },
-            workforce: '',
+            // workforce: '',
             jobFunction: '',
             jobDesc: '',
             startDate: '',
@@ -190,7 +190,7 @@ export default {
         populateData(data) {
             this.model.id = data.id;
             this.model.company_id = data.company.id;
-            this.model.vendor_id = data.vendor_id;
+            this.model.vendor_id = data.vendor.id;
             this.model.contract.id = data.id;
             this.model.company.id = data.company.id;
             this.model.company.name = data.company.name;
@@ -198,7 +198,7 @@ export default {
             this.model.vendor.name = data.vendor.name;
             this.model.jobFunction = data.jobFunction;
             this.model.jobDesc = data.jobDesc;
-            this.model.workforce = data.workforce;
+            // this.model.workforce = data.workforce;
             this.model.startDate = data.start_date;
             this.model.endDate = data.end_date;
             this.model.requirement = data.requirement;

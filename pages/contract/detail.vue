@@ -32,14 +32,14 @@
                             <span class="text">{{model.jobDesc}}</span>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-6">
                             <span class="text"><strong> Work Force </strong></span>
                         </div>
                         <div class="col-md-6">
                             <span class="text">{{model.workForce}} Persons</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row">
                         <div class="col-md-6">
                             <span class="text"><strong> Company </strong></span>
@@ -98,7 +98,7 @@ export default {
             id: '',
             jobFunc: '',
             jobDesc: '',
-            workForce: '',
+            // workForce: '',
             companyName: '',
             vendorName: '',
             startDate: '',
@@ -139,7 +139,7 @@ export default {
             this.model.id = result.id
             this.model.jobFunc = result.jobFunction
             this.model.jobDesc = result.jobDesc
-            this.model.workForce = result.workforce
+            // this.model.workForce = result.workforce
             this.model.companyName = result.company.name
             this.model.vendorName = result.vendor.name
             this.model.startDate = Moment(String(result.start_date)).format('D MMMM YYYY')

@@ -1,6 +1,6 @@
 export default  {
-    API: "http://localhost:8000",
-    // API: "https://apithesis.herokuapp.com",
+    // API: "http://localhost:8000",
+    API: "https://apithesis.herokuapp.com",
     Login: "/api/login",
     Register: "/api/register",
     ApiStats: "/api/stats",
@@ -8,8 +8,8 @@ export default  {
     ResetPassword: "/api/password/reset",
 
     // STORAGE
-    StorageUrl: "http://localhost:8000/storage/uploads",
-    // StorageUrl: "https://apithesis.herokuapp.com/storage/uploads",
+    // StorageUrl: "http://localhost:8000/storage/uploads",
+    StorageUrl: "https://apithesis.herokuapp.com/storage/uploads",
     StoragePathUrl: "/storage/uploads",
 
     // COMPANY
@@ -76,5 +76,12 @@ export default  {
     UploadFile: "/api/upload/company-interest/file",
 
     // JOIN VACANCY
-    JoinVacancy: "/api/join/vacancy"
+    JoinVacancy: "/api/join/vacancy",
+
+    // EMPLOYEE
+    ListEmployee: "/api/employee/list",
+    CreateEmployee: "/api/employee/create",
+    DetailEmployee: "/api/employee/getData",
+    UpdateEmployee: "/api/employee/update",
+    DeleteEmployee: "/api/employee/delete",
 }

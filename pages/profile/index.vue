@@ -81,6 +81,46 @@
     </div>
   </div>  
   <div class="container-xl pb-5 prev-work" v-show="roleCompany() == 'Vendor'">
+    <div class="container d-flex p-0 mt-4">
+      <h2 class="text-left pt-5 pb-3">
+        Employees
+      </h2>
+      <div class="mr-auto pt-5 pl-2">
+          <div class="d-flex align-items-center mt-2">
+              <span>
+                  Show
+              </span>
+              <b-form-select v-model="perPage" :options="options" size="sm" class="ml-1" @change="handlePerPageContent()"></b-form-select>
+              <span class="ml-1">
+                  entries
+              </span>
+          </div>
+      </div>
+      <div class="pl-3 pt-5 pb-3">
+          <b-button variant="light" @click="$bvModal.show('Employee')">
+              <font-awesome-icon :icon="['fas', 'edit']" />
+          </b-button>
+      </div>
+      <EmployeeModal id="Employee" title="Employees" :data="model.employees"/>  
+    </div>
+    <div class="container d-flex align-content-start flex-wrap justify-content-start pt-3 pad">
+      <employee-card
+        v-for="employee in model.employees.data"
+        v-bind:key="employee.id"
+        :employee="employee" 
+      />
+      <div class="container d-flex justify-content-center">
+        <b-pagination
+          v-model="currentPage"
+          :per-page="perPage"
+          :total-rows="total"
+          aria-controls="company-table"
+          @change="handlePageChange"
+        ></b-pagination>
+      </div> 
+    </div>
+  </div>
+  <div class="container-xl pb-5 prev-work" v-show="roleCompany() == 'Vendor'">
     <div class="d-flex">
       <h2 class="text-left pt-5 pb-3">
         Previous Works
@@ -107,6 +147,8 @@ import config from '../../static/config';
 import EditModal from '@/components/Modals/EditCompany.vue'
 import HistoryModal from '@/components/Modals/HistoryCompany.vue'
 import UpdateImage from '@/components/Modals/UpdateImageCompany.vue'
+import EmployeeCard from '@/components/Card/EmployeeCard.vue'
+import EmployeeModal from '@/components/Modals/EmployeeCompany.vue'
 import Moment from "moment"
 
 export default {
@@ -117,13 +159,21 @@ export default {
     VueElementLoading,
     EditModal,
     HistoryModal,
-    UpdateImage
+    UpdateImage,
+    EmployeeCard,
+    EmployeeModal
   },
   data() {
     return {
       blockLoader: false,
       StorageUrl: config.StorageUrl,
       imgUrl: '',
+      options: [
+          { value: 10, text: '10' },
+          { value: 25, text: '25' },
+          { value: 50, text: '50' },
+          { value: 100, text: '100' }
+      ],
       CompanyName: '',
       model: {
         id: '',
@@ -145,10 +195,14 @@ export default {
         city: '',
         state: '',
         zip: '',
-        imgName: ''
+        imgName: '',
+        employees: {},
       },
       histories: [],
-      mailtoMail: ''
+      mailtoMail: '',
+      currentPage: 1,
+      total: 0,
+      perPage: 10
     }
   },
   async mounted() {
@@ -176,8 +230,8 @@ export default {
     async getData() {
       this.showLoader(true)
       this.model.id = this.$route.query['id'];
-      let result = await CompanyServices.GetCompanyById(this.model)
-
+      let result = await CompanyServices.GetCompanyById(this.model, this.currentPage, this.perPage)
+      
       this.loadData(result);
       this.imgUrl = `${this.StorageUrl}/${this.model.imgName}`;
       this.CompanyName = result.data.companyName
@@ -211,7 +265,18 @@ export default {
       this.model.zip = result.data.zip;
       this.model.imgName = result.data.imgName;
       this.histories = result.data.work_history;
+      this.model.employees = result.data.employees;
+      this.currentPage = result.data.employees.current_page;
+      this.total = result.data.employees.total;
+      this.perPage = result.data.employees.per_page;
     },
+    async handlePageChange(value) {
+      this.currentPage = value;
+      this.getData();
+    },
+    async handlePerPageContent() {
+      this.getData();
+    }
   }
 }
 </script>

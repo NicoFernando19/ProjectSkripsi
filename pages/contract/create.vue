@@ -34,10 +34,10 @@
                     <input type="date" v-model="model.endDate" class="form-control" id="Deadline" required>
                     </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="workforce">Number of Workforce Needed <span class="text-danger">*</span></label>
                     <input type="number" v-model="model.workforce" class="form-control" id="workforce" placeholder="999" min="1" required>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="requirement">Specifications / Requirements <span class="text-danger">*</span></label>
                     <textarea class="form-control" v-model="model.requirement" id="requirement" rows="3" required></textarea>
@@ -88,7 +88,7 @@ export default {
         vacancy: {
             id: ''
         },
-        workforce: '',
+        // workforce: '',
         jobFunction: '',
         jobDesc: '',
         startDate: '',

@@ -14,7 +14,17 @@ export default async function({ redirect }) {
                 return redirect("/company/home")
             }
         }).catch(err => {
-            return redirect("/Login")
+            if(Cookie.get("authToken")){
+                Cookie.remove("authToken");
+                Cookie.remove("authUserId");
+                Cookie.remove("authName");
+                Cookie.remove("authUserName");
+                Cookie.remove("authCompanyName");
+                Cookie.remove("authRole");
+                Cookie.remove("authLastLogin");
+                Cookie.remove("authimgName");
+            }
+            // return redirect("/Login")
         })
     }
 }
