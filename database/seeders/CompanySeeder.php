@@ -31,7 +31,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company.png',
             'company_type_id' => 1,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 3
         ]);
 
         Company::create([
@@ -50,7 +51,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'Company2.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 2
         ]);
 
         Company::create([
@@ -69,7 +71,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company3.png',
             'company_type_id' => 3,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 3
         ]);
 
         Company::create([
@@ -88,7 +91,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company4.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 3
         ]);
 
         Company::create([
@@ -107,7 +111,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company5.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 2
         ]);
 
         Company::create([
@@ -126,7 +131,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company6.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 3
         ]);
 
         Company::create([
@@ -145,7 +151,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company13.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 3
         ]);
 
         Company::create([
@@ -164,7 +171,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company15.png',
             'company_type_id' => 1,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 2
         ]);
 
         Company::create([
@@ -183,7 +191,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'Company16.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 3
         ]);
 
         Company::create([
@@ -202,7 +211,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company17.png',
             'company_type_id' => 1,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 3
         ]);
 
         Company::create([
@@ -221,7 +231,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company18.png',
             'company_type_id' => 1,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 2
         ]);
 
         Company::create([
@@ -240,7 +251,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company12.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 3
         ]);
 
         Company::create([
@@ -259,7 +271,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company19.png',
             'company_type_id' => 1,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 2
         ]);
 
         Company::create([
@@ -278,7 +291,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company20.png',
             'company_type_id' => 1,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 2
         ]);
 
         Company::create([
@@ -297,7 +311,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'Company21.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 2
         ]);
 
         Company::create([
@@ -316,7 +331,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company22.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 3
         ]);
 
         Company::create([
@@ -335,7 +351,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company23.png',
             'company_type_id' => 1,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 3
         ]);
 
         Company::create([
@@ -354,7 +371,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company24.png',
             'company_type_id' => 1,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 2
         ]);
 
         Company::create([
@@ -373,7 +391,8 @@ class CompanySeeder extends Seeder
             'imgName' => 'company25.png',
             'company_type_id' => 2,
             'password' => app('hash')->make('123123123'),
-            'country' => 'Indonesia'
+            'country' => 'Indonesia',
+            'role_id' => 2
         ]);
     }
 }

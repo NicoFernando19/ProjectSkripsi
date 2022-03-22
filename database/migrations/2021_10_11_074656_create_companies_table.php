@@ -18,7 +18,6 @@ class CreateCompaniesTable extends Migration
             $table->string("username");
             $table->string('name');
             $table->string('email')->unique();
-            $table->string("roles")->nullable();
             $table->string("phoneNumber")->nullable();
             $table->date("TanggalBerdiri")->nullable();
             $table->string("WebsiteUrl")->nullable();
@@ -35,6 +34,8 @@ class CreateCompaniesTable extends Migration
             $table->string("imgName")->nullable();
             $table->unsignedBigInteger('company_type_id');
             $table->foreign('company_type_id')->references('id')->on('company_types')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
             $table->datetime("lastLogin")->nullable();
             $table->string('password')->nullable();
             $table->timestamps();

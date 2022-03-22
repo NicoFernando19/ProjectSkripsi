@@ -100,4 +100,11 @@ $router->group(['prefix' => 'api'], function () use ($router)
 
     //UPLOAD FILE
     $router->post('upload/company-interest/file', ['uses' => 'DocumentUpload\DocumentController@uploadFile']);
+
+    // EMPLOYEE
+    $router->get('employee/list', ['uses' => 'Employee\EmployeeController@listEmployee']);
+    $router->post('employee/create', ['uses' => 'Employee\EmployeeController@create']);
+    $router->get('employee/getData/{id}', ['uses' => 'Employee\EmployeeController@showById']);
+    $router->put('employee/update/{id}', ['uses' => 'Employee\EmployeeController@update']);
+    $router->delete('employee/delete/{id}', ['uses' => 'Employee\EmployeeController@destroy']);
 });

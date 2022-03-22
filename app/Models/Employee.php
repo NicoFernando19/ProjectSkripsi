@@ -10,47 +10,57 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class Employee extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
+class Employee extends Model 
+// implements 
+// AuthenticatableContract, 
+// AuthorizableContract, 
+// JWTSubject
 {
-    use Authenticatable, Authorizable, HasFactory;
+    // use Authenticatable, Authorizable, HasFactory;
 
     protected $fillable = [
         'name',
-        'username', 
+        // 'username', 
         'email', 
         'DoB',
-        'roles',
+        // 'roles',
         'phoneNumber',
         'address',
-        'address2',
+        // 'address2',
         'country',
         'city',
         'zip',
         'about',
         'jobTitle',
         'jobDesc',
-        'lasLogin',
+        'imgName',
+        'countryCode',
+        // 'lasLogin',
         'isActive',
-        'password'
+        'company_id',
+        'docName'
     ];
 
-    protected $hidden = [
-        'password',
-    ];
+    // protected $hidden = [
+    //     'password',
+    // ];
 
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
+    // public function getJWTIdentifier()
+    // {
+    //     return $this->getKey();
+    // }
 
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.
      *
      * @return array
      */
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
+    // public function getJWTCustomClaims()
+    // {
+    //     return [];
+    // }
 
+    public function Company() {
+        return $this->belongsTo(Company::class);
+    }
 }

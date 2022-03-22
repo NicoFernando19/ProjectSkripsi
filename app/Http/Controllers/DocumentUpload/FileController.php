@@ -20,7 +20,7 @@ class FileController extends Controller
         $this->middleware('auth:api');
     }
 
-    public function upload($doc){
+    public function upload($doc = null){
 
         $filePath = public_path('storage/uploads');
         if ( !File::isDirectory($filePath)) {
@@ -29,7 +29,7 @@ class FileController extends Controller
 
         if($doc){
             $file= $doc;
-            $mime = $file->getMimeType();
+            // $mime = $file->getMimeType();
             $oldname = $file->getClientOriginalName();
 
             $name = str_replace(" ","_",microtime()).'.'.$file->getClientOriginalExtension();

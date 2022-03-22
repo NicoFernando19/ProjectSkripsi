@@ -12,13 +12,8 @@ class Controller extends BaseController
         auth()->user()->lastLogin = Carbon::now();
         auth()->user()->save();
         $user = auth()->user();
-        $role_user = array();
-        foreach ($user->Roles as $role){
-            array_push($role_user, $role->role_name);
-        }
-        $user['companyRoles'] = implode(", ",$role_user);
+        $user['companyRoles'] = $user->Role->role_name;
         $user['companyName'] = $user->CompanyType->type_name.' '.$user->name;
-        $role_user = array();
         return response()->json([
             'user'=> $user,
             'token' => $token,

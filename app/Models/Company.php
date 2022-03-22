@@ -38,6 +38,7 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
         'about',
         'address',
         'company_type_id',
+        'role_id',
         'address2',
         'country',
         'city',
@@ -72,8 +73,8 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
         return [];
     }
 
-    public function Roles(){
-        return $this->belongsToMany(Role::class, 'company_roles', 'company_id', 'role_id');
+    public function Role(){
+        return $this->belongsTo(Role::class);
     }
 
     public function Notification() {
@@ -97,12 +98,20 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
         return $this->hasMany(WorkHistory::class);
     }
 
-    public function Contract() {
-        return $this->hasMany(Contract::class);
+    // public function Contract() {
+    //     return $this->hasMany(Contract::class);
+    // }
+
+    // public function ContractVendor() {
+    //     return $this->hasMany(Contract::class, "vendor_id");
+    // }
+
+    public function Contracts() {
+        return $this->belongsToMany(Contract::class, 'company_contracts', 'contract_id', 'company_id');
     }
 
-    public function ContractVendor() {
-        return $this->hasMany(Contract::class, "vendor_id");
+    public function Employees() {
+        return $this->hasMany(Employee::class);
     }
 
     public function sendPasswordResetNotification($token)

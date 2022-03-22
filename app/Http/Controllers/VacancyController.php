@@ -24,57 +24,55 @@ class VacancyController extends Controller
 
     public function listVacancy(Request $request)
     {
-        foreach(Auth::user()->Roles as $role) {
-            if ($role->role_name == 'Business Owner') {
-                if (!empty($request->title) || !empty($request->company)) {
-                    $title = $request->get("title");
-                    $company = $request->get("company");
-                    $datas = Vacancy::with('company')->where('company_id', Auth::id())->get();
-                    $data = $datas->filter( function ($value, $key) use($title, $company){  
-                        return (str_contains(strtolower($value->Title), strtolower($title)) && str_contains(strtolower($value->company->name) , strtolower($company)));
-                    });
-                    $datas = $data->all();
-                    $datas = app('App\Http\Controllers\PaginationController')->paginate($datas, 9);
-                } else {
-                    $datas = Vacancy::with('company')->where('company_id', Auth::id())->paginate(9);
-                }
+        if (Auth::user()->Role->role_name == 'Business Owner') {
+            if (!empty($request->title) || !empty($request->company)) {
+                $title = $request->get("title");
+                $company = $request->get("company");
+                $datas = Vacancy::with('company')->where('company_id', Auth::id())->get();
+                $data = $datas->filter( function ($value, $key) use($title, $company){  
+                    return (str_contains(strtolower($value->Title), strtolower($title)) && str_contains(strtolower($value->company->name) , strtolower($company)));
+                });
+                $datas = $data->all();
+                $datas = app('App\Http\Controllers\PaginationController')->paginate($datas, 9);
+            } else {
+                $datas = Vacancy::with('company')->where('company_id', Auth::id())->paginate(9);
             }
-            else {
-                if (!empty($request->title) || !empty($request->company)) {
-                    $title = $request->get("title");
-                    $company = $request->get("company");
-                    $datas = Vacancy::with(['company', 'CompanyInterest'])->where('isActive', true)->get();
-                    $compInterest = CompanyInterest::where('company_id', Auth::id())->get();
-                    foreach ($compInterest as $comp) {
-                        $vacancies = JoinedCompany::where('company_interest_id', $comp->id)->get();
-                        foreach ($datas as $key => $data) {
-                            foreach ($vacancies as $vacancy) {
-                                if ($vacancy->vacancy_id == $data->id) {
-                                    $data['status'] = 'Applied';
-                                }
+        }
+        else {
+            if (!empty($request->title) || !empty($request->company)) {
+                $title = $request->get("title");
+                $company = $request->get("company");
+                $datas = Vacancy::with(['company', 'CompanyInterest'])->where('isActive', true)->get();
+                $compInterest = CompanyInterest::where('company_id', Auth::id())->get();
+                foreach ($compInterest as $comp) {
+                    $vacancies = JoinedCompany::where('company_interest_id', $comp->id)->get();
+                    foreach ($datas as $key => $data) {
+                        foreach ($vacancies as $vacancy) {
+                            if ($vacancy->vacancy_id == $data->id) {
+                                $data['status'] = 'Applied';
                             }
                         }
                     }
-                    $data = $datas->filter( function ($value, $key) use($title, $company){  
-                        return (str_contains(strtolower($value->Title), strtolower($title)) && str_contains(strtolower($value->company->name) , strtolower($company)));
-                    });
-                    $datas = $data->all();
-                    $datas = app('App\Http\Controllers\PaginationController')->paginate($datas, 9);
-                } else {
-                    $datas = Vacancy::with(['company', 'CompanyInterest'])->where('isActive', true)->get();
-                    $compInterest = CompanyInterest::where('company_id', Auth::id())->get();
-                    foreach ($compInterest as $comp) {
-                        $vacancies = JoinedCompany::where('company_interest_id', $comp->id)->get();
-                        foreach ($datas as $key => $data) {
-                            foreach ($vacancies as $vacancy) {
-                                if ($vacancy->vacancy_id == $data->id) {
-                                    $data['status'] = 'Applied';
-                                }
-                            }
-                        }
-                    }
-                    $datas = app('App\Http\Controllers\PaginationController')->paginate($datas, 9);
                 }
+                $data = $datas->filter( function ($value, $key) use($title, $company){  
+                    return (str_contains(strtolower($value->Title), strtolower($title)) && str_contains(strtolower($value->company->name) , strtolower($company)));
+                });
+                $datas = $data->all();
+                $datas = app('App\Http\Controllers\PaginationController')->paginate($datas, 9);
+            } else {
+                $datas = Vacancy::with(['company', 'CompanyInterest'])->where('isActive', true)->get();
+                $compInterest = CompanyInterest::where('company_id', Auth::id())->get();
+                foreach ($compInterest as $comp) {
+                    $vacancies = JoinedCompany::where('company_interest_id', $comp->id)->get();
+                    foreach ($datas as $key => $data) {
+                        foreach ($vacancies as $vacancy) {
+                            if ($vacancy->vacancy_id == $data->id) {
+                                $data['status'] = 'Applied';
+                            }
+                        }
+                    }
+                }
+                $datas = app('App\Http\Controllers\PaginationController')->paginate($datas, 9);
             }
         }
         $data = [

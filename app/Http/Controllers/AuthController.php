@@ -69,15 +69,11 @@ class AuthController extends Controller
             ];
             return response()->json($err, 400);
         }
-        $user = Company::create($request->except(['password', 'role_id']));
+        $user = Company::create($request->except(['password']));
         $request->password = app('hash')->make($request->password);
         $user->password = $request->password;
         $user->save();
 
-        $companyRole = CompanyRole::create([
-            'company_id' => $user->id,
-            'role_id' => $request->get('role_id')
-        ]);
 
         return response()->json([
             'status' => 'success',
@@ -95,13 +91,8 @@ class AuthController extends Controller
     public function me()
     {
         $user = auth()->user();
-        $role_user = array();
-        foreach ($user->Roles as $role){
-            array_push($role_user, $role->role_name);
-        }
-        $user['companyRoles'] = implode(", ",$role_user);
+        $user['companyRoles'] = $user->Role->role_name;
         $user['companyName'] = $user->CompanyType->type_name.' '.$user->name;
-        $role_user = array();
         return response()->json($user);
     }
 }

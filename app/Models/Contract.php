@@ -9,6 +9,7 @@ class Contract extends Model
     protected $fillable = [
         'company_id',
         'vendor_id',
+        'vacancy_id',
         'workforce',
         'jobFunction',
         'jobDesc',
@@ -20,12 +21,20 @@ class Contract extends Model
         'feedbackNotes'
     ];
 
-    public function Company(){
-        return $this->belongsTo(Company::class);
+    // public function Company(){
+    //     return $this->belongsTo(Company::class);
+    // }
+
+    public function Companies() {
+        return $this->belongsToMany(Company::class, 'company_contracts', 'contract_id', 'company_id');
     }
 
     public function Vendor() {
         return $this->belongsTo(Company::class, 'vendor_id');
+    }
+
+    public function Vacancy() {
+        return $this->hasOne(Vacancy::class);
     }
 
 }

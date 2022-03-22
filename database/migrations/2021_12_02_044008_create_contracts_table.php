@@ -15,11 +15,9 @@ class CreateContractsTable extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('company_id')->nullable();
-            $table->foreign('company_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('vendor_id')->nullable();
-            $table->foreign('vendor_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('workforce');
+            $table->unsignedBigInteger('vacancy_id')->nullable();
+            $table->foreign('vacancy_id')->references('id')->on('vacancies')->onUpdate('cascade')->onDelete('cascade');
+            // $table->integer('workforce');
             $table->string('jobFunction');
             $table->string('jobDesc')->nullable();
             $table->date("start_date")->nullable();

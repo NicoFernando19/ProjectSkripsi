@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Auth;
@@ -24,13 +25,13 @@ class CompanyController extends Controller
         if (!empty($request->name) || $request->get("company_type") != "0") {
             $name = $request->get("name");
             $companyType = $request->get("company_type");
-            $datas = Company::with(['Roles', 'CompanyType'])
+            $datas = Company::with(['Role', 'CompanyType'])
                         ->where('id', '!=', Auth::id())
                         ->where("name", "LIKE", "%$name%")
                         ->get();
             if ($companyType != "0") {
                 $data = $datas->filter( function ($value, $key) use($companyType){ 
-                    return collect($value['Roles'])->contains('role_name', $companyType);
+                    return collect($value)->contains('role_name', $companyType);
                 });
                 $datas = $data->all();
             }
@@ -39,7 +40,7 @@ class CompanyController extends Controller
             }
             $datas = app('App\Http\Controllers\PaginationController')->paginate($datas, 9);
         }else {
-            $datas = Company::with(['Roles', 'CompanyType'])->where('id', '!=', Auth::id())->paginate(9);
+            $datas = Company::with(['Role', 'CompanyType'])->where('id', '!=', Auth::id())->paginate(9);
             foreach ($datas as $key => $user) {
                 $user['companyName'] = $user->CompanyType->type_name.' '.$user->name;
             }
@@ -93,13 +94,16 @@ class CompanyController extends Controller
         }
     }
 
-    public function showById($id)
+    public function showById($id, Request $request)
     {
         try {
-            $data = Company::with(['CompanyType', 'Roles', 'WorkHistory'])->find($id);
-            foreach($data->Roles as $role){
-                $data['roleName'] = $role->role_name;
-            }
+            $data = Company::with(['CompanyType', 'Role', 'WorkHistory'])->find($id);
+            $currentPage = $request->Page;
+            Paginator::currentPageResolver(function () use ($currentPage) {
+                return $currentPage;
+            });
+            $data->setRelation('employees', $data->employees()->paginate($request->perPage));
+            $data['roleName'] = $data->Role->role_name;
             foreach($data->WorkHistory as $work) {
                 $work['start_date'] = Carbon::parse($work->startDate)->format("d M Y");
                 $work['end_date'] = Carbon::parse($work->endDate)->format("d M Y"); 

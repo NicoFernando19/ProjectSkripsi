@@ -25,4 +25,8 @@ class Vacancy extends Model
     public function CompanyInterest() {
         return $this->belongsToMany(CompanyInterest::class, 'joined_companies', 'vacancy_id', 'company_interest_id');
     }
+
+    public function Contract() {
+        return $this->belongsTo(Contract::class);
+    }
 }
