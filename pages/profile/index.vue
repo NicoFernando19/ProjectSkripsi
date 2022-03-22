@@ -85,23 +85,26 @@
       <h2 class="text-left pt-5 pb-3">
         Employees
       </h2>
-      <div class="mr-auto pt-5 pl-2">
-          <div class="d-flex align-items-center mt-2">
-              <span>
-                  Show
-              </span>
-              <b-form-select v-model="perPage" :options="options" size="sm" class="ml-1" @change="handlePerPageContent()"></b-form-select>
-              <span class="ml-1">
-                  entries
-              </span>
-          </div>
-      </div>
       <div class="pl-3 pt-5 pb-3">
           <b-button variant="light" @click="$bvModal.show('Employee')">
               <font-awesome-icon :icon="['fas', 'edit']" />
           </b-button>
       </div>
+      
       <EmployeeModal id="Employee" title="Employees" :data="model.employees"/>  
+    </div>
+    <div class="col-md-3">
+      <div class="pl-2">
+            <div class="d-flex align-items-center">
+                <span>
+                    Show
+                </span>
+                <b-form-select v-model="perPage" :options="options" size="sm" class="ml-1" @change="handlePerPageContent()"></b-form-select>
+                <span class="ml-1">
+                    entries
+                </span>
+            </div>
+        </div>
     </div>
     <div class="container d-flex align-content-start flex-wrap justify-content-start pt-3 pad">
       <employee-card
