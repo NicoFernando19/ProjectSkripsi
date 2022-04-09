@@ -83,9 +83,9 @@ export default {
                 Cookie.remove("authimgName");
                 Cookie.set("authimgName", res.data.imgName, { expires: 1 });
                 this.$bvModal.hide(this.id)
-                console.log(this.$root)
-                if (this.$root.$children[2].$refs) {
-                    await this.$root.$children[2].$refs.navbar.getAuth();
+                console.log(this.$root.$children[1].$refs)
+                if (this.$root.$children[1].$refs) {
+                    await this.$root.$children[1].$refs.navbar.getAuth();
                 }
                 Toast.showToast("Updated Data","Image profile updated successfully", "success");
                 this.$parent.getData()
