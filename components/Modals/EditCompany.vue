@@ -242,6 +242,9 @@ export default {
       let res = await CompanyService.UpdateCompany(this.form)
       if (res.status == 200) {
         this.$bvModal.hide(this.id)
+        if (this.$root.$children[1].$refs.navbar != undefined) {
+            await this.$root.$children[1].$refs.navbar.getAuth();
+        }
         Toast.showToast("Updated Data","Data updated successfully", "success");
         this.$parent.getData()
       } else {
