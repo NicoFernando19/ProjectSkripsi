@@ -82,10 +82,10 @@ export default {
             if (res.status == 200) {
                 Cookie.remove("authimgName");
                 Cookie.set("authimgName", res.data.imgName, { expires: 1 });
-                if (this.$root.$children[2].$refs.navbar != null) {
+                this.$bvModal.hide(this.id)
+                if (this.$root.$children[2].$refs.navbar) {
                     await this.$root.$children[2].$refs.navbar.getAuth();
                 }
-                this.$bvModal.hide(this.id)
                 Toast.showToast("Updated Data","Image profile updated successfully", "success");
                 this.$parent.getData()
             } else {
@@ -95,7 +95,7 @@ export default {
         },
         loadImage(e) {
             this.form.file = e.target.files[0];
-            this.imgUrl = URL.createObjectURL(e.target.files[0]);
+            document.getElementById("image").src = URL.createObjectURL(e.target.files[0]);
         }
     }
 }
